@@ -1,0 +1,197 @@
+{
+  "entities": {
+    "Announcement": {
+      "title": "Announcement",
+      "description": "Official RWS newsroom notices, public statements, and institutional announcements.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "minLength": 3, "maxLength": 200 },
+        "category": { "type": "string", "enum": ["Official Notice", "Announcement", "Community News", "Institutional Update", "Public Statement", "Development Initiative"] },
+        "summary": { "type": "string", "minLength": 10, "maxLength": 500 },
+        "body": { "type": "string", "minLength": 10, "maxLength": 15000 },
+        "status": { "type": "string", "enum": ["draft", "published", "scheduled"] },
+        "publishDate": { "type": "string", "minLength": 4, "maxLength": 40 },
+        "authorUid": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "authorName": { "type": "string", "minLength": 2, "maxLength": 120 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "category", "summary", "body", "status", "publishDate", "authorUid", "authorName", "createdAt", "updatedAt"]
+    },
+    "SocietyEvent": {
+      "title": "SocietyEvent",
+      "description": "Past and upcoming Rang Welfare Society meetings, conferences, cultural programmes, and activities.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "minLength": 3, "maxLength": 200 },
+        "category": { "type": "string", "enum": ["General Conference", "Community Meeting", "Cultural Programme", "Development Activity", "Silver Jubilee", "Youth & Sports"] },
+        "eventDate": { "type": "string", "minLength": 4, "maxLength": 40 },
+        "location": { "type": "string", "minLength": 2, "maxLength": 200 },
+        "description": { "type": "string", "minLength": 10, "maxLength": 8000 },
+        "posterUrl": { "type": "string", "maxLength": 1000 },
+        "status": { "type": "string", "enum": ["draft", "published"] },
+        "isPast": { "type": "boolean" },
+        "authorUid": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "category", "eventDate", "location", "description", "status", "isPast", "authorUid", "createdAt", "updatedAt"]
+    },
+    "CmsArticle": {
+      "title": "CmsArticle",
+      "description": "CMS-managed new articles, poems, folktales, and institutional updates separate from the immutable Silver Jubilee source archive.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "minLength": 3, "maxLength": 240 },
+        "subtitle": { "type": "string", "maxLength": 240 },
+        "category": { "type": "string", "enum": ["Article", "Poem", "Folktale", "Memory", "Institutional Note"] },
+        "authorDisplay": { "type": "string", "minLength": 2, "maxLength": 160 },
+        "excerpt": { "type": "string", "minLength": 10, "maxLength": 600 },
+        "body": { "type": "string", "minLength": 20, "maxLength": 25000 },
+        "imageUrl": { "type": "string", "maxLength": 1000 },
+        "status": { "type": "string", "enum": ["draft", "published"] },
+        "authorUid": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "category", "authorDisplay", "excerpt", "body", "status", "authorUid", "createdAt", "updatedAt"]
+    },
+    "GalleryItem": {
+      "title": "GalleryItem",
+      "description": "CMS-managed photographs and captions for the Rang photo archive.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "minLength": 2, "maxLength": 200 },
+        "caption": { "type": "string", "minLength": 2, "maxLength": 600 },
+        "category": { "type": "string", "minLength": 2, "maxLength": 100 },
+        "imageUrl": { "type": "string", "minLength": 4, "maxLength": 1000 },
+        "period": { "type": "string", "maxLength": 80 },
+        "status": { "type": "string", "enum": ["draft", "published"] },
+        "authorUid": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "caption", "category", "imageUrl", "status", "authorUid", "createdAt", "updatedAt"]
+    },
+    "VisionProgressUpdate": {
+      "title": "VisionProgressUpdate",
+      "description": "Verified progress updates entered by RWS administrators for Rang Vision 2047 missions and phases.",
+      "type": "object",
+      "properties": {
+        "missionId": { "type": "string", "minLength": 2, "maxLength": 64 },
+        "phase": { "type": "string", "enum": ["Phase I: 2026-2030 (Rang Nirman)", "Phase II: 2031-2036 (Rang Vistar)", "Phase III: 2037-2047 (Rang Shikhar)"] },
+        "title": { "type": "string", "minLength": 3, "maxLength": 200 },
+        "summary": { "type": "string", "minLength": 10, "maxLength": 3000 },
+        "progressStatus": { "type": "string", "enum": ["Planned", "In Progress", "Completed", "Published Report"] },
+        "reportedDate": { "type": "string", "minLength": 4, "maxLength": 40 },
+        "authorUid": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["missionId", "phase", "title", "summary", "progressStatus", "reportedDate", "authorUid", "createdAt", "updatedAt"]
+    },
+    "PublicationRecord": {
+      "title": "PublicationRecord",
+      "description": "Approved Society publications, souvenir editions, and downloadable community documents.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "minLength": 3, "maxLength": 200 },
+        "year": { "type": "string", "minLength": 4, "maxLength": 20 },
+        "category": { "type": "string", "minLength": 2, "maxLength": 80 },
+        "description": { "type": "string", "minLength": 10, "maxLength": 2000 },
+        "documentUrl": { "type": "string", "minLength": 4, "maxLength": 1000 },
+        "coverUrl": { "type": "string", "maxLength": 1000 },
+        "status": { "type": "string", "enum": ["draft", "published"] },
+        "authorUid": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "year", "category", "description", "documentUrl", "status", "authorUid", "createdAt", "updatedAt"]
+    },
+    "CommunitySubmission": {
+      "title": "CommunitySubmission",
+      "description": "Community-contributed memories, articles, poems, folktales, photographs, or historical corrections awaiting RWS administrative review.",
+      "type": "object",
+      "properties": {
+        "submissionType": { "type": "string", "enum": ["Historical Memory", "Old Photograph", "Article", "Folktale", "Poem", "Historical Information", "Editorial Correction"] },
+        "title": { "type": "string", "minLength": 3, "maxLength": 200 },
+        "content": { "type": "string", "minLength": 15, "maxLength": 15000 },
+        "contributorName": { "type": "string", "minLength": 2, "maxLength": 120 },
+        "clan": { "type": "string", "maxLength": 80 },
+        "contributorEmail": { "type": "string", "minLength": 5, "maxLength": 160 },
+        "contributorPhone": { "type": "string", "maxLength": 40 },
+        "attachmentUrl": { "type": "string", "maxLength": 1000 },
+        "status": { "type": "string", "enum": ["pending", "approved", "rejected", "archived"] },
+        "reviewNotes": { "type": "string", "maxLength": 1000 },
+        "authorUid": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["submissionType", "title", "content", "contributorName", "contributorEmail", "status", "authorUid", "createdAt", "updatedAt"]
+    },
+    "WebsiteSettings": {
+      "title": "WebsiteSettings",
+      "description": "Publicly readable institutional website settings and analytics readiness configuration.",
+      "type": "object",
+      "properties": {
+        "ga4MeasurementId": { "type": "string", "maxLength": 64 },
+        "searchConsoleVerification": { "type": "string", "maxLength": 160 },
+        "officialEmail": { "type": "string", "minLength": 5, "maxLength": 160 },
+        "officialPhone": { "type": "string", "minLength": 5, "maxLength": 40 },
+        "officeAddress": { "type": "string", "minLength": 10, "maxLength": 300 },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["officialEmail", "officialPhone", "officeAddress", "updatedAt"]
+    },
+    "AdminRecord": {
+      "title": "AdminRecord",
+      "description": "Authorized RWS administrator role registry.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "minLength": 5, "maxLength": 160 },
+        "role": { "type": "string", "enum": ["admin", "editor"] },
+        "displayName": { "type": "string", "minLength": 2, "maxLength": 120 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["email", "role", "displayName", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/announcements/{announcementId}": {
+      "schema": { "$ref": "#/entities/Announcement" },
+      "description": "Published newsroom announcements and notices managed by RWS admins."
+    },
+    "/events/{eventId}": {
+      "schema": { "$ref": "#/entities/SocietyEvent" },
+      "description": "Society events, meetings, and cultural programmes managed by RWS admins."
+    },
+    "/cmsArticles/{articleId}": {
+      "schema": { "$ref": "#/entities/CmsArticle" },
+      "description": "Future CMS-published community articles separate from the immutable Silver Jubilee source content."
+    },
+    "/galleryItems/{itemId}": {
+      "schema": { "$ref": "#/entities/GalleryItem" },
+      "description": "CMS-managed additional photo archive entries."
+    },
+    "/visionUpdates/{updateId}": {
+      "schema": { "$ref": "#/entities/VisionProgressUpdate" },
+      "description": "Verified RWS Vision 2047 progress entries published by administrators."
+    },
+    "/publications/{publicationId}": {
+      "schema": { "$ref": "#/entities/PublicationRecord" },
+      "description": "CMS-managed official Society publications and downloadable documents."
+    },
+    "/submissions/{submissionId}": {
+      "schema": { "$ref": "#/entities/CommunitySubmission" },
+      "description": "Community archive contribution queue; private to contributor and RWS administrators."
+    },
+    "/settings/{settingId}": {
+      "schema": { "$ref": "#/entities/WebsiteSettings" },
+      "description": "Institutional settings including GA4 and Search Console configuration."
+    },
+    "/admins/{uid}": {
+      "schema": { "$ref": "#/entities/AdminRecord" },
+      "description": "Role-based access control records for authorized RWS administrators."
+    }
+  }
+}

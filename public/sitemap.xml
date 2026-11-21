@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>/</loc><priority>1.0</priority></url>
+  <url><loc>/society</loc><priority>0.9</priority></url>
+  <url><loc>/society/messages</loc><priority>0.8</priority></url>
+  <url><loc>/society/leadership</loc><priority>0.8</priority></url>
+  <url><loc>/society/governance</loc><priority>0.8</priority></url>
+  <url><loc>/society/silver-jubilee</loc><priority>0.9</priority></url>
+  <url><loc>/rang</loc><priority>0.9</priority></url>
+  <url><loc>/rang/clans</loc><priority>0.9</priority></url>
+  <url><loc>/rang/landscape</loc><priority>0.8</priority></url>
+  <url><loc>/rang/monolith</loc><priority>0.9</priority></url>
+  <url><loc>/heritage</loc><priority>0.9</priority></url>
+  <url><loc>/heritage/genesis</loc><priority>0.9</priority></url>
+  <url><loc>/heritage/25-years</loc><priority>0.9</priority></url>
+  <url><loc>/heritage/agreements</loc><priority>0.8</priority></url>
+  <url><loc>/people</loc><priority>0.9</priority></url>
+  <url><loc>/people/firsts</loc><priority>0.8</priority></url>
+  <url><loc>/people/two-pillars</loc><priority>0.9</priority></url>
+  <url><loc>/community/shg</loc><priority>0.8</priority></url>
+  <url><loc>/community/helping-hand</loc><priority>0.8</priority></url>
+  <url><loc>/community/development</loc><priority>0.8</priority></url>
+  <url><loc>/voices</loc><priority>0.9</priority></url>
+  <url><loc>/voices/poems</loc><priority>0.8</priority></url>
+  <url><loc>/voices/folktales</loc><priority>0.8</priority></url>
+  <url><loc>/voices/creativity</loc><priority>0.8</priority></url>
+  <url><loc>/vision-2047</loc><priority>0.9</priority></url>
+  <url><loc>/media/gallery</loc><priority>0.8</priority></url>
+  <url><loc>/media/publications</loc><priority>0.8</priority></url>
+  <url><loc>/media/newsroom</loc><priority>0.8</priority></url>
+  <url><loc>/media/events</loc><priority>0.8</priority></url>
+  <url><loc>/contact</loc><priority>0.7</priority></url>
+  <url><loc>/contribute</loc><priority>0.8</priority></url>
+  <url><loc>/search</loc><priority>0.7</priority></url>
+</urlset>

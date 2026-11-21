@@ -1,0 +1,1411 @@
+MASTER DEVELOPMENT PROMPT
+
+RANG WELFARE SOCIETY — OFFICIAL DIGITAL HERITAGE & INSTITUTIONAL PLATFORM
+
+Project: Official Website of Rang Welfare Society (RWS)
+Location: Rang Village, Seppa, East Kameng District, Arunachal Pradesh, India
+Brand: RANG — THE 9 COLOURS
+Tagline: ONE VILLAGE. ONE FAMILY. ONE FUTURE.
+Platform: Google AI Studio — Build Mode
+Application Type: Full-stack, responsive, multi-page institutional website and digital heritage archive.
+
+---
+
+PART 1 — UNDERSTAND THE PROJECT BEFORE BUILDING
+
+You have been provided with two important source documents.
+
+SOURCE DOCUMENT A — MAIN MAGAZINE COPY (WORD)
+
+"main-rws-magazine-copy.docx"
+
+This is the MASTER CONTENT SOURCE.
+
+It contains the actual written material, institutional records, history, names, dates, biographies, articles, poems, cultural information, photographs, tables, milestones, community achievements and Vision 2047 content.
+
+You must carefully examine the entire document and use its material to build the website.
+
+SOURCE DOCUMENT B — DESIGNED SILVER JUBILEE MAGAZINE (PDF)
+
+"Rang-The-9-Colours-Digital.pdf"
+
+This is the MASTER DESIGN REFERENCE.
+
+Study its front cover, back cover, internal page designs, photographic treatments, decorative details, typography, borders, mountain illustrations, colours and editorial compositions.
+
+Use it as the visual design system for the website.
+
+Absolute content and design hierarchy
+
+1. The Word document determines what the website says.
+2. The PDF determines how the website looks.
+3. Original photographs and logos are to be used wherever available.
+4. Do not confuse the visual reference PDF with the authoritative text source.
+5. Where the documents disagree, prioritise the Word document and flag the discrepancy for editorial verification.
+
+Do not create an ordinary NGO website using generic templates. Do not reduce the magazine into a few generic summaries.
+
+The objective is to transform the magazine into a comprehensive, searchable, interactive digital publication and institutional website.
+
+PART 2 — BRAND IDENTITY AND ART DIRECTION
+
+2.1 The visual identity
+
+The website must be inspired by the distinctive visual identity of the Silver Jubilee Magazine.
+
+The overall feeling should be:
+
+- Premium and heritage-inspired.
+- Elegant and editorial.
+- Culturally authentic.
+- Institutional and trustworthy.
+- Modern and technologically sophisticated.
+- Deeply connected to the landscape and identity of Arunachal Pradesh.
+
+The website should look like a premium cultural heritage institution's official portal, with the design quality of a professionally commissioned digital publication.
+
+2.2 Colour system
+
+Establish a reusable design-token system.
+
+Colour| Usage
+Deep forest green| Primary brand colour, navigation and major sections
+Emerald green| Secondary accents and interactive elements
+Warm ivory| Main page background
+Parchment cream| Editorial reading surfaces
+Antique gold| Borders, dividers, icons and details
+Earthy brown| Editorial headings and supporting elements
+Mountain blue| Landscape photography and subtle highlights
+
+Avoid generic corporate blue, neon colours, excessive gradients and overly saturated backgrounds.
+
+2.3 Signature design elements
+
+Reinterpret the following elements from the magazine for the web:
+
+- Panoramic Arunachal mountain landscapes.
+- Rang's green hills, river valleys and aerial village scenery.
+- Elegant forest-green curved borders and ribbons.
+- Fine antique-gold borders and ornamental corners.
+- Indigenous-inspired geometric patterns drawn from the supplied reference material.
+- Premium serif headings.
+- Elegant editorial layouts.
+- Subtle parchment textures.
+- Image frames and carefully composed photographs.
+- Gold ornamental dividers.
+- Nine-clan visual symbolism.
+- Carefully styled anniversary insignia.
+
+The magazine uses panoramic mountain scenery across page headers, green footer bands, gold page-number medallions and cream editorial panels. Translate these elements into a consistent web design language.
+
+Do not use actual magazine-page screenshots as full-page website backgrounds.
+
+Extract and reuse individual photographs, logos and visual assets.
+
+2.4 Typography
+
+Use a sophisticated typographic pairing.
+
+- Serif display typefaces for major headings.
+- Readable serif typography for heritage articles and long-form historical content.
+- Clean sans-serif fonts for navigation, controls, forms and supporting information.
+- Elegant italic typography for quotations and selected heritage statements.
+
+Create a hierarchy for H1, H2, H3, article headings, captions, labels and metadata.
+
+Typography should be highly readable on mobile screens.
+
+PART 3 — WEBSITE ARCHITECTURE
+
+Build a genuinely multi-page website with proper routing.
+
+Use the following primary navigation:
+
+1. Home
+2. The Society
+3. Rang — The 9 Colours
+4. Heritage & History
+5. People & Pioneers
+6. Community & Development
+7. Community Voices
+8. Vision 2047
+9. Media & Publications
+10. Contact
+
+Use dropdown navigation for the major sections.
+
+Add a dedicated global search facility.
+
+Create a well-designed mobile navigation menu.
+
+Do not put every section into one infinitely scrolling homepage. Give important sections their own dedicated pages and nested routes.
+
+---
+
+PART 4 — DETAILED WEBSITE SECTIONS
+
+MODULE 1: HOMEPAGE — THE DIGITAL IDENTITY OF RANG
+
+The homepage must be the most visually impressive part of the website.
+
+1.1 Full-screen cinematic hero
+
+Create a premium full-width scenic hero featuring authentic photographs of Rang Village, its hills, valleys and surrounding landscape.
+
+Use the aerial landscape and Rang branding from the magazine cover.
+
+Display:
+
+RANG WELFARE SOCIETY
+
+RANG — THE 9 COLOURS
+
+ONE VILLAGE. ONE FAMILY. ONE FUTURE.
+
+Supporting statement:
+
+Celebrating the heritage, unity, history and collective aspirations of the Rang community.
+
+Create elegant call-to-action links:
+
+- Discover Rang
+- Explore Our Heritage
+- Our 25-Year Journey
+
+Include subtle animated image transitions, refined typography and restrained motion.
+
+Do not make the hero look like a conventional business landing page.
+
+1.2 A society built on unity
+
+Introduce Rang Welfare Society through the Chairman's message and the Society's documented history.
+
+Create an editorial-style introduction with:
+
+- A historical photograph.
+- A short introduction derived from the original magazine.
+- The Society's founding purpose.
+- Its commitment to unity, welfare and collective development.
+- A link to the complete About section.
+
+1.3 The identity of nine clans
+
+Create an iconic homepage section:
+
+NINE CLANS. ONE RANG.
+
+Showcase the nine clans:
+
+1. Tamar
+2. Tabang
+3. Doda
+4. Takung
+5. Lichi
+6. Kocho
+7. Dawe
+8. Ribu
+9. Pimong
+
+Use the exact spellings and designations in the main Word document. Where spelling variations occur, flag them for verification rather than silently standardising them.
+
+Present the clans through a visually impressive nine-part composition.
+
+Each clan element should link to its historical settlement, lineage and documented founding information.
+
+1.4 The journey of Rang
+
+Build a horizontal or vertical interactive timeline showcasing important milestones in the history of Rang and its institutions.
+
+Use the documented historical dates and descriptions.
+
+Highlight:
+
+- Early settlement and community formation.
+- Rang Village Welfare Committee.
+- Historical community agreements.
+- Development of the Rang Youth Welfare Association.
+- Formalisation of the Rang Welfare Society.
+- Institutional and infrastructure development.
+- Silver Jubilee 2026.
+
+Clicking on a milestone should open further information.
+
+1.5 Twenty-five years of service
+
+Create five featured visual panels representing the historical periods:
+
+- 1991–2013: The Roots.
+- 2013–2016: Laying the Foundations.
+- 2016–2020: Building Systems.
+- 2020–2023: Steady Hands.
+- 2023–2026: Securing Rang's Future.
+
+Each panel must include its period, documented leadership, achievements and original photographs.
+
+1.6 The Rang Monolith
+
+Create a visually dominant feature introducing the Silver Jubilee Monolith.
+
+Use the actual Monolith rendering and nine-clan symbolism presented in the magazine.
+
+Include a link to the dedicated Monolith section.
+
+1.7 Community at work
+
+Create a photograph-led section introducing:
+
+- Rang Self-Help Groups.
+- Rang Cooperative Societies.
+- Rang Helping Hand.
+- Educational achievements.
+- Infrastructure development.
+- Community governance.
+- Welfare initiatives.
+
+1.8 Community voices
+
+Feature selected contributions from the magazine.
+
+Use elegant editorial cards for:
+
+- Articles.
+- Personal memories.
+- Poems.
+- Folktales.
+- Nyishi riddles.
+- Creative contributions.
+
+Provide a View All Contributions link.
+
+1.9 Our vision for the future
+
+Create a visually compelling panoramic section:
+
+ROOTED IN HERITAGE. UNITED IN PURPOSE. INSPIRED BY THE FUTURE.
+
+Introduce Rang's Vision 2047 and provide direct access to the complete roadmap.
+
+1.10 News and announcements
+
+Create a dynamic latest-updates section for future Society activities, notices, announcements and events.
+
+The initial website must not contain fabricated news.
+
+Display a properly designed empty state until verified content is published.
+
+---
+
+MODULE 2: THE SOCIETY
+
+Create a complete institutional section.
+
+2.1 About Rang Welfare Society
+
+Include:
+
+- History and background.
+- Objectives and purpose.
+- Institutional evolution.
+- Community welfare responsibilities.
+- Society's role in collective governance.
+- Vision and aspirations.
+
+Use the original content from the magazine.
+
+2.2 Messages and acknowledgements
+
+Create a dedicated section for official messages.
+
+Organise these according to the original Table of Contents:
+
+- Home Minister, Arunachal Pradesh.
+- MLA, 8-Bameng.
+- MLA, 9-Chayang Tajo.
+- MLA, 10-Seppa East.
+- Deputy Commissioner, Seppa.
+- Chairman, Rang Welfare Society.
+- Organising Chairman, Silver Jubilee Committee.
+
+Use their supplied photographs, names, designations, actual messages and signatures where available.
+
+Present the messages as elegant digital editorial pages.
+
+2.3 Leadership and administration
+
+Create a structured historical leadership directory.
+
+Include:
+
+- Chairman.
+- Secretary.
+- Other office-bearers where documented.
+- Organising Committee.
+- Historical leadership periods.
+- Anchal Samiti representation.
+- Gram Panchayat leadership.
+
+Clearly distinguish historical office-bearers from current office-holders.
+
+Do not invent the current governing body.
+
+2.4 Objectives and governance
+
+Create a dedicated page for the Society's objectives and documented institutional principles.
+
+Use the original bye-law-related material and the Society's stated commitments from the magazine.
+
+2.5 Silver Jubilee
+
+Create a special institutional anniversary page.
+
+Include:
+
+- Silver Jubilee background.
+- Twenty-five years of community service.
+- The significance of the celebration.
+- The Silver Jubilee Monolith.
+- Historical photographs.
+- Commemorative publications.
+- The next phase of Rang's development.
+
+---
+
+MODULE 3: RANG — THE 9 COLOURS
+
+This section should function as a digital encyclopedia of Rang Village.
+
+Do not restrict it to a short village introduction.
+
+3.1 Rang at a glance
+
+Present the documented geographical and demographic context.
+
+Include:
+
+- Village name.
+- Circle and district.
+- Distance from Seppa.
+- Present location.
+- Origin associated with Rangso.
+- Nine clans.
+- Road connectivity milestones.
+- Nyubu Nyvgam Yerko (Gurukul).
+
+Use clean information cards and an editorial village profile.
+
+3.2 Origin of the name Rang
+
+Develop a dedicated historical article explaining the documented association with the Rangso stream.
+
+Retain the distinction between established historical information and local belief.
+
+3.3 Early settlement and lineages
+
+Present the four founding lineages:
+
+- Taachang.
+- Taabang.
+- Taanmar.
+- Taanda.
+
+Show the resulting clan lineages, remarks and historical settlement information.
+
+3.4 The nine clans
+
+Give each clan its own dedicated profile.
+
+Include:
+
+- Clan name.
+- Founding ancestors.
+- Original settlement.
+- Migration history.
+- Historical information.
+- Monolith symbol where documented.
+
+Make the nine clan profiles interconnected.
+
+3.5 Respected figures of earlier times
+
+Create an archive of the twenty respected figures listed in the original document.
+
+Use names and details exactly as provided.
+
+3.6 The landscape of Rang
+
+This should be an important interactive feature.
+
+Build a digital Rang gazetteer containing:
+
+A. Important places along the Kameng River
+
+Display the documented places in their south-to-north order.
+
+B. Streams in Rang Village
+
+Show all documented streams.
+
+C. Important Places and Myoko Sites
+
+Present the full list in an organised searchable format.
+
+D. Places Towards the Mountain (Myodi)
+
+Present the documented mountain-related locations.
+
+Use a visually attractive interactive landscape explorer.
+
+Where reliable coordinates are available, provide map pins and location information. Do not fabricate coordinates or geographical positions for undocumented sites.
+
+3.7 Historical incidents and agreements
+
+Create separate editorial stories for:
+
+- Lungte-Dapo between Rang and Myora Villages.
+- Lungte-Dapo between Rang and Loffa Villages.
+- The Kapuk Myodi Boundary Dispute.
+
+Present historical narratives in a neutral, documentary format. Clearly distinguish recorded agreements, accounts and unresolved matters. Do not present disputed land information as a new legal determination.
+
+3.8 Institutional and infrastructure development
+
+Create feature pages documenting:
+
+- Rang Primary School (1983).
+- Rang Welfare Society (2004), as recorded in the corresponding section.
+- Road Connectivity under PMGSY (2017).
+- Nyubu Nyvgam Yerko (Gurukul) (2020).
+
+Include the full original descriptions, milestones and relevant photographs.
+
+3.9 Academic and professional achievements
+
+Present the documented achievements of Rang's people.
+
+Use the individuals and professional details supplied in the magazine.
+
+3.10 A model of grassroots governance
+
+Create feature stories around:
+
+- Consensus-based selection of Panchayat Members.
+- Continuity under Garbe Lichi Rang.
+- Community decision-making.
+- Collective responsibility.
+
+---
+
+MODULE 4: THE SILVER JUBILEE MONOLITH
+
+Create a dedicated, visually distinguished Monolith experience.
+
+This should be a signature page on the website.
+
+4.1 One stone, nine faces
+
+Showcase the actual proposed Monolith rendering.
+
+Use a large central image with clean editorial explanations.
+
+4.2 The nine clan symbols
+
+Create nine interactive symbol cards corresponding to the documented clans:
+
+- Tamar — Astrological Seal.
+- Tabang — Botanical Triangle Seal.
+- Doda — Cosmic Tree of Life.
+- Lichi — Solar Mandala.
+- Takung — Nonagonal Mandala.
+- Kocho — All-Seeing Triangle.
+- Dawe — Latticed Celestial Wheel.
+- Ribu — Lotus.
+- Pimong/Pimung — Star Grid.
+
+Use the supplied symbols and associated descriptions from the Word document.
+
+Do not create substitute symbols with invented meanings.
+
+On selection, open an elegant detail panel explaining the documented symbolism, founding settlers and visual representation.
+
+4.3 The twenty-five golden bands
+
+Create an editorial section describing the symbolism of the twenty-five bands.
+
+4.4 A column that tapers upward
+
+Explain the Monolith's design and metaphorical meaning using the original text.
+
+4.5 The crown
+
+Explain the upper portion and its significance.
+
+4.6 Beyond the stone
+
+Present the Monolith as a symbol of unity, continuity and shared responsibility, following the original narrative.
+
+Use subtle interactive visual effects if technically practical, but do not sacrifice page performance.
+
+---
+
+MODULE 5: FOUNDERS AND PIONEERS OF RANG VILLAGE
+
+Build a comprehensive historical people archive.
+
+Divide this section into:
+
+5.1 Anchal Samiti Members and Gram Panchayat Chairpersons
+
+Use the official records and portraits included in the magazine.
+
+5.2 Gaon Burahs and Buris
+
+Create a dedicated historical archive.
+
+5.3 Founding Members of RWS (Unofficial)
+
+Showcase the original members identified in the publication.
+
+5.4 Rang Youth Welfare Associations
+
+Present the association's origin, founders, leadership and contributions.
+
+5.5 Founding Members of RWS (Official)
+
+Present the relevant historical details and photographs.
+
+5.6 The Firsts from Rang
+
+This should be a substantial digital archive.
+
+Organise the records into categories:
+
+- First settlers.
+- First priest.
+- First Gaon Burah/Buri.
+- First to attend school.
+- First to pass Class X.
+- First to pass Class XII.
+- First postgraduates.
+- First government employee.
+- First to attend SSB training.
+- First Gazette Officer.
+- First Gram Panchayat.
+- First Anganwadi.
+- First Welfare Society.
+- First Youth Association.
+- First documented Society.
+
+5.7 Roll of Honour
+
+Create a searchable table and an elegant recognition wall.
+
+Preserve every name, achievement and historical attribution accurately.
+
+Use individual profile cards and actual photographs from the magazine.
+
+---
+
+MODULE 6: 25 YEARS OF RANG WELFARE SOCIETY SERVICES
+
+Create a dedicated historical and achievements portal.
+
+The design should use an interactive chronological experience.
+
+6.1 The roots: 1991–2013
+
+Document:
+
+- Formation and evolution of the Rang Village Welfare Committee.
+- Early community protection initiatives.
+- Lungte-Dapo.
+- Youth participation.
+- The development of community welfare work.
+
+6.2 Laying the foundations: 2013–2016
+
+Document:
+
+- Institutional formalisation.
+- Bye-laws.
+- Society fund.
+- Road development.
+- Community institutions and decisions.
+
+6.3 Building systems: 2016–2020
+
+Document:
+
+- Land demarcation.
+- Quality monitoring.
+- Education and coaching.
+- Infrastructure and community development.
+
+6.4 Steady hands: 2020–2023
+
+Document:
+
+- Education support.
+- Community sanitation.
+- Welfare and social initiatives.
+- Activities and achievements from the period.
+
+6.5 Securing Rang's future: 2023–2026
+
+Document:
+
+- Household registration and official mapping.
+- Community boundaries.
+- Protection of natural resources.
+- Education support.
+- Community leadership.
+- Other initiatives documented in the magazine.
+
+6.6 Interactive achievement timeline
+
+Create a chronological timeline combining all five phases.
+
+Allow visitors to filter by:
+
+- Year.
+- Leadership period.
+- Development category.
+- Education.
+- Infrastructure.
+- Governance.
+- Social welfare.
+- Environment.
+- Community participation.
+
+6.7 Historical photo archives
+
+Create separate image galleries for the five periods.
+
+Display photographs with captions, dates and descriptions where documented.
+
+---
+
+MODULE 7: GENESIS OF RANG WELFARE SOCIETY
+
+Create a separate long-form historical feature.
+
+Use the original article:
+
+Genesis of Rang Welfare Society
+
+Structure its narrative into interactive editorial sections:
+
+1. A village that learned to protect itself.
+2. A new threat arrives with the town.
+3. 1993: Rang Village Welfare Committee.
+4. Lungte-Dapo: A promise between neighbours.
+5. Widening the circle.
+6. The Rang Youth.
+7. Why 2001 is the year we count from.
+8. 2013: RWS from custom to constitution.
+9. Looking forward.
+10. Milestones at a glance.
+
+Use historical photographs, date-based highlights and refined typography.
+
+Preserve the complete article rather than replacing it with a summary.
+
+---
+
+MODULE 8: REMEMBERING THE TWO PILLARS OF RANG
+
+Build a dedicated commemorative page for:
+
+- Lt. Mama Kocho.
+- Lt. Tado Tamar.
+
+This should be presented as a respectful memorial and historical tribute.
+
+Give each person a dedicated profile.
+
+Include:
+
+- Personal background.
+- Family details as documented.
+- Their service to the village.
+- Contribution to the development of community institutions.
+- Important achievements.
+- Timeline of their contributions.
+- Original photographs.
+- Their shared legacy.
+
+The two profiles must receive equal visual importance and balanced representation.
+
+Conclude with the original article's collective tribute.
+
+---
+
+MODULE 9: COMMUNITY VOICES — DIGITAL EDITORIAL LIBRARY
+
+This should become a complete digital magazine and literary archive.
+
+Create a dedicated section with its own homepage, content categories, article pages and search.
+
+9.1 Articles
+
+Create a searchable editorial archive using the original articles.
+
+Ensure the following contributions are represented where present in the Word document:
+
+- The Harvesting Rituals of the Nyishi – The Legend of Kipung and Dampung.
+- My Village Memoirs.
+- Rang's historical and community-development contributions.
+- My Village, My Home – Rang.
+- Rang Village – Our Home, Our Pride.
+- The Legend of Nyangpo Soh.
+- Between Generations: Listening Across the Gap in Nyishi Families.
+- The Weight of Expectations: Growing Up as a Woman.
+- From Silver Roots to Golden Branches: Shaping the Next Decade of Rang.
+- Building the Missing Bridge: Ensuring We Keep Our Roots.
+- Rang: A Part of Our Family Strong.
+- The other original articles included in the main document.
+
+Retain the original article titles and individual authorship.
+
+9.2 Poems
+
+Create a visually distinctive poetry archive.
+
+Include:
+
+- The Village That Watched Me Grow.
+- My First Guiding Light.
+- Sory-Alang: The Sacred Soul of Rang Village.
+
+Use carefully designed reading pages with generous typography and subtle landscape-inspired visual treatments.
+
+9.3 Folktales
+
+Create a dedicated collection for Nyishi oral tradition and folktales.
+
+Include:
+
+- The Legend of Nyokum Yullo.
+- Its original narrative.
+- Lessons from the Legend.
+- Related cultural references where provided in the source.
+
+9.4 Creativity and Jokes
+
+Create an interactive creative archive containing:
+
+- Niitam / Nyishi Riddles.
+- English translations where provided.
+- Answers.
+- Breath Holding Reciting Competition.
+- The original recitation content.
+
+For riddles, provide an interactive reveal-answer feature without modifying the original language.
+
+9.5 Individual contribution pages
+
+Every article and creative contribution must have:
+
+- Original title.
+- Author.
+- Original full text.
+- Supporting images.
+- Category.
+- Reading experience.
+- Related contributions.
+- Previous and next navigation.
+
+Do not reduce entire articles to short AI-generated descriptions.
+
+---
+
+MODULE 10: RANG SELF-HELP GROUPS AND COOPERATIVE SOCIETIES
+
+Create a comprehensive page dedicated to women's collective participation and economic empowerment.
+
+Use the magazine's section:
+
+Threads of Strength, Bonds of Trust
+
+Create separate profiles and gallery sections for:
+
+- Dawe Danne SHG.
+- Fodang Yarlo SHG.
+- Rang Danne SHG.
+- Sangpine SHG.
+
+Include:
+
+- Original photographs.
+- Group identity.
+- Documented activities.
+- Collective savings and enterprise narratives.
+- Women's participation.
+- Community contributions.
+- The road ahead.
+
+Use a sophisticated image-led design.
+
+Do not invent membership statistics, annual turnover or income figures.
+
+---
+
+MODULE 11: RANG HELPING HAND
+
+Create a distinct institutional page.
+
+Title:
+
+Rang Helping Hand: First to Arrive, Last to Claim Credit
+
+Use the full original article from the magazine.
+
+Include:
+
+- Introduction.
+- The group's purpose.
+- Members of Rang Helping Hand.
+- Service and community support.
+- Documented activities.
+- Photographs.
+- The group's legacy and contribution.
+
+The visual presentation should emphasise service, solidarity and community responsibility.
+
+Do not create fictional member profiles.
+
+---
+
+MODULE 12: VISION OF RANG WELFARE SOCIETY 2047
+
+Make this one of the website's most significant sections.
+
+Create a separate immersive experience for the long-term development vision.
+
+Use the original Vision 2047 material and all the documented missions.
+
+12.1 Vision statement
+
+Present the original Vision 2047 statement prominently.
+
+12.2 Ten missions
+
+Create ten individual mission pages or expandable mission panels:
+
+1. Rang Yuva.
+2. Rang Mahila.
+3. Rang Krishi.
+4. Rang Swasthya.
+5. Rang Samriddhi.
+6. Rang Sanskriti.
+7. Rang Prakriti.
+8. Rang Setu.
+9. Rang Ekta.
+10. Rang Seva.
+
+Each mission must include its original objective, priorities, interventions and proposed initiatives.
+
+12.3 The development roadmap
+
+Create an interactive three-phase roadmap:
+
+- Phase I: 2026–2030 — Rang Nirman.
+- Phase II: 2031–2036 — Rang Vistar.
+- Phase III: 2037–2047 — Rang Shikhar.
+
+12.4 The Nine Sankalps
+
+Create an elegant nine-part visual presentation:
+
+- Ekta.
+- Shiksha.
+- Swasthya.
+- Nari Shakti.
+- Yuva Shakti.
+- Samriddhi.
+- Sanskriti.
+- Prakriti.
+- Satya and Seva.
+
+Each pledge should have its original wording.
+
+12.5 Vision dashboard
+
+Create a framework for presenting the Vision's progress.
+
+It should support:
+
+- Mission-wise updates.
+- Phase-wise progress.
+- Milestones.
+- Activities.
+- Published achievements.
+- Future project updates.
+
+Important: The original targets are aspirations and proposals. Never display proposed targets as achieved results.
+
+Where no progress data has been entered by RWS, show a clear status such as "Progress information not yet published."
+
+---
+
+PART 5 — ADDITIONAL INSTITUTIONAL FEATURES
+
+In addition to the magazine-derived pages, develop the following functional sections for the official website.
+
+5.1 Newsroom and announcements
+
+A dedicated section for:
+
+- Official notices.
+- Society announcements.
+- Community news.
+- Institutional updates.
+- Public statements.
+- Development initiatives.
+
+Create an admin-controlled publishing system.
+
+The section should begin empty rather than contain fabricated articles.
+
+5.2 Events and activities
+
+Develop an event archive and calendar.
+
+Include:
+
+- Past events.
+- Community meetings.
+- General Conferences.
+- Cultural programmes.
+- Development activities.
+- Future events.
+
+Allow administrators to publish event dates, descriptions, posters and photographs.
+
+5.3 Digital publications library
+
+Create a dedicated library for:
+
+- Rang — The 9 Colours Silver Jubilee Magazine.
+- Rang Vision 2047.
+- Future Society publications.
+- Reports and community documents approved for public access.
+
+Include document covers, descriptions and download/view options.
+
+5.4 Contribute to the community archive
+
+Develop an online contribution form where members can submit:
+
+- Historical memories.
+- Old photographs.
+- Articles.
+- Folktales.
+- Poems.
+- Important historical information.
+- Corrections and additional records.
+
+Every submission must enter an administrative review queue and must not become publicly available automatically.
+
+5.5 Searchable digital archive
+
+Develop one unified search function across the website.
+
+Search should work across:
+
+- Historical records.
+- Names and biographies.
+- Clan profiles.
+- Articles and poems.
+- Achievements.
+- Announcements.
+- Publications.
+- Gallery captions.
+
+Include category filters and helpful search-result previews.
+
+---
+
+PART 6 — PHOTO ARCHIVE AND VISUAL CONTENT MANAGEMENT
+
+The supplied magazine contains important original photographs and illustrations.
+
+Use them intelligently.
+
+Create a central image library with categories:
+
+1. Silver Jubilee.
+2. Rang Village Landscapes.
+3. Founders and Pioneers.
+4. Historical Leadership.
+5. Community Development.
+6. RWS Activities.
+7. Rang Self-Help Groups.
+8. Rang Helping Hand.
+9. Cultural Heritage.
+10. Monolith and Clan Symbols.
+11. Community Voices.
+12. Historical Achievements.
+
+Implement:
+
+- Responsive masonry and grid galleries.
+- Image lightbox.
+- Zoom and full-screen viewing.
+- Category filtering.
+- Image captions.
+- Mobile optimisation.
+- Lazy loading.
+
+Extract individual images from the provided Word document and PDF wherever possible.
+
+Do not use screenshots of full PDF pages as substitutes for individual photographs.
+
+Use the original images without altering faces, clothing or historical details.
+
+Use generated scenic imagery only as supplementary decorative backgrounds, never as substitutes for authentic historical photographs or cultural artefacts.
+
+---
+
+PART 7 — ADMINISTRATIVE DASHBOARD AND CMS
+
+The Society must be able to maintain the website after it is launched.
+
+Build a separate, secure administrative dashboard.
+
+Admin dashboard sections
+
+1. Overview.
+2. News and announcements.
+3. Events.
+4. Articles and contributions.
+5. Photo gallery.
+6. Leadership records.
+7. Historical milestones.
+8. SHG information.
+9. Rang Helping Hand.
+10. Vision 2047 updates.
+11. Publications.
+12. Community submissions.
+13. Website settings.
+
+CMS functionality
+
+Administrators must be able to:
+
+- Add, edit and delete approved content.
+- Upload photographs.
+- Add captions and image descriptions.
+- Publish and unpublish articles.
+- Schedule announcements where supported.
+- Manage event information.
+- Update leadership information.
+- Add new historical records.
+- Update Vision 2047 progress.
+- Review community submissions.
+- Manage document downloads.
+
+Use Firebase Authentication for secure administrator access and Firestore for structured content management where supported.
+
+Implement role-based access, with public visitors having read-only access to published content.
+
+Protect administrative functions with appropriate Firebase security rules.
+
+Do not expose API keys, private credentials or administrative functions in public frontend code.
+
+Keep the historical source content separate from the CMS-managed future updates.
+
+---
+
+PART 8 — TECHNICAL DEVELOPMENT SPECIFICATIONS
+
+Build this as a production-oriented full-stack web application within Google AI Studio Build mode.
+
+Recommended architecture
+
+- Frontend: React with TypeScript.
+- Server: Node.js runtime where required.
+- Routing: React Router or an equivalent supported routing solution.
+- Styling: Modular CSS or a maintainable utility-based approach.
+- Icons: Lucide or equivalent consistent icon library.
+- Animations: Framer Motion or a lightweight alternative.
+- Database: Firebase Firestore.
+- Authentication: Firebase Authentication.
+- File management: Firebase Storage where available and configured.
+- Deployment: A supported Google Cloud deployment route, such as Cloud Run.
+
+Choose dependencies that work correctly inside the AI Studio environment.
+
+Content architecture
+
+Create reusable data models for:
+
+- Articles.
+- Authors.
+- Historical figures.
+- Clans.
+- Clan symbols.
+- Historical milestones.
+- Leadership periods.
+- Society achievements.
+- SHG profiles.
+- Community initiatives.
+- Poems.
+- Folktales.
+- Riddles.
+- Events.
+- Gallery images.
+- Publications.
+- Vision missions.
+- Vision progress entries.
+- Announcements.
+
+Use structured data rather than hardcoding all content in one enormous component.
+
+Website architecture
+
+Separate the code into:
+
+- Components.
+- Page layouts.
+- Individual page routes.
+- Content data.
+- Image assets.
+- Shared design tokens.
+- Authentication.
+- Database services.
+- Admin dashboard.
+- SEO utilities.
+
+Use reusable components and a clean folder structure.
+
+Do not build the whole website as one single page or one oversized source file.
+
+Performance
+
+Ensure:
+
+- Fast initial page loading.
+- Compressed and optimised images.
+- Lazy-loaded gallery content.
+- Minimal unnecessary JavaScript.
+- Proper loading states.
+- Error handling.
+- Responsive layouts.
+- Efficient database queries.
+
+The website should remain usable on mobile networks with limited connectivity.
+
+---
+
+PART 9 — SEO, GOOGLE DISCOVERABILITY AND DIGITAL PRESENCE
+
+The website must be developed with strong technical SEO.
+
+It should become the primary digital reference for Rang Welfare Society and Rang Village.
+
+9.1 Search-engine structure
+
+Implement:
+
+- Individual page titles.
+- Unique meta descriptions.
+- Semantic HTML.
+- Proper H1/H2/H3 hierarchy.
+- Canonical URLs.
+- XML sitemap.
+- Robots.txt.
+- Breadcrumb navigation.
+- Open Graph metadata.
+- Descriptive image alt text.
+
+Where supported, provide server-rendered or pre-rendered public content so important editorial pages are discoverable by search engines.
+
+9.2 Structured data
+
+Use appropriate schema markup:
+
+- Organization.
+- WebSite.
+- Article.
+- Person, where suitable.
+- ImageObject.
+- Event.
+- BreadcrumbList.
+
+Only use structured information supported by actual records.
+
+9.3 Search themes
+
+Naturally optimise the website for relevant searches such as:
+
+- Rang Welfare Society.
+- Rang Village Arunachal Pradesh.
+- Rang Village Seppa.
+- Rang East Kameng.
+- Rang Nine Clans.
+- Nyishi Heritage Rang.
+- History of Rang Village.
+- Rang Community Development.
+- Silver Jubilee Rang Welfare Society.
+- Rang Vision 2047.
+
+Do not keyword-stuff pages.
+
+Create separate indexable URLs for important articles, clan profiles, historical milestones and institutional pages.
+
+9.4 Analytics readiness
+
+Include the option to integrate Google Analytics 4 and Search Console after the Society supplies the relevant account credentials and verification details.
+
+---
+
+PART 10 — DESIGN AND USER EXPERIENCE REQUIREMENTS
+
+The website must be excellent on:
+
+- Desktop.
+- Laptop.
+- Tablet.
+- Android mobile.
+- iPhone.
+
+Prioritise mobile usability.
+
+Use:
+
+- Consistent spacing.
+- Appropriate content widths.
+- Clear navigation.
+- Readable article text.
+- High-quality photographs.
+- Accessible forms.
+- Keyboard navigation.
+- Strong contrast.
+- Visible interactive states.
+
+Follow accessibility best practices, including WCAG AA contrast wherever possible.
+
+Do not allow decorative animation to interfere with reading or navigation.
+
+---
+
+PART 11 — CONTENT ACCURACY AND EDITORIAL INTEGRITY
+
+This is a community heritage archive, so factual accuracy is essential.
+
+Follow these rules throughout development:
+
+1. Use the Word document as the authoritative source of written content.
+2. Preserve names, titles, dates, authors and historical descriptions.
+3. Do not fabricate historical narratives or biographies.
+4. Do not invent achievements or statistics.
+5. Do not invent clan traditions or clan symbolism.
+6. Do not rewrite original community contributions without permission.
+7. Do not replace full articles with summaries.
+8. Preserve Nyishi words and original riddles.
+9. Clearly distinguish historical records from future proposals.
+10. Do not treat past office-bearers as current office-holders.
+11. Flag inconsistencies for review.
+12. Do not publish unverified information simply to fill empty sections.
+
+Where the main source includes missing photographs, incomplete information or placeholders such as TBA, retain a clear editorial placeholder in the development CMS and flag the content for completion.
+
+The Word document must remain the master editorial source even when the website reorganises the content into a different digital structure.
+
+---
+
+PART 12 — DEVELOPMENT EXECUTION AND QUALITY CONTROL
+
+Do not stop after creating the homepage or a visual mockup.
+
+Build the actual website.
+
+Follow this execution sequence:
+
+Phase 1: Source ingestion
+
+Inspect both uploaded files.
+
+Create a content inventory of all magazine chapters, subchapters, biographies, tables, historical records, articles, photographs and cultural materials.
+
+Create an asset inventory for available images and logos.
+
+Phase 2: Design system
+
+Establish the visual tokens, typography, header, footer, navigation, section components, image treatments, cards and responsive layouts.
+
+Phase 3: Website construction
+
+Implement all primary navigation routes and dedicated pages.
+
+Create the homepage and the full set of historical, cultural, institutional and community sections.
+
+Phase 4: Content integration
+
+Populate the sections with original content from the Word document.
+
+Ensure no major magazine section is omitted.
+
+Phase 5: Interactive development
+
+Implement search, filters, timelines, galleries, article navigation, clan profiles, Vision 2047 interfaces and administrative functionality.
+
+Phase 6: Quality assurance
+
+Test:
+
+- All page routes.
+- Navigation links.
+- Mobile responsiveness.
+- Image loading.
+- Search.
+- Forms.
+- Gallery controls.
+- Article navigation.
+- Admin authentication.
+- Content management.
+- Error states.
+- Accessibility.
+- SEO metadata.
+
+Resolve actual implementation errors.
+
+Phase 7: Final polish
+
+Ensure all sections look like parts of one cohesive website, with the same visual language, typography and design quality.
+
+Do not leave unfinished sections disguised as completed pages.
+
+---
+
+FINAL CREATIVE DIRECTION
+
+The final website must feel like three connected experiences:
+
+1. THE INSTITUTION
+
+The official digital presence of Rang Welfare Society, with its messages, history, leadership, governance, achievements and community initiatives.
+
+2. THE HERITAGE
+
+A living digital encyclopedia of Rang Village, its nine clans, people, pioneers, landscapes, traditions, history, literature and collective memories.
+
+3. THE FUTURE
+
+A development-oriented platform showcasing the Society's aspirations, Vision 2047, community initiatives and the road ahead.
+
+The website must balance institutional credibility with the cultural richness of the Rang Silver Jubilee Magazine.
+
+Make the design visually distinctive, editorially rich, technically robust and easy for the Society to update.
+
+FINAL BRAND IDENTITY
+
+RANG WELFARE SOCIETY
+
+RANG — THE 9 COLOURS
+
+ONE VILLAGE. ONE FAMILY. ONE FUTURE.
+
+Rooted in Heritage. United in Purpose. Inspired by the Future.
+
+Create a digital legacy that preserves Rang's past, documents its present and inspires its future.

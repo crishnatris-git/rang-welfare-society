@@ -1,0 +1,333 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Pillar 4.1: Global default-deny safety net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Read-only startup connection probe
+    match /test/connection {
+      allow get: if true;
+    }
+
+    // --- Global Hardened Primitives ---
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isVerifiedUser() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+
+    function isBootstrappedAdmin() {
+      return isVerifiedUser() && request.auth.token.email == 'uddipangoswami2021@gmail.com';
+    }
+
+    function isAdmin() {
+      return isBootstrappedAdmin() || (isVerifiedUser() && exists(/databases/$(database)/documents/admins/$(request.auth.uid)));
+    }
+
+    function isValidStr(val, minLen, maxLen) {
+      return val is string && val.size() >= minLen && val.size() <= maxLen;
+    }
+
+    function isValidOptionalStr(data, key, maxLen) {
+      return !(key in data) || (data[key] is string && data[key].size() <= maxLen);
+    }
+
+    // --- Entity Validation Blueprints (synchronized verbatim with firebase-blueprint.json) ---
+    function isValidAnnouncement(data) {
+      return data.keys().hasAll(['title', 'category', 'summary', 'body', 'status', 'publishDate', 'authorUid', 'authorName', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['title', 'category', 'summary', 'body', 'status', 'publishDate', 'authorUid', 'authorName', 'createdAt', 'updatedAt'])
+        && isValidStr(data.title, 3, 200)
+        && data.category in ['Official Notice', 'Announcement', 'Community News', 'Institutional Update', 'Public Statement', 'Development Initiative']
+        && isValidStr(data.summary, 10, 500)
+        && isValidStr(data.body, 10, 15000)
+        && data.status in ['draft', 'published', 'scheduled']
+        && isValidStr(data.publishDate, 4, 40)
+        && isValidStr(data.authorUid, 1, 128)
+        && isValidStr(data.authorName, 2, 120)
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidEvent(data) {
+      return data.keys().hasAll(['title', 'category', 'eventDate', 'location', 'description', 'status', 'isPast', 'authorUid', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['title', 'category', 'eventDate', 'location', 'description', 'posterUrl', 'status', 'isPast', 'authorUid', 'createdAt', 'updatedAt'])
+        && isValidStr(data.title, 3, 200)
+        && data.category in ['General Conference', 'Community Meeting', 'Cultural Programme', 'Development Activity', 'Silver Jubilee', 'Youth & Sports']
+        && isValidStr(data.eventDate, 4, 40)
+        && isValidStr(data.location, 2, 200)
+        && isValidStr(data.description, 10, 8000)
+        && isValidOptionalStr(data, 'posterUrl', 1000)
+        && data.status in ['draft', 'published']
+        && data.isPast is bool
+        && isValidStr(data.authorUid, 1, 128)
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidCmsArticle(data) {
+      return data.keys().hasAll(['title', 'category', 'authorDisplay', 'excerpt', 'body', 'status', 'authorUid', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['title', 'subtitle', 'category', 'authorDisplay', 'excerpt', 'body', 'imageUrl', 'status', 'authorUid', 'createdAt', 'updatedAt'])
+        && isValidStr(data.title, 3, 240)
+        && isValidOptionalStr(data, 'subtitle', 240)
+        && data.category in ['Article', 'Poem', 'Folktale', 'Memory', 'Institutional Note']
+        && isValidStr(data.authorDisplay, 2, 160)
+        && isValidStr(data.excerpt, 10, 600)
+        && isValidStr(data.body, 20, 25000)
+        && isValidOptionalStr(data, 'imageUrl', 1000)
+        && data.status in ['draft', 'published']
+        && isValidStr(data.authorUid, 1, 128)
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidGalleryItem(data) {
+      return data.keys().hasAll(['title', 'caption', 'category', 'imageUrl', 'status', 'authorUid', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['title', 'caption', 'category', 'imageUrl', 'period', 'status', 'authorUid', 'createdAt', 'updatedAt'])
+        && isValidStr(data.title, 2, 200)
+        && isValidStr(data.caption, 2, 600)
+        && isValidStr(data.category, 2, 100)
+        && isValidStr(data.imageUrl, 4, 1000)
+        && isValidOptionalStr(data, 'period', 80)
+        && data.status in ['draft', 'published']
+        && isValidStr(data.authorUid, 1, 128)
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidVisionUpdate(data) {
+      return data.keys().hasAll(['missionId', 'phase', 'title', 'summary', 'progressStatus', 'reportedDate', 'authorUid', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['missionId', 'phase', 'title', 'summary', 'progressStatus', 'reportedDate', 'authorUid', 'createdAt', 'updatedAt'])
+        && isValidStr(data.missionId, 2, 64)
+        && data.phase in ['Phase I: 2026-2030 (Rang Nirman)', 'Phase II: 2031-2036 (Rang Vistar)', 'Phase III: 2037-2047 (Rang Shikhar)']
+        && isValidStr(data.title, 3, 200)
+        && isValidStr(data.summary, 10, 3000)
+        && data.progressStatus in ['Planned', 'In Progress', 'Completed', 'Published Report']
+        && isValidStr(data.reportedDate, 4, 40)
+        && isValidStr(data.authorUid, 1, 128)
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidPublication(data) {
+      return data.keys().hasAll(['title', 'year', 'category', 'description', 'documentUrl', 'status', 'authorUid', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['title', 'year', 'category', 'description', 'documentUrl', 'coverUrl', 'status', 'authorUid', 'createdAt', 'updatedAt'])
+        && isValidStr(data.title, 3, 200)
+        && isValidStr(data.year, 4, 20)
+        && isValidStr(data.category, 2, 80)
+        && isValidStr(data.description, 10, 2000)
+        && isValidStr(data.documentUrl, 4, 1000)
+        && isValidOptionalStr(data, 'coverUrl', 1000)
+        && data.status in ['draft', 'published']
+        && isValidStr(data.authorUid, 1, 128)
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidSubmission(data) {
+      return data.keys().hasAll(['submissionType', 'title', 'content', 'contributorName', 'contributorEmail', 'status', 'authorUid', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['submissionType', 'title', 'content', 'contributorName', 'clan', 'contributorEmail', 'contributorPhone', 'attachmentUrl', 'status', 'reviewNotes', 'authorUid', 'createdAt', 'updatedAt'])
+        && data.submissionType in ['Historical Memory', 'Old Photograph', 'Article', 'Folktale', 'Poem', 'Historical Information', 'Editorial Correction']
+        && isValidStr(data.title, 3, 200)
+        && isValidStr(data.content, 15, 15000)
+        && isValidStr(data.contributorName, 2, 120)
+        && isValidOptionalStr(data, 'clan', 80)
+        && isValidStr(data.contributorEmail, 5, 160)
+        && isValidOptionalStr(data, 'contributorPhone', 40)
+        && isValidOptionalStr(data, 'attachmentUrl', 1000)
+        && data.status in ['pending', 'approved', 'rejected', 'archived']
+        && isValidOptionalStr(data, 'reviewNotes', 1000)
+        && isValidStr(data.authorUid, 1, 128)
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidSettings(data) {
+      return data.keys().hasAll(['officialEmail', 'officialPhone', 'officeAddress', 'updatedAt'])
+        && data.keys().hasOnly(['ga4MeasurementId', 'searchConsoleVerification', 'officialEmail', 'officialPhone', 'officeAddress', 'updatedAt'])
+        && isValidOptionalStr(data, 'ga4MeasurementId', 64)
+        && isValidOptionalStr(data, 'searchConsoleVerification', 160)
+        && isValidStr(data.officialEmail, 5, 160)
+        && isValidStr(data.officialPhone, 5, 40)
+        && isValidStr(data.officeAddress, 10, 300)
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidAdminRecord(data) {
+      return data.keys().hasAll(['email', 'role', 'displayName', 'createdAt'])
+        && data.keys().hasOnly(['email', 'role', 'displayName', 'createdAt'])
+        && isValidStr(data.email, 5, 160)
+        && data.role in ['admin', 'editor']
+        && isValidStr(data.displayName, 2, 120)
+        && data.createdAt is timestamp;
+    }
+
+    // --- Collection Rules ---
+
+    match /announcements/{announcementId} {
+      allow get: if isValidId(announcementId) && (existing().status == 'published' || isAdmin());
+      allow list: if existing().status == 'published' || isBootstrappedAdmin();
+      allow create: if isVerifiedUser() && isValidId(announcementId) && isValidAnnouncement(incoming())
+        && incoming().authorUid == request.auth.uid
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time
+        && isAdmin();
+      allow update: if isVerifiedUser() && isValidId(announcementId) && isValidAnnouncement(incoming())
+        && incoming().createdAt == existing().createdAt
+        && incoming().authorUid == existing().authorUid
+        && incoming().updatedAt == request.time
+        && incoming().diff(existing()).affectedKeys().hasOnly(['title', 'category', 'summary', 'body', 'status', 'publishDate', 'authorName', 'updatedAt'])
+        && isAdmin();
+      allow delete: if isValidId(announcementId) && isAdmin();
+    }
+
+    match /events/{eventId} {
+      allow get: if isValidId(eventId) && (existing().status == 'published' || isAdmin());
+      allow list: if existing().status == 'published' || isBootstrappedAdmin();
+      allow create: if isVerifiedUser() && isValidId(eventId) && isValidEvent(incoming())
+        && incoming().authorUid == request.auth.uid
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time
+        && isAdmin();
+      allow update: if isVerifiedUser() && isValidId(eventId) && isValidEvent(incoming())
+        && incoming().createdAt == existing().createdAt
+        && incoming().authorUid == existing().authorUid
+        && incoming().updatedAt == request.time
+        && incoming().diff(existing()).affectedKeys().hasOnly(['title', 'category', 'eventDate', 'location', 'description', 'posterUrl', 'status', 'isPast', 'updatedAt'])
+        && isAdmin();
+      allow delete: if isValidId(eventId) && isAdmin();
+    }
+
+    match /cmsArticles/{articleId} {
+      allow get: if isValidId(articleId) && (existing().status == 'published' || isAdmin());
+      allow list: if existing().status == 'published' || isBootstrappedAdmin();
+      allow create: if isVerifiedUser() && isValidId(articleId) && isValidCmsArticle(incoming())
+        && incoming().authorUid == request.auth.uid
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time
+        && isAdmin();
+      allow update: if isVerifiedUser() && isValidId(articleId) && isValidCmsArticle(incoming())
+        && incoming().createdAt == existing().createdAt
+        && incoming().authorUid == existing().authorUid
+        && incoming().updatedAt == request.time
+        && incoming().diff(existing()).affectedKeys().hasOnly(['title', 'subtitle', 'category', 'authorDisplay', 'excerpt', 'body', 'imageUrl', 'status', 'updatedAt'])
+        && isAdmin();
+      allow delete: if isValidId(articleId) && isAdmin();
+    }
+
+    match /galleryItems/{itemId} {
+      allow get: if isValidId(itemId) && (existing().status == 'published' || isAdmin());
+      allow list: if existing().status == 'published' || isBootstrappedAdmin();
+      allow create: if isVerifiedUser() && isValidId(itemId) && isValidGalleryItem(incoming())
+        && incoming().authorUid == request.auth.uid
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time
+        && isAdmin();
+      allow update: if isVerifiedUser() && isValidId(itemId) && isValidGalleryItem(incoming())
+        && incoming().createdAt == existing().createdAt
+        && incoming().authorUid == existing().authorUid
+        && incoming().updatedAt == request.time
+        && incoming().diff(existing()).affectedKeys().hasOnly(['title', 'caption', 'category', 'imageUrl', 'period', 'status', 'updatedAt'])
+        && isAdmin();
+      allow delete: if isValidId(itemId) && isAdmin();
+    }
+
+    match /visionUpdates/{updateId} {
+      allow get: if isValidId(updateId);
+      allow list: if resource.data.missionId is string;
+      allow create: if isVerifiedUser() && isValidId(updateId) && isValidVisionUpdate(incoming())
+        && incoming().authorUid == request.auth.uid
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time
+        && isAdmin();
+      allow update: if isVerifiedUser() && isValidId(updateId) && isValidVisionUpdate(incoming())
+        && incoming().createdAt == existing().createdAt
+        && incoming().authorUid == existing().authorUid
+        && incoming().updatedAt == request.time
+        && incoming().diff(existing()).affectedKeys().hasOnly(['missionId', 'phase', 'title', 'summary', 'progressStatus', 'reportedDate', 'updatedAt'])
+        && isAdmin();
+      allow delete: if isValidId(updateId) && isAdmin();
+    }
+
+    match /publications/{publicationId} {
+      allow get: if isValidId(publicationId) && (existing().status == 'published' || isAdmin());
+      allow list: if existing().status == 'published' || isBootstrappedAdmin();
+      allow create: if isVerifiedUser() && isValidId(publicationId) && isValidPublication(incoming())
+        && incoming().authorUid == request.auth.uid
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time
+        && isAdmin();
+      allow update: if isVerifiedUser() && isValidId(publicationId) && isValidPublication(incoming())
+        && incoming().createdAt == existing().createdAt
+        && incoming().authorUid == existing().authorUid
+        && incoming().updatedAt == request.time
+        && incoming().diff(existing()).affectedKeys().hasOnly(['title', 'year', 'category', 'description', 'documentUrl', 'coverUrl', 'status', 'updatedAt'])
+        && isAdmin();
+      allow delete: if isValidId(publicationId) && isAdmin();
+    }
+
+    match /submissions/{submissionId} {
+      // PII isolated: only submitting owner or verified admin can read
+      allow get: if isValidId(submissionId) && isVerifiedUser() && (existing().authorUid == request.auth.uid || isAdmin());
+      allow list: if isVerifiedUser() && (existing().authorUid == request.auth.uid || isBootstrappedAdmin());
+      allow create: if isVerifiedUser() && isValidId(submissionId) && isValidSubmission(incoming())
+        && incoming().authorUid == request.auth.uid
+        && incoming().status == 'pending'
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+      allow update: if isVerifiedUser() && isValidId(submissionId) && isValidSubmission(incoming())
+        && incoming().createdAt == existing().createdAt
+        && incoming().authorUid == existing().authorUid
+        && incoming().updatedAt == request.time
+        && (
+          // Tier 1: Admin review action (can also unlock archived state)
+          (isAdmin() && incoming().diff(existing()).affectedKeys().hasOnly(['status', 'reviewNotes', 'updatedAt'])) ||
+          // Tier 2: Contributor can revise own pending submission before review
+          (existing().authorUid == request.auth.uid && existing().status == 'pending' && incoming().status == 'pending'
+            && incoming().diff(existing()).affectedKeys().hasOnly(['title', 'content', 'clan', 'attachmentUrl', 'updatedAt']))
+        );
+      allow delete: if isValidId(submissionId) && isAdmin();
+    }
+
+    match /settings/{settingId} {
+      allow get: if isValidId(settingId) && settingId == 'public';
+      allow create: if isVerifiedUser() && isValidId(settingId) && settingId == 'public'
+        && isValidSettings(incoming())
+        && incoming().updatedAt == request.time
+        && isAdmin();
+      allow update: if isVerifiedUser() && isValidId(settingId) && settingId == 'public'
+        && isValidSettings(incoming())
+        && incoming().updatedAt == request.time
+        && incoming().diff(existing()).affectedKeys().hasOnly(['ga4MeasurementId', 'searchConsoleVerification', 'officialEmail', 'officialPhone', 'officeAddress', 'updatedAt'])
+        && isAdmin();
+    }
+
+    match /admins/{uid} {
+      allow get: if isValidId(uid) && isVerifiedUser() && (request.auth.uid == uid || isAdmin());
+      allow list: if isBootstrappedAdmin();
+      allow create: if isVerifiedUser() && isValidId(uid) && isValidAdminRecord(incoming())
+        && incoming().createdAt == request.time
+        && isAdmin();
+      allow update: if isVerifiedUser() && isValidId(uid) && isValidAdminRecord(incoming())
+        && incoming().createdAt == existing().createdAt
+        && incoming().diff(existing()).affectedKeys().hasOnly(['role', 'displayName'])
+        && isAdmin();
+      allow delete: if isValidId(uid) && isAdmin();
+    }
+  }
+}

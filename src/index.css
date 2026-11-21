@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+@theme {
+  --color-forest-950: #0D281B;
+  --color-forest-900: #143A28;
+  --color-forest-800: #1B4332;
+  --color-forest-700: #23533D;
+  --color-emerald-brand: #2D6A4F;
+  --color-ivory: #F9F6EF;
+  --color-parchment: #F2ECE0;
+  --color-parchment-deep: #E8DFCE;
+  --color-gold: #B88A3E;
+  --color-gold-light: #D4AE6A;
+  --color-gold-pale: #F1E5CC;
+  --color-earth: #6B341C;
+  --color-earth-soft: #8A4A2B;
+  --color-mountain: #2B5B7A;
+  --color-ink: #1D241E;
+  --color-ink-muted: #525B53;
+
+  --font-serif: "Lora", Georgia, "Times New Roman", serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+    background-color: var(--color-ivory);
+    color: var(--color-ink);
+  }
+
+  h1, h2, h3, h4, .font-editorial {
+    font-family: var(--font-serif);
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+.editorial-prose p {
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  line-height: 1.82;
+  color: #262E27;
+  margin-bottom: 1.25rem;
+}
+
+.editorial-prose .drop-cap::first-letter {
+  font-family: var(--font-serif);
+  font-size: 3.5rem;
+  font-weight: 700;
+  float: left;
+  line-height: 0.85;
+  padding-right: 0.65rem;
+  padding-top: 0.25rem;
+  color: #6B341C;
+}
+
+.parchment-surface {
+  background-color: #FBF8F1;
+  background-image: radial-gradient(rgba(184, 138, 62, 0.055) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+.gold-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(184, 138, 62, 0.55) 20%, rgba(184, 138, 62, 0.8) 50%, rgba(184, 138, 62, 0.55) 80%, transparent 100%);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes heroKenBurnsSlow {
+  0% {
+    transform: scale(1.01) translate3d(0%, 0%, 0);
+  }
+  50% {
+    transform: scale(1.09) translate3d(-1.5%, -0.8%, 0);
+  }
+  100% {
+    transform: scale(1.04) translate3d(1.2%, -0.4%, 0);
+  }
+}
+
+.animate-hero-kenburns {
+  animation: heroKenBurnsSlow 26s ease-in-out infinite alternate;
+  will-change: transform;
+}
+

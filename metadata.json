@@ -1,0 +1,6 @@
+{
+  "name": "Rang Welfare Society — Rang: The 9 Colours",
+  "description": "Official digital heritage archive, Silver Jubilee publication, and institutional portal of Rang Welfare Society (RWS), Rang Village, Seppa, East Kameng District, Arunachal Pradesh.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
