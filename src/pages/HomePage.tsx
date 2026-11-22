@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+import { useReducedMotion } from 'motion/react';
 import {
   ArrowRight,
   Compass,
@@ -26,46 +26,18 @@ import {
   type AnnouncementDoc,
 } from '../services/cmsService';
 
-const HERO_SLIDES = [
+const HERO_VIDEOS = [
   {
-    id: 'rang-hills',
-    src: ASSETS.landscapes.heroRangHills,
-    alt: 'Aerial view of Rang Village in the green hills of East Kameng, Arunachal Pradesh',
-    label: 'Rang Village & PMGSY Hills',
-    fromX: '0%',
-    toX: '-2%',
-    fromY: '0%',
-    toY: '-1.5%',
+    id: 'rang-village-aerial',
+    src: ASSETS.videos.heroRangVillage,
+    poster: ASSETS.landscapes.heroPosterRang,
+    label: 'Rang Village & Seppa Valley · Aerial View',
   },
   {
-    id: 'kameng-sunrise',
-    src: ASSETS.landscapes.valleyKamengSunrise,
-    alt: 'Sunrise over the Kameng River valley and Seppa Township viewed from Rang hills',
-    label: 'Kameng Valley & Seppa at Sunrise',
-    fromX: '-1.8%',
-    toX: '1.2%',
-    fromY: '-1%',
-    toY: '0.5%',
-  },
-  {
-    id: 'kameng-panorama',
-    src: ASSETS.landscapes.valleyKamengPanorama,
-    alt: 'Panoramic view of the Kameng River curving beneath the green ridges of Rang',
-    label: 'Kameng River Panorama',
-    fromX: '1.5%',
-    toX: '-1.5%',
-    fromY: '0.5%',
-    toY: '-1%',
-  },
-  {
-    id: 'community-hall',
-    src: ASSETS.landscapes.communityHallOverlook,
-    alt: 'Rang Welfare Society Community Hall overlooking Seppa Township in East Kameng',
-    label: 'RWS Community Hall Overlook',
-    fromX: '-1%',
-    toX: '1.5%',
-    fromY: '1%',
-    toY: '-1%',
+    id: 'kameng-river-aerial',
+    src: ASSETS.videos.heroKamengRiver,
+    poster: ASSETS.landscapes.heroPosterKameng,
+    label: 'Kameng River & Terraced Hills · Aerial View',
   },
 ] as const;
 
@@ -81,6 +53,7 @@ export function HomePage() {
   const [selectedTimelineId, setSelectedTimelineId] = useState(UNIFIED_TIMELINE[3].id);
   const [heroIndex, setHeroIndex] = useState(0);
   const [heroPaused, setHeroPaused] = useState(false);
+  const videoRefs = useRef<Array<HTMLVideoElement | null>>([]);
 
   useEffect(() => {
     const unsub = subscribePublishedAnnouncements(setAnnouncements);
@@ -88,14 +61,49 @@ export function HomePage() {
   }, []);
 
   useEffect(() => {
-    if (heroPaused) return;
-    const timer = window.setInterval(() => {
-      setHeroIndex((prev) => (prev + 1) % HERO_SLIDES.length);
-    }, 6000);
-    return () => window.clearInterval(timer);
-  }, [heroPaused]);
+    if (prefersReducedMotion) {
+      setHeroPaused(true);
+    }
+  }, [prefersReducedMotion]);
 
-  const activeSlide = HERO_SLIDES[heroIndex];
+  useEffect(() => {
+    videoRefs.current.forEach((vid, idx) => {
+      if (!vid) return;
+      if (idx === heroIndex && !heroPaused) {
+        if (vid.ended) {
+          vid.currentTime = 0;
+        }
+        const playPromise = vid.play();
+        if (playPromise) {
+          playPromise.catch(() => {
+            // Autoplay fallback handled gracefully via crisp HD poster frame
+          });
+        }
+      } else {
+        vid.pause();
+      }
+    });
+  }, [heroIndex, heroPaused]);
+
+  const activeReel = HERO_VIDEOS[heroIndex];
+
+  const handleSelectReel = (idx: number) => {
+    const target = videoRefs.current[idx];
+    if (target) {
+      target.currentTime = 0;
+    }
+    setHeroIndex(idx);
+  };
+
+  const handleReelEnded = (idx: number) => {
+    if (idx !== heroIndex || heroPaused) return;
+    const nextIdx = (idx + 1) % HERO_VIDEOS.length;
+    const nextVid = videoRefs.current[nextIdx];
+    if (nextVid) {
+      nextVid.currentTime = 0;
+    }
+    setHeroIndex(nextIdx);
+  };
 
   const chairmanMsg = OFFICIAL_MESSAGES[0];
   const featuredTimeline = [
@@ -113,50 +121,36 @@ export function HomePage() {
 
   return (
     <div>
-      {/* 1. Full-Bleed Cinematic Mountain Hero */}
+      {/* 1. Full-Bleed HD Aerial Drone Video Hero */}
       <section className="relative min-h-[78vh] lg:min-h-[84vh] flex items-center bg-[#0F2C1E] text-[#F9F6EF] overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden">
-          <AnimatePresence mode="sync" initial={false}>
-            <motion.img
-              key={activeSlide.id}
-              src={activeSlide.src}
-              alt={activeSlide.alt}
-              referrerPolicy="no-referrer"
-              initial={
-                prefersReducedMotion
-                  ? { opacity: 0 }
-                  : {
-                      opacity: 0,
-                      scale: 1.03,
-                      x: activeSlide.fromX,
-                      y: activeSlide.fromY,
-                    }
-              }
-              animate={
-                prefersReducedMotion
-                  ? { opacity: 1 }
-                  : {
-                      opacity: 1,
-                      scale: heroPaused ? 1.06 : 1.12,
-                      x: activeSlide.toX,
-                      y: activeSlide.toY,
-                    }
-              }
-              exit={{ opacity: 0, transition: { duration: 1.2, ease: 'easeInOut' } }}
-              transition={{
-                opacity: { duration: 1.3, ease: 'easeInOut' },
-                scale: { duration: 7.2, ease: 'linear' },
-                x: { duration: 7.2, ease: 'linear' },
-                y: { duration: 7.2, ease: 'linear' },
-              }}
-              className="absolute inset-0 w-full h-full object-cover object-center will-change-transform"
-            />
-          </AnimatePresence>
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0B2216]/94 via-[#102F20]/78 to-[#0E291C]/48 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0B2216]/90 via-transparent to-[#0B2216]/35 pointer-events-none" />
+        <div className="absolute inset-0 overflow-hidden bg-[#0D2618]">
+          {HERO_VIDEOS.map((reel, idx) => {
+            const isActive = idx === heroIndex;
+            return (
+              <video
+                key={reel.id}
+                ref={(el) => {
+                  videoRefs.current[idx] = el;
+                }}
+                src={reel.src}
+                poster={reel.poster}
+                muted
+                playsInline
+                autoPlay={idx === 0 && !prefersReducedMotion}
+                preload="auto"
+                onEnded={() => handleReelEnded(idx)}
+                aria-hidden="true"
+                className={`absolute inset-0 w-full h-full object-cover object-center scale-[1.16] transition-opacity duration-1000 ease-in-out ${
+                  isActive ? 'opacity-100 z-[1]' : 'opacity-0 z-0 pointer-events-none'
+                }`}
+              />
+            );
+          })}
+          <div className="absolute inset-0 z-[2] bg-gradient-to-r from-[#0B2216]/90 via-[#0E2A1C]/68 to-[#0E291C]/28 pointer-events-none" />
+          <div className="absolute inset-0 z-[2] bg-gradient-to-t from-[#0B2216]/88 via-transparent to-[#0B2216]/32 pointer-events-none" />
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 w-full">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 w-full">
           <div className="max-w-3xl">
             <div className="flex items-center gap-4 mb-6">
               <img
@@ -230,32 +224,32 @@ export function HomePage() {
               </div>
             </div>
 
-            {/* Quiet Hero Vista Indicator & Pause/Play Control */}
+            {/* Quiet Hero Aerial Reel Indicator & Pause/Play Control */}
             <div className="mt-7 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-4">
-              <div className="flex items-center gap-2.5" role="group" aria-label="Hero landscape vistas">
-                {HERO_SLIDES.map((slide, idx) => (
+              <div className="flex items-center gap-2.5" role="group" aria-label="Aerial hero videos">
+                {HERO_VIDEOS.map((reel, idx) => (
                   <button
-                    key={slide.id}
+                    key={reel.id}
                     type="button"
-                    onClick={() => setHeroIndex(idx)}
-                    aria-label={`Show vista ${idx + 1}: ${slide.label}`}
+                    onClick={() => handleSelectReel(idx)}
+                    aria-label={`Play aerial reel ${idx + 1}: ${reel.label}`}
                     aria-pressed={idx === heroIndex}
                     className={`h-1.5 rounded-xs transition-all cursor-pointer ${
                       idx === heroIndex
-                        ? 'w-8 bg-[#E3C17A]'
-                        : 'w-4 bg-white/30 hover:bg-white/55'
+                        ? 'w-10 bg-[#E3C17A]'
+                        : 'w-5 bg-white/35 hover:bg-white/60'
                     }`}
                   />
                 ))}
                 <span className="ml-2 text-[11px] uppercase tracking-[0.14em] text-[#DDD5C2] tabular-nums">
-                  0{heroIndex + 1} / 0{HERO_SLIDES.length} · {activeSlide.label}
+                  0{heroIndex + 1} / 0{HERO_VIDEOS.length} · {activeReel.label}
                 </span>
               </div>
 
               <button
                 type="button"
                 onClick={() => setHeroPaused((p) => !p)}
-                aria-label={heroPaused ? 'Resume hero background animation' : 'Pause hero background animation'}
+                aria-label={heroPaused ? 'Resume hero video playback' : 'Pause hero video playback'}
                 className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.14em] text-[#DDD5C2] hover:text-[#F9F6EF] transition-colors cursor-pointer whitespace-nowrap shrink-0"
               >
                 {heroPaused ? <Play className="w-3.5 h-3.5" /> : <Pause className="w-3.5 h-3.5" />}
@@ -292,7 +286,7 @@ export function HomePage() {
                     src={ASSETS.dignitaries.logoRang}
                     alt="Er. Logo Rang, Chairman, Rang Welfare Society"
                     referrerPolicy="no-referrer"
-                    className="w-12 h-12 rounded-full object-cover object-top border border-[#B88A3E]/60"
+                    className="w-14 h-14 rounded-full object-cover object-[50%_18%] border-2 border-[#B88A3E]/70 shadow-xs shrink-0"
                   />
                   <div>
                     <p className="text-sm font-semibold text-[#143A28]">{chairmanMsg.senderName}</p>

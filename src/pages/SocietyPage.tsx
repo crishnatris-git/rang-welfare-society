@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, FileCheck2, Scale, Award, Info } from 'lucide-react';
+import { ArrowRight, Scale, Award } from 'lucide-react';
 import { ASSETS } from '../data/assets';
 import {
   OFFICIAL_MESSAGES,
   RWS_BYELAW_OBJECTIVES,
-  EDITORIAL_DISCREPANCIES,
   SOCIETY_CONTACT,
 } from '../data/societyData';
 import { RWS_SERVICE_PERIODS } from '../data/heritageData';
@@ -177,18 +176,21 @@ export function SocietyPage({ section = 'about' }: { section?: SocietySection })
             {OFFICIAL_MESSAGES.map((msg) => (
               <article
                 key={msg.id}
-                className={`bg-[#FDFBF6] border rounded-sm p-6 sm:p-10 ${
-                  msg.isPending ? 'border-dashed border-[#C8BC9F]' : 'border-[#E2D9C4]'
-                }`}
+                id={msg.id}
+                className="bg-[#FDFBF6] border border-[#E2D9C4] rounded-sm p-6 sm:p-10 scroll-mt-24"
               >
-                <div className="flex flex-col sm:flex-row sm:items-center gap-5 pb-6 border-b border-[#ECE5D5]">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-6 pb-6 border-b border-[#ECE5D5]">
                   {msg.portrait && (
-                    <img
-                      src={msg.portrait}
-                      alt={msg.senderName}
-                      referrerPolicy="no-referrer"
-                      className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover object-top border-2 border-[#B88A3E]/70 shrink-0"
-                    />
+                    <div className="w-28 h-32 sm:w-32 sm:h-36 rounded-sm overflow-hidden border-2 border-[#B88A3E]/75 bg-[#F2ECE0] p-1 shadow-xs shrink-0">
+                      <img
+                        src={msg.portrait}
+                        alt={`${msg.senderName}, ${msg.designation}`}
+                        referrerPolicy="no-referrer"
+                        className={`w-full h-full object-cover rounded-[2px] ${
+                          msg.portraitPosition || 'object-top'
+                        }`}
+                      />
+                    </div>
                   )}
                   <div>
                     <p className="text-xs uppercase tracking-[0.16em] text-[#7A6434] font-semibold">
@@ -199,25 +201,18 @@ export function SocietyPage({ section = 'about' }: { section?: SocietySection })
                     </h2>
                     <p className="text-sm font-medium text-[#2D6A4F] mt-0.5">{msg.designation}</p>
                     <p className="text-xs text-[#5A6058] mt-0.5">{msg.constituencyOrOffice}</p>
-                    {msg.date && <p className="text-xs font-mono text-[#7A6434] mt-1">{msg.date}</p>}
+                    {msg.date && <p className="text-xs font-mono text-[#7A6434] mt-1.5">{msg.date}</p>}
                   </div>
                 </div>
 
-                {msg.isPending ? (
-                  <div className="mt-6 bg-[#F2ECE0] p-5 rounded-sm flex items-start gap-3 text-sm text-[#4A504B]">
-                    <Info className="w-5 h-5 text-[#B88A3E] shrink-0 mt-0.5" />
-                    <p className="leading-relaxed">{msg.editorialNote}</p>
-                  </div>
-                ) : (
-                  <div className="mt-6 space-y-4 font-serif text-[16px] sm:text-[17px] leading-[1.82] text-[#262B27]">
-                    {msg.paragraphs.map((p, idx) => (
-                      <p key={idx}>{p}</p>
-                    ))}
-                    <p className="pt-4 font-sans text-sm font-semibold text-[#143A28]">
-                      {msg.signOff}
-                    </p>
-                  </div>
-                )}
+                <div className="mt-6 space-y-4 font-serif text-[16px] sm:text-[17px] leading-[1.82] text-[#262B27]">
+                  {msg.paragraphs.map((p, idx) => (
+                    <p key={idx}>{p}</p>
+                  ))}
+                  <p className="pt-4 font-sans text-sm font-semibold text-[#143A28]">
+                    {msg.signOff}
+                  </p>
+                </div>
               </article>
             ))}
           </div>
@@ -303,31 +298,6 @@ export function SocietyPage({ section = 'about' }: { section?: SocietySection })
                 </table>
               </div>
             </section>
-
-            {/* Archival Transparency & Editorial Discrepancies */}
-            <section className="bg-[#F2ECE0] border border-[#E2D9C4] rounded-sm p-6 sm:p-8">
-              <div className="flex items-center gap-2 text-[#7A6434] text-xs uppercase tracking-[0.16em] font-semibold mb-2">
-                <FileCheck2 className="w-4 h-4" />
-                <span>Archival Integrity Note</span>
-              </div>
-              <h3 className="font-serif text-xl sm:text-2xl font-semibold text-[#143A28]">
-                Editorial Verification & Source-Text Transparency
-              </h3>
-              <p className="text-sm text-[#4A504B] mt-2 leading-relaxed max-w-3xl">
-                In preserving the authoritative Silver Jubilee manuscript verbatim, the following
-                spelling and date variations across original contributors and documents have been
-                retained faithfully and documented transparently for RWS Editorial Committee review:
-              </p>
-              <div className="mt-5 space-y-3">
-                {EDITORIAL_DISCREPANCIES.map((item) => (
-                  <div key={item.id} className="bg-[#FDFBF6] border border-[#E2D9C4] rounded-sm p-4">
-                    <p className="text-sm font-semibold text-[#143A28]">{item.topic}</p>
-                    <p className="text-xs font-mono text-[#6B341C] mt-1">{item.variants}</p>
-                    <p className="text-xs text-[#5A6058] mt-1.5 leading-relaxed">{item.context}</p>
-                  </div>
-                ))}
-              </div>
-            </section>
           </div>
         )}
 
@@ -349,9 +319,64 @@ export function SocietyPage({ section = 'about' }: { section?: SocietySection })
                 While oral memory traces the Society’s earliest origins to 1991 and the first committee at
                 Rang Saam footbridge to 1993, Rang Welfare Society formally recognises 2001—the year
                 written record-keeping began—as its official year of functioning, celebrating its Silver
-                Jubilee in November 2026 under Organising Chairman Sh. Pacha Kocho and RWS Chairman Er. Logo Rang.
+                Jubilee in November 2026 under Organising Chairman Sh. Pacha Kocho Rang and RWS Chairman Er. Logo Rang.
               </p>
             </div>
+
+            {/* Silver Jubilee Leadership Profiles */}
+            <section className="space-y-5">
+              <div className="text-center">
+                <p className="text-xs uppercase tracking-[0.18em] text-[#7A6434] font-semibold">
+                  Silver Jubilee Leadership
+                </p>
+                <h3 className="font-serif text-2xl sm:text-3xl font-semibold text-[#143A28] mt-1">
+                  Society & Organising Committee Chairmen
+                </h3>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {OFFICIAL_MESSAGES.slice(0, 2).map((leader) => (
+                  <div
+                    key={leader.id}
+                    className="bg-[#FDFBF6] border border-[#E2D9C4] rounded-sm p-6 sm:p-7 flex flex-col sm:flex-row items-center sm:items-start gap-5 shadow-xs"
+                  >
+                    {leader.portrait && (
+                      <div className="w-28 h-34 rounded-sm overflow-hidden border-2 border-[#B88A3E]/75 bg-[#F2ECE0] p-1 shadow-xs shrink-0">
+                        <img
+                          src={leader.portrait}
+                          alt={`${leader.senderName}, ${leader.designation}`}
+                          referrerPolicy="no-referrer"
+                          className={`w-full h-full object-cover rounded-[2px] ${
+                            leader.portraitPosition || 'object-top'
+                          }`}
+                        />
+                      </div>
+                    )}
+                    <div className="text-center sm:text-left flex-1 flex flex-col">
+                      <p className="text-[11px] uppercase tracking-[0.16em] text-[#7A6434] font-semibold">
+                        {leader.id === 'chairman-rws' ? 'Rang Welfare Society' : 'Silver Jubilee Committee'}
+                      </p>
+                      <h4 className="font-serif text-2xl font-semibold text-[#143A28] mt-1">
+                        {leader.senderName}
+                      </h4>
+                      <p className="text-sm font-medium text-[#2D6A4F] mt-0.5">
+                        {leader.designation}
+                      </p>
+                      <p className="text-xs text-[#4A504B] mt-3 leading-relaxed line-clamp-3">
+                        {leader.paragraphs[0]}
+                      </p>
+                      <Link
+                        to={`/society/messages#${leader.id}`}
+                        className="mt-4 inline-flex items-center justify-center sm:justify-start gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-[#143A28] hover:text-[#7A6434] transition-colors"
+                      >
+                        <span>Read Official Message</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Link

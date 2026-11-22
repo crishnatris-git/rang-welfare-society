@@ -14,13 +14,35 @@ import {
   TWO_PILLARS,
 } from '../data/heritageData';
 import { NINE_CLANS } from '../data/rangEncyclopedia';
-import { PageHeader, OrnamentalDivider, EditorialImage } from '../components/EditorialUI';
+import { PageHeader, OrnamentalDivider, Lightbox, type LightboxItem } from '../components/EditorialUI';
 import { usePageSeo } from '../utils/seo';
 
 type PeopleMode = 'pioneers' | 'firsts' | 'two-pillars';
 
+const CUSTOMARY_GROUP_PHOTOS: LightboxItem[] = [
+  {
+    url: ASSETS.groups.gaonBurahs,
+    title: 'Gaon Burahs of Rang Village',
+    caption: 'Gaon Burahs of Rang Village in traditional ceremonial attire.',
+    category: 'Customary Village Leadership',
+  },
+  {
+    url: ASSETS.groups.gaonBurahsAndBuri,
+    title: 'Gaon Burahs and Gaon Buris of Rang Village',
+    caption: 'Gaon Burahs and Gaon Buris standing together in customary authority.',
+    category: 'Customary Village Leadership',
+  },
+  {
+    url: ASSETS.groups.panchayatTeam,
+    title: 'Rang Panchayat Team',
+    caption: 'Rang Panchayat Team serving under consensus leadership.',
+    category: 'Grassroots Governance',
+  },
+];
+
 export function PeoplePioneersPage({ mode = 'pioneers' }: { mode?: PeopleMode }) {
   const [honourSearch, setHonourSearch] = useState('');
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const meta: Record<PeopleMode, { title: string; kicker: string; subtitle: string; crumb: string }> = {
     pioneers: {
@@ -211,25 +233,31 @@ export function PeoplePioneersPage({ mode = 'pioneers' }: { mode?: PeopleMode })
                 ))}
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                <EditorialImage
-                  src={ASSETS.groups.gaonBurahs}
-                  alt="Gaon Burahs of Rang Village"
-                  imgClassName="w-full h-56 object-cover rounded-sm border border-[#DED4BD]"
-                  caption="Gaon Burahs of Rang Village in traditional ceremonial attire."
-                />
-                <EditorialImage
-                  src={ASSETS.groups.gaonBurahsAndBuri}
-                  alt="Gaon Burahs and Gaon Buris of Rang Village"
-                  imgClassName="w-full h-56 object-cover rounded-sm border border-[#DED4BD]"
-                  caption="Gaon Burahs and Gaon Buris standing together in customary authority."
-                />
-                <EditorialImage
-                  src={ASSETS.groups.panchayatTeam}
-                  alt="Rang Panchayat Team"
-                  imgClassName="w-full h-56 object-cover object-top rounded-sm border border-[#DED4BD]"
-                  caption="Rang Panchayat Team serving under consensus leadership."
-                />
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+                {CUSTOMARY_GROUP_PHOTOS.map((photo, idx) => (
+                  <figure
+                    key={photo.title}
+                    className="bg-[#FDFBF6] border border-[#E2D9C4] rounded-sm overflow-hidden flex flex-col shadow-xs"
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setLightboxIndex(idx)}
+                      aria-label={`View full archival photograph: ${photo.title}`}
+                      className="w-full aspect-[3/2] bg-[#F2ECE0] p-2.5 sm:p-3 flex items-center justify-center border-b border-[#ECE5D5] overflow-hidden cursor-zoom-in group focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#B88A3E]"
+                    >
+                      <img
+                        src={photo.url}
+                        alt={photo.title}
+                        loading="lazy"
+                        referrerPolicy="no-referrer"
+                        className="w-full h-full object-contain object-center transition-transform duration-300 group-hover:scale-[1.02]"
+                      />
+                    </button>
+                    <figcaption className="px-4 py-3.5 text-xs sm:text-[13px] text-[#4A504B] leading-relaxed font-sans flex-1 flex items-center">
+                      {photo.caption}
+                    </figcaption>
+                  </figure>
+                ))}
               </div>
             </section>
 
@@ -556,6 +584,13 @@ export function PeoplePioneersPage({ mode = 'pioneers' }: { mode?: PeopleMode })
           </div>
         )}
       </div>
+
+      <Lightbox
+        items={CUSTOMARY_GROUP_PHOTOS}
+        index={lightboxIndex}
+        onClose={() => setLightboxIndex(null)}
+        onNavigate={setLightboxIndex}
+      />
     </div>
   );
 }

@@ -57,12 +57,12 @@ export function EditorialImage({
   const [failed, setFailed] = useState(false);
 
   return (
-    <figure className={className}>
+    <figure className={`flex flex-col ${className}`}>
       <div
         onClick={onClick}
         className={`relative overflow-hidden bg-[#EAE3D2] ${
           onClick ? 'cursor-zoom-in group' : ''
-        } w-full h-full`}
+        } w-full ${caption ? '' : 'h-full'}`}
       >
         {failed ? (
           <div className="w-full h-full min-h-[160px] flex flex-col items-center justify-center p-6 text-center text-[#5A6058]">
@@ -110,7 +110,7 @@ export function PageHeader({
   title,
   subtitle,
   breadcrumbs,
-  backgroundImage = ASSETS.landscapes.heroRangHills,
+  backgroundImage = ASSETS.landscapes.heroPosterRang,
   children,
 }: PageHeaderProps) {
   return (

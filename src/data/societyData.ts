@@ -7,8 +7,7 @@ export interface OfficialMessage {
   constituencyOrOffice: string;
   date?: string;
   portrait?: string;
-  isPending?: boolean;
-  editorialNote?: string;
+  portraitPosition?: string;
   paragraphs: string[];
   signOff: string;
 }
@@ -21,13 +20,6 @@ export interface AsmGpcRecord {
   to: string;
   photo?: string;
   note?: string;
-}
-
-export interface EditorialDiscrepancy {
-  id: string;
-  topic: string;
-  variants: string;
-  context: string;
 }
 
 export const SOCIETY_CONTACT = {
@@ -51,6 +43,7 @@ export const OFFICIAL_MESSAGES: OfficialMessage[] = [
     constituencyOrOffice: 'Office of the Rang Welfare Society, Village Rang, Seppa',
     date: 'Dated the 18th, November 2026 · Village Rang',
     portrait: ASSETS.dignitaries.logoRang,
+    portraitPosition: 'object-[50%_18%]',
     paragraphs: [
       'Twenty-five years ago, Rang Welfare Society began with a simple belief that a village grows stronger when its people care for one another. Today as we celebrate our silver jubilee, we honour not only the passing of years but the kindness and shared effort that have filled them. It is my honour & privilege to welcome you to the silver jubilee celebration of the Rang Welfare Society. Today we commemorate 25 years of service, compassion & shared commitment to the welfare of our community.',
       'On behalf of the society, I offer my heartfelt thanks to our elders, members & every villager who has walked beside us throughout this journey. This occasion invites us to remember the past with gratitude & to greet the future with hope. Let us continue to stand families in need, encourage the dream of our young people & give our elders care & respect they deserve.',
@@ -60,17 +53,18 @@ export const OFFICIAL_MESSAGES: OfficialMessage[] = [
   },
   {
     id: 'organising-chairman',
-    senderName: 'Sh. Pacha Kocho',
-    designation: 'Chairman, RWS Silver Jubilee Organizing Committee',
-    constituencyOrOffice: 'Silver Jubilee Organizing Committee, Village Rang',
+    senderName: 'Sh. Pacha Kocho Rang',
+    designation: 'Chairman, RWS Silver Jubilee Organising Committee',
+    constituencyOrOffice: 'RWS Silver Jubilee Organising Committee, Village Rang',
     date: 'Dated the 18th, November 2026 · Village Rang',
     portrait: ASSETS.dignitaries.pachaKocho,
+    portraitPosition: 'object-[50%_30%]',
     paragraphs: [
       'It gives me immense pleasure and pride to extend warm greetings to all members, elders, youth, and distinguished guests on the Silver Jubilee Celebration of the Rang Welfare Society (RWS). Completing twenty-five years is a historic milestone—a testament to our collective wisdom, perseverance, sacrifice, and shared aspirations. Today, we look back with profound gratitude at our humble beginnings and honor the vision, dedication, and selfless contributions of our founding members and pioneers who built this strong foundation.',
       'This Silver Jubilee Souvenir serves as a cherished record of our milestones, memories, and cultural identity. I express my sincere appreciation to the editorial team, contributors, and well-wishers who made this publication possible. As we celebrate, let us remain guided by unity, mutual respect, and transparency. May this landmark occasion inspire our younger generation to embrace leadership, preserve our rich traditions, and work together for the continued progress and welfare of our society.',
       'My heartfelt congratulations go out to the entire Organising Committee, past and present leaders, volunteers, donors, and every member of RWS whose efforts made this grand celebration a reality. May Rang Welfare Society continue to flourish and reach greater heights in the years ahead.',
     ],
-    signOff: 'With best wishes and warm regards, (Sh. Pacha Kocho), Chairman, Organising Committee',
+    signOff: 'With best wishes and warm regards, (Sh. Pacha Kocho Rang), Chairman, Organising Committee',
   },
   {
     id: 'mla-seppa-east',
@@ -132,17 +126,6 @@ export const OFFICIAL_MESSAGES: OfficialMessage[] = [
     ],
     signOff: '(Yashashwini B) IAS, Deputy Commissioner, East Kameng District, Seppa',
   },
-  {
-    id: 'home-minister-ap',
-    senderName: 'Hon’ble Home Minister, Arunachal Pradesh',
-    designation: 'Government of Arunachal Pradesh',
-    constituencyOrOffice: 'Listed in Table of Contents (Section 1.1)',
-    isPending: true,
-    editorialNote:
-      'Editorial Note: Listed as Section 1.1 in the Silver Jubilee Souvenir Table of Contents. The message text was not included in the archival manuscript or digital print proofs supplied for publication and is reserved here for official insertion by the RWS Editorial Committee once received.',
-    paragraphs: [],
-    signOff: 'Reserved for Official Insertion by RWS Editorial Committee',
-  },
 ];
 
 export const RWS_BYELAW_OBJECTIVES: string[] = [
@@ -196,7 +179,6 @@ export const ASM_GPC_BOARD: AsmGpcRecord[] = [
     role: 'Anchal Samiti Member (ASM)',
     from: '2009',
     to: '2013',
-    note: 'Also recorded as Smti. Mechori Dawe Rang in the Firsts register; photo-grid caption lists 2002–2006 (flagged for editorial verification).',
   },
   {
     slNo: 6,
@@ -289,36 +271,3 @@ export const FOUNDING_GROUPS = {
       'The RWS Women Wing began under the leadership of Smti. Sueli Dawe Rang as President and Smti. Sima Rang as Secretary.',
   },
 };
-
-export const EDITORIAL_DISCREPANCIES: EditorialDiscrepancy[] = [
-  {
-    id: 'milestone-years',
-    topic: 'RWS Establishment & Jubilee Years',
-    variants: '1991 (oral memory) · 1993 (RVWC formed) · 1999–2026 (Silver Jubilee emblem) · 2001 (official record-keeping year) · 2004 (registration noted in Ch. 4 §7.2) · 2013 (written bye-laws & RWS renaming)',
-    context: 'All milestone dates are faithfully preserved exactly as cited in their respective sections of the authoritative manuscript and Silver Jubilee emblem.',
-  },
-  {
-    id: 'lungte-dapo-year',
-    topic: 'Rang–Loffa Lungte-Dapo Pact Date',
-    variants: '1993 (Ch. 7 & Ch. 8 narrative) · 1994–1995 (Ch. 4 §6) · 1995 (Ch. 8 Milestones table & Two Pillars timeline)',
-    context: 'Retained verbatim in each chapter’s original context; flagged for unified archival verification by RWS historians.',
-  },
-  {
-    id: 'clan-leader-spellings',
-    topic: 'Transliteration & Spelling Variants Across Authors',
-    variants: 'Pimong / Pimung · Longpa Kocho / Langpa Kocho · Garbe Lichi Rang / Gorbe Rang · Mecheri Dawe / Mechori Dawe · Nyubu Nyvgam Yerko / Nyubu Nyegam Yerko / Nyibu Nyagum Yarko · Sangpine / Sangphine · Lichi / Litchi',
-    context: 'Original author spellings are preserved intact within each source article and record rather than silently overwritten.',
-  },
-  {
-    id: 'asm-caption-typo',
-    topic: 'ASM/GP Visual Photo Grid Caption Duplication (Manuscript p.17)',
-    variants: 'Manuscript photo grid repeats "Rakesh Dawe (2004-2009)" beneath portraits of Sri Gorbe Rang (2021–2026) and Smti. Mepe Sangdo Rang (2026–), and prints "2002-2006" for Smti. Mecheri Dawe & Longpa Kocho.',
-    context: 'The formal Incumbency Board table (Manuscript pp. 18–19) provides the verified sequential dates (2009–2013, 2013–2019, 2021–2026, 2026–Present), which are displayed cleanly here with this archival note.',
-  },
-  {
-    id: 'home-minister-message',
-    topic: 'Section 1.1 Home Minister Message',
-    variants: 'Listed in Table of Contents (1.1), absent in supplied manuscript and proof PDFs.',
-    context: 'Marked as reserved for official RWS Editorial Committee insertion rather than fabricated.',
-  },
-];

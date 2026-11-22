@@ -89,18 +89,18 @@
 
 @keyframes heroKenBurnsSlow {
   0% {
-    transform: scale(1.01) translate3d(0%, 0%, 0);
+    transform: scale(1) translate3d(0%, 0%, 0);
   }
   50% {
-    transform: scale(1.09) translate3d(-1.5%, -0.8%, 0);
+    transform: scale(1.045) translate3d(-1%, -0.5%, 0);
   }
   100% {
-    transform: scale(1.04) translate3d(1.2%, -0.4%, 0);
+    transform: scale(1.02) translate3d(0.8%, -0.2%, 0);
   }
 }
 
 .animate-hero-kenburns {
-  animation: heroKenBurnsSlow 26s ease-in-out infinite alternate;
+  animation: heroKenBurnsSlow 28s ease-in-out infinite alternate;
   will-change: transform;
 }
 

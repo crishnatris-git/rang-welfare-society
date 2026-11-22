@@ -9,7 +9,6 @@ import {
   AlertCircle,
   LogIn,
   FileText,
-  BookOpen,
   ShieldCheck,
 } from 'lucide-react';
 import { PageHeader, OrnamentalDivider } from '../components/EditorialUI';
@@ -271,20 +270,6 @@ export function ContactContributePage({ mode = 'contact' }: { mode?: ConnectMode
                   Open Archive Submission Form
                   <Send className="w-3.5 h-3.5" />
                 </Link>
-              </div>
-
-              <div className="bg-[#F2ECE0] border border-[#D8CEB8] rounded-sm p-6">
-                <div className="flex items-center gap-2 text-xs uppercase tracking-[0.14em] text-[#8E6520] font-semibold">
-                  <BookOpen className="w-4 h-4" />
-                  Archival Integrity Policy
-                </div>
-                <p className="mt-2 text-sm text-[#4A524C] leading-relaxed">
-                  Historical texts from the Silver Jubilee Commemorative Souvenir (<em>Rang — The 9 Colours</em>, 2026) are preserved verbatim. Spelling and date variants recorded across source drafts are documented transparently under{' '}
-                  <Link to="/society/governance" className="text-[#143A28] font-medium underline underline-offset-2">
-                    Governance & Editorial Notes
-                  </Link>
-                  .
-                </p>
               </div>
             </div>
           </div>

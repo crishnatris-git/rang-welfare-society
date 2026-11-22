@@ -513,14 +513,15 @@ export const STATIC_GALLERY_PHOTOS: StaticGalleryPhoto[] = [
 export const OFFICIAL_PUBLICATIONS = [
   {
     id: 'pub-jubilee-digital',
-    title: 'Rang — The 9 Colours (Silver Jubilee Souvenir — Digital Print Edition)',
+    title: 'Rang — The 9 Colours (Silver Jubilee Magazine — Final Digital Edition)',
     year: '2026',
     category: 'Silver Jubilee Souvenir',
-    pages: '83 Pages · Full Illustrated Layout',
+    pages: '80 Pages · Final Illustrated Edition',
     description:
-      'The complete illustrated Silver Jubilee Commemorative Souvenir celebrating 25 years of Rang Welfare Society (2001–2026), featuring official messages, the Nine Clans, Silver Jubilee Monolith, Pioneers, Community Voices, Self-Help Groups, Rang Helping Hand, and Rang Vision 2047.',
+      'The official final illustrated Silver Jubilee Commemorative Magazine celebrating 25 years of Rang Welfare Society (2001–2026), featuring official messages, Rang: The 9 Colours, the Silver Jubilee Monolith, Founders & Pioneers, Community Voices, Poetry & Nyishi Riddles, Self-Help Groups, Rang Helping Hand, Rang Vision 2047, and the Photo Gallery.',
     documentUrl: ASSETS.publications.digitalMagazinePdf,
     coverUrl: ASSETS.publications.coverFront,
+    downloadFilename: 'Rang-The-9-Colours-Silver-Jubilee-Magazine-2026.pdf',
   },
   {
     id: 'pub-master-manuscript',
@@ -532,5 +533,6 @@ export const OFFICIAL_PUBLICATIONS = [
       'The authoritative archival manuscript copy preserving full verbatim historical essays, landscape gazetteers, founders’ registers, community memoirs, poems, folktales, Nyishi riddles, and the Vision 2047 Resolution.',
     documentUrl: ASSETS.publications.masterTextPdf,
     coverUrl: ASSETS.publications.coverBack,
+    downloadFilename: 'Rang-Welfare-Society-Master-Manuscript-2026.pdf',
   },
 ];

@@ -73,12 +73,6 @@ export function RangEncyclopediaPage({ mode = 'overview' }: { mode?: 'overview' 
                     <span className="font-medium text-[#143A28]">{clan.foundingLineage}</span>
                   </div>
                 )}
-                {clan.alternateSpelling && (
-                  <div>
-                    <span className="text-[#646B62] block">Archival Spelling Note</span>
-                    <span className="text-[#6B341C]">{clan.alternateSpelling}</span>
-                  </div>
-                )}
               </div>
             </div>
 
@@ -251,8 +245,7 @@ export function RangEncyclopediaPage({ mode = 'overview' }: { mode?: 'overview' 
               {tabConfig[gazetteerTab].subtitle}
             </p>
             <p className="text-xs text-[#646B62] mt-1">
-              Note: Traditional indigenous place names preserved in recorded south-to-north order; no
-              unverified GPS coordinates are fabricated.
+              Traditional indigenous place names recorded in south-to-north geographical order.
             </p>
 
             {currentList.length === 0 ? (

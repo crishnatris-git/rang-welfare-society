@@ -4,13 +4,19 @@ export const ASSETS = {
     rwsOfficial: '/assets/aistudio/Screenshot_20261120-045622_cac96caf.png',
   },
   publications: {
-    digitalMagazinePdf: '/assets/aistudio/Rang-The-9-Colours-Digital_compressed_722f878f.pdf',
+    digitalMagazinePdf: '/assets/aistudio/New-Rang-Silver-Jubilee-Magazine-Final-To-Be-Uploaded_777c3750.pdf',
     masterTextPdf: '/assets/aistudio/main-rws-magazine-copy_0b5d0f3c.pdf',
-    coverFront: '/assets/extracted/doc/doc_obj5_1577x2046.jpg',
+    coverFront: '/assets/rang/silver_jubilee_magazine_cover_2026.jpg',
     coverBack: '/assets/extracted/doc/doc_obj320_1581x2047.jpg',
+  },
+  videos: {
+    heroRangVillage: '/assets/aistudio/InShot_20261121_151844974_66dfd48b.mp4',
+    heroKamengRiver: '/assets/aistudio/InShot_20261121_151926939_01a89cc8.mp4',
   },
   landscapes: {
     heroRangHills: '/assets/rang/hero_rang_hills.jpg',
+    heroPosterRang: '/assets/rang/hero_poster_rang.jpg',
+    heroPosterKameng: '/assets/rang/hero_poster_kameng.jpg',
     valleyKamengSunrise: '/assets/rang/valley_kameng_sunrise.jpg',
     valleyKamengPanorama: '/assets/rang/valley_kameng_panorama.jpg',
     nyangpoSohStream: '/assets/extracted/doc/doc_obj209_437x970.jpg',
@@ -37,8 +43,8 @@ export const ASSETS = {
     kumarWaii: '/assets/rang/portrait_kumar_waii.jpg',
     hayengMangfi: '/assets/rang/portrait_hayeng_mangfi.jpg',
     yashashwiniIas: '/assets/rang/portrait_yashashwini_ias.jpg',
-    logoRang: '/assets/rang/portrait_logo_rang.jpg',
-    pachaKocho: '/assets/rang/portrait_pacha_kocho.jpg',
+    logoRang: '/assets/aistudio/Logo-Rang_84fd8f4d.jpg',
+    pachaKocho: '/assets/aistudio/Pacha-Kocho_cfa562ad.jpg',
   },
   leaders: {
     jardangDawe: '/assets/extracted/doc/doc_obj103_292x364.jpg',

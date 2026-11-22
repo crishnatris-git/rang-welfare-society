@@ -10,6 +10,8 @@ import {
   MapPin,
   Megaphone,
   ArrowRight,
+  Eye,
+  X,
 } from 'lucide-react';
 import { PageHeader, OrnamentalDivider, EditorialImage, Lightbox, LightboxItem } from '../components/EditorialUI';
 import { ASSETS } from '../data/assets';
@@ -36,8 +38,22 @@ export function MediaHubPage({ mode = 'gallery' }: { mode?: MediaMode }) {
 
   const [selectedGalleryCategory, setSelectedGalleryCategory] = useState<string>('All');
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [activePdf, setActivePdf] = useState<{
+    title: string;
+    documentUrl: string;
+    downloadFilename?: string;
+  } | null>(null);
   const [newsCategory, setNewsCategory] = useState<string>('All');
   const [eventFilter, setEventFilter] = useState<'all' | 'upcoming' | 'past'>('all');
+
+  useEffect(() => {
+    if (!activePdf) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setActivePdf(null);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [activePdf]);
 
   usePageSeo({
     title:
@@ -290,14 +306,14 @@ export function MediaHubPage({ mode = 'gallery' }: { mode?: MediaMode }) {
             {OFFICIAL_PUBLICATIONS.map((pub) => (
               <article
                 key={pub.id}
-                className="bg-white border border-[#E4DCC9] rounded-sm overflow-hidden flex flex-col sm:flex-row shadow-xs"
+                className="bg-[#FDFBF6] border border-[#E4DCC9] rounded-sm overflow-hidden flex flex-col sm:flex-row shadow-xs"
               >
-                <div className="sm:w-52 shrink-0 bg-[#143A28] flex items-center justify-center p-4">
+                <div className="sm:w-56 shrink-0 bg-[#143A28] flex items-center justify-center p-5">
                   <img
                     src={pub.coverUrl}
-                    alt={pub.title}
+                    alt={`${pub.title} cover`}
                     referrerPolicy="no-referrer"
-                    className="w-full max-w-[180px] aspect-[3/4] object-cover rounded-xs border border-[#B88A3E]/40 shadow-md"
+                    className="w-full max-w-[190px] aspect-[210/297] object-contain bg-white rounded-xs border border-[#B88A3E]/55 shadow-md"
                   />
                 </div>
                 <div className="p-6 flex flex-col flex-1">
@@ -312,20 +328,34 @@ export function MediaHubPage({ mode = 'gallery' }: { mode?: MediaMode }) {
                   <p className="mt-3 text-sm text-[#4A524C] leading-relaxed flex-1">
                     {pub.description}
                   </p>
-                  <div className="mt-5 pt-4 border-t border-[#EFE8D8] flex flex-wrap gap-3">
+                  <div className="mt-5 pt-4 border-t border-[#EFE8D8] flex flex-wrap gap-2.5">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setActivePdf({
+                          title: pub.title,
+                          documentUrl: pub.documentUrl,
+                          downloadFilename: pub.downloadFilename,
+                        })
+                      }
+                      className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#143A28] text-[#F9F6EF] text-xs font-semibold uppercase tracking-[0.12em] rounded-sm hover:bg-[#1B4332] transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+                    >
+                      <Eye className="w-3.5 h-3.5" />
+                      Read Online
+                    </button>
                     <a
                       href={pub.documentUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#143A28] text-[#F9F6EF] text-xs font-semibold uppercase tracking-[0.12em] rounded-sm hover:bg-[#1B4332] transition-colors whitespace-nowrap shrink-0"
+                      className="inline-flex items-center gap-2 px-4 py-2.5 bg-white text-[#143A28] border border-[#D8CEB8] text-xs font-semibold uppercase tracking-[0.12em] rounded-sm hover:border-[#B88A3E] transition-colors whitespace-nowrap shrink-0"
                     >
                       <BookOpen className="w-3.5 h-3.5" />
-                      Read PDF
+                      Open PDF
                       <ExternalLink className="w-3.5 h-3.5" />
                     </a>
                     <a
                       href={pub.documentUrl}
-                      download
+                      download={pub.downloadFilename || true}
                       className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#F2ECE0] text-[#143A28] border border-[#D8CEB8] text-xs font-semibold uppercase tracking-[0.12em] rounded-sm hover:border-[#B88A3E] transition-colors whitespace-nowrap shrink-0"
                     >
                       <Download className="w-3.5 h-3.5" />
@@ -391,6 +421,66 @@ export function MediaHubPage({ mode = 'gallery' }: { mode?: MediaMode }) {
             )}
           </div>
         </section>
+
+        {activePdf && (
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label={activePdf.title}
+            className="fixed inset-0 z-50 bg-[#0B1E14]/90 flex items-center justify-center p-3 sm:p-6"
+            onClick={() => setActivePdf(null)}
+          >
+            <div
+              className="bg-[#FDFBF6] border border-[#B88A3E]/50 rounded-sm shadow-2xl w-full max-w-6xl h-[88vh] flex flex-col overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="bg-[#143A28] text-[#F9F6EF] px-4 sm:px-6 py-3.5 border-b border-[#B88A3E]/40 flex flex-wrap items-center justify-between gap-3">
+                <div className="min-w-0">
+                  <p className="text-[11px] uppercase tracking-[0.16em] text-[#E3C17A] font-medium">
+                    Digital Publication Viewer
+                  </p>
+                  <h3 className="font-serif text-base sm:text-lg font-semibold truncate">
+                    {activePdf.title}
+                  </h3>
+                </div>
+                <div className="flex items-center gap-2 shrink-0">
+                  <a
+                    href={activePdf.documentUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/10 hover:bg-white/20 text-[#F9F6EF] text-xs font-medium rounded-sm transition-colors"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5" />
+                    <span className="hidden sm:inline">Open in New Tab</span>
+                  </a>
+                  <a
+                    href={activePdf.documentUrl}
+                    download={activePdf.downloadFilename || true}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#B88A3E] hover:bg-[#C99B4E] text-[#0E2418] text-xs font-semibold rounded-sm transition-colors"
+                  >
+                    <Download className="w-3.5 h-3.5" />
+                    <span>Download</span>
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => setActivePdf(null)}
+                    aria-label="Close publication viewer"
+                    className="p-1.5 text-[#F9F6EF] bg-white/10 hover:bg-white/20 rounded-sm transition-colors cursor-pointer"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+              <div className="flex-1 bg-[#EAE3D2] relative">
+                <iframe
+                  src={`${activePdf.documentUrl}#view=FitH`}
+                  title={activePdf.title}
+                  className="w-full h-full border-0"
+                />
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     );
   }

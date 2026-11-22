@@ -162,7 +162,7 @@ export function buildStaticSearchIndex(): SearchDocument[] {
     keywords: RESPECTED_FIGURES_EARLIER_TIMES.map((e) => e.name),
   });
 
-  for (const msg of OFFICIAL_MESSAGES.filter((m) => !m.isPending)) {
+  for (const msg of OFFICIAL_MESSAGES) {
     docs.push({
       id: `msg-${msg.id}`,
       title: `Official Message — ${msg.senderName}`,
