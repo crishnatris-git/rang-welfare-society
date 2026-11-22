@@ -1,0 +1,675 @@
+I need Nine specific modifications to the existing Rang Welfare Society (RWS) website.
+
+The eight attached screenshots and one word document are provided in the exact order of the requested changes. Inspect them carefully and use them to identify the relevant website sections and existing components. Please donot make any other changes to the site.
+
+IMPORTANT:
+
+- Modify the existing website project. Do not recreate or redesign the website.
+- Preserve the existing visual identity: forest green, warm ivory, antique gold, typography, spacing and editorial style.
+- Preserve the existing navigation, page structure, content, links and functionality unless a change is explicitly requested below.
+- Do not introduce unrelated changes.
+- Use the existing React, TypeScript and Vite architecture.
+- Do not create a separate website or duplicate existing sections.
+
+CHANGE 1 — REMOVE THE MASTER MANUSCRIPT CARD
+
+Reference: PHOTO 1.
+
+Locate the section titled "Primary Archival Editions".
+
+It currently displays two cards:
+
+1. Rang — The 9 Colours (Silver Jubilee Magazine — Final Digital Edition).
+2. Rang Welfare Society Silver Jubilee — Authoritative Master Manuscript.
+
+Required change:
+
+- Remove the entire right-hand card titled "Rang Welfare Society Silver Jubilee — Authoritative Master Manuscript" from this Primary Archival Editions section.
+- Retain the left-hand card for "Rang — The 9 Colours (Silver Jubilee Magazine — Final Digital Edition)" exactly as it is.
+- Preserve its existing cover image, title, description, Read Online, Open PDF and Download functionality.
+- Adjust the layout after removing the second card so that the remaining card looks balanced and professionally positioned.
+- Do not leave an empty space where the removed card used to appear.
+- Do not delete the actual manuscript file, its source material or unrelated references elsewhere on the website. This request is only to remove the displayed card from this section.
+
+CHANGE 2 — REDUCE THE WIDTH OF THE HOMEPAGE HERO SECTION
+
+Reference: PHOTO 2.
+
+The homepage hero/banner currently stretches across the entire screen width.
+
+The Society has requested a more contained and balanced presentation.
+
+Required change:
+
+- Reduce the width of the complete homepage hero section.
+- Centre the hero section horizontally.
+- Give it a visually balanced left and right margin.
+- Use a responsive maximum-width layout consistent with the website's other content sections. A desktop maximum width of approximately 1,400px is a suitable starting point.
+- Keep the existing background photograph, overlay, logo/emblem, heading, subtitle, descriptive paragraph, buttons and statistics.
+- Preserve the existing typography and colours.
+- Maintain the visual prominence of the hero section while ensuring it no longer stretches edge-to-edge across the desktop screen.
+- The navigation bar should remain full width and should not be changed.
+- On tablets and mobile phones, the hero should adapt to the available screen width with appropriate side padding and no horizontal scrolling.
+- Do not unnecessarily change the height or content of the hero section.
+
+CHANGE 3 — CORRECT THE SILVER JUBILEE SPORTS AND CULTURAL DEDICATION
+
+Reference: PHOTO 3, A-Cultural-Night--In-Their-Honour-Photo.jpeg
+
+Locate the dark forest-green section currently titled:
+
+"A Cultural Night in Their Honour"
+
+The current wording does not accurately distinguish the dedication of the Sports Events and Cultural Programme.
+
+The Rang Welfare Society has decided that:
+
+- The Sports Events are dedicated to Lt. Mama Kocho.
+- The Cultural Programme is dedicated to La. Tado Tamar.
+
+Make the following changes.
+
+Section label
+
+Replace the existing label with:
+
+SILVER JUBILEE SPORTS & CULTURAL DEDICATION
+
+Section heading
+
+Replace the heading with:
+
+Honouring Two Sons of Rang Through Sports and Culture
+
+Replace the existing body text with the following revised content:
+
+As part of its Silver Jubilee celebration, the Rang Welfare Society (RWS) has chosen to honour two sons of Rang who gave their youth to the village in the 1990s. The Sports Events, including the Volleyball Competition on 23 November 2026 at Rang Village, are dedicated in loving memory of Lt. Mama Kocho. The Cultural Programme, an evening of modern and folk songs and a dance competition, is dedicated to the memory of Lt. Tado Tamar.
+
+Born within a year of each other, the two men devoted their youth to Rang: protecting its natural resources, standing by its people and working to bring neighbouring villages together. Both passed away prematurely, leaving behind a legacy of selfless service that the village continues to remember with gratitude.
+
+Retain the existing forest-green background, gold label, elegant heading typography, paragraph styling and overall visual treatment of the section.
+
+Ensure the section clearly communicates that the Sports Events honour Lt. Mama Kocho and the Cultural Programme honours Lt. Tado Tamar. Do not imply that both programmes are dedicated to both individuals.
+
+CHANGE 4 — CORRECT LT. MAMA KOCHO'S YEAR DETAILS
+
+Reference: PHOTO 3.
+
+Locate the profile/card for Lt. Mama Kocho.
+
+The displayed year currently reads:
+
+1975 – 2000
+
+This is incorrect.
+
+Replace it with:
+
+1975 – 2002
+
+Ensure the full profile heading appears as:
+
+Lt. Mama Kocho
+
+1975 – 2002
+
+Do not modify the other individual's profile, photographs, family information or any unrelated details.
+
+Check the relevant profile wherever it appears in this section so that the incorrect 1975–2000 date is not retained in a duplicate display of the same profile.
+
+CHANGE 5 — REMOVE FACE NUMBER AND VILLAGE METADATA FROM ALL NINE CLAN CARDS
+
+Reference: PHOTO 4.
+
+Locate the section displaying the nine ancestral clan cards.
+
+At present, each card has an upper metadata line displaying labels such as:
+
+FACE 01 · NAMGO LANGRA (NARANGYAR)
+FACE 02 · SEREWA
+FACE 03 · NAMGO LANGRA (NARANGYAR)
+FACE 04 · LONDA VILLAGE
+FACE 05 · TALLANG VILLAGE
+FACE 06 · TALLANG VILLAGE
+FACE 07 · LOFFA VILLAGE
+FACE 08 · RIRANG VILLAGE
+FACE 09 · TATA TARA VILLAGE
+
+The Society wants these labels removed.
+
+Required changes:
+
+- Remove the complete FACE 01, FACE 02, FACE 03 and corresponding FACE 04–FACE 09 metadata lines from all nine cards.
+- Remove the associated village/location labels appearing in those same metadata lines.
+- Do not remove any of the nine clan names.
+- Do not remove the clan symbol illustrations, motifs or icons.
+- Preserve the symbolic meanings, explanatory descriptions and all other existing clan information.
+- Do not rename, reorder or alter the nine clans.
+- Maintain the existing three-column desktop layout and responsive mobile layout.
+- Adjust the spacing at the top of each card after removing the metadata lines so that all nine cards look consistent and well aligned.
+
+The final cards should feature the clan symbol, clan name, symbolic title and descriptive meaning without the FACE numbering or village/location metadata.
+
+CHANGE 6 — DISPLAY LIVE FACEBOOK PAGE POSTS
+
+Reference: PHOTO 5.
+
+The current website footer displays a simple Facebook button.
+
+The Society would like visitors to see recent posts from the official Rang Welfare Society Facebook Page directly on the website.
+
+FIRST, implement this using Meta's official Facebook Page Plugin, subject to its public Page eligibility requirements.
+
+Official documentation:
+https://developers.facebook.com/docs/plugins/page-plugin/
+
+A. Identify the existing Facebook Page URL
+
+- Inspect the current Facebook button in the website footer.
+- Retrieve the exact Facebook Page URL already used by that button.
+- Reuse the same URL for the Facebook feed.
+- Do not invent a Facebook URL or substitute the generic Facebook homepage.
+
+If the existing URL cannot be identified, do not guess. Retain the existing Facebook button and report that the correct Page URL is needed.
+
+B. Add a live Facebook Timeline section
+
+Locate the existing "Connect with RWS" section.
+
+Add a new subsection with the heading:
+
+Latest from Rang Welfare Society on Facebook
+
+Add a short introductory line:
+
+Stay connected with the latest updates, announcements, community activities and events from Rang Welfare Society.
+
+Embed the official Meta Facebook Page Plugin configured to show the Page's Timeline.
+
+Requirements:
+
+- Use the actual existing RWS Facebook Page URL.
+- Use the official Meta Page Plugin, not a third-party feed service.
+- Enable the Timeline tab so the most recent public Page posts appear.
+- Enable responsive/adaptive container width.
+- Keep the widget within Meta's supported maximum width of 500px.
+- Use an appropriate height of approximately 550–650px so visitors can browse recent posts.
+- Centre the widget within a well-designed content area.
+- Maintain the website's existing forest-green, ivory and gold design language around the widget.
+- Use lazy loading where supported.
+- Ensure the Facebook JavaScript SDK is loaded only once, not repeatedly for every component render.
+- Implement the integration properly for the existing React application lifecycle.
+- Avoid introducing duplicate scripts or duplicate SDK initialisations.
+- Do not use the Facebook Graph API or expose access tokens, App Secrets or private credentials in the browser.
+- Do not create fake posts or static mock-ups pretending to be live feed content.
+
+C. Retain the footer Facebook button
+
+Keep the existing compact Facebook button in the footer.
+
+It should continue linking to the exact official RWS Facebook Page and should open the Page in a new browser tab.
+
+The live feed should be displayed in the Connect with RWS section rather than creating a very large social widget in the footer.
+
+D. Add graceful fallback behaviour
+
+The Facebook feed depends on Meta's external service and the public visibility settings of the Facebook Page.
+
+Therefore:
+
+- If the Page Plugin cannot load, show a neat fallback message such as "View our latest updates on Facebook".
+- Provide a working link to the official RWS Facebook Page.
+- If Meta blocks the feed, do not display a blank or broken widget.
+- Do not replace the feed with made-up or manually fabricated posts.
+- Ensure that the rest of the website remains functional even if Facebook's external scripts are unavailable.
+
+CHANGE 7 — CORRECT THE RWS HEADQUARTERS AND EMBLEM IDENTIFICATION
+
+Reference: PHOTO 6.
+
+Locate the organisational information section displaying the Rang Welfare Society emblem and its institutional details.
+
+The current text immediately below the emblem reads:
+
+"OFFICIAL EMBLEM · ESTB. 1991 · HQ: NEW SEPPA"
+
+This needs correction.
+
+Replace that complete line with:
+
+"RANG WELFARE SOCIETY · ESTB. 1991 · HQ: RANG"
+
+Additional instructions:
+
+- Retain the existing Rang Welfare Society emblem exactly as it is. Do not modify, redraw, regenerate or replace the emblem.
+- Replace only the identification text below the emblem.
+- Change "OFFICIAL EMBLEM" to "RANG WELFARE SOCIETY".
+- Retain "ESTB. 1991".
+- Change "HQ: NEW SEPPA" to "HQ: RANG".
+- Preserve the existing uppercase typography, letter spacing, alignment, colour and visual styling.
+- Do not change the other organisational details in the information table, including headquarters address, circle and district, official functioning year, by-laws adoption date, current leadership or official email.
+- Ensure the corrected line displays properly on desktop and mobile without text overflow.
+
+This should be a targeted textual correction only. Do not modify any other section of the website.
+
+CHANGE 8 — ADD A NEW "OUR PEOPLE IN SERVICE" SECTION UNDER THE PEOPLE MENU
+
+Reference: "RWS_People_in_Service_Web_Content.pdf"., Photo 7
+
+Content source: Attached document "RWS_People_in_Service_Web_Content.docx".
+
+The Society wants to introduce a new section titled OUR PEOPLE IN SERVICE under the existing People navigation dropdown.
+
+A. ADD TO THE PEOPLE NAVIGATION DROPDOWN
+
+Locate the existing People dropdown in the website's main navigation.
+
+It currently contains:
+
+- Founders & Panchayat
+- The First in Rang
+- Two Pillars of Rang
+- SHGs & Helping Hand
+
+Add a new navigation item:
+
+Our People in Service
+
+Subtitle/description:
+
+55 Members Across 15 Government Departments & Organisations
+
+Ensure that this appears as a properly styled entry within the existing People dropdown, consistent with the typography, spacing and layout of the other entries.
+
+Do not replace or remove any existing People dropdown items.
+
+The new item must link to its own dedicated page within the People section.
+
+B. CREATE THE "OUR PEOPLE IN SERVICE" PAGE
+
+Use the attached Word document as the authoritative source for all text, statistics and descriptions.
+
+The page should have the following content and structure.
+
+SECTION LABEL
+
+OUR PEOPLE IN SERVICE
+
+MAIN HEADING
+
+Rang in Public Service: 55 Members, Four Groups of Service
+
+INTRODUCTORY TEXT
+
+In twenty-five years of organised community service, Rang has grown into a village of public servants. Today, 55 sons and daughters of Rang serve the nation across 15 government departments and organisations, from engineers and teachers to police personnel, nurses, clerks and support staff. Twenty-one of them, 38 per cent, are women.
+
+C. KEY STATISTICS — FOUR HIGHLIGHTED FIGURES
+
+Display the following four statistics prominently near the beginning of the page, preferably as four elegant statistic cards or counters.
+
+55
+Members in government service
+
+15
+Departments & organisations
+
+21
+Women (38%)
+
+4
+Group A (gazetted) officers
+
+Use the existing website's visual identity: forest green, warm ivory and antique gold. Give the numbers visual prominence while keeping the explanatory labels readable.
+
+On desktop, use a balanced four-column layout. On mobile, arrange them in a responsive two-column or single-column layout.
+
+D. MEMBERS BY GROUP OF SERVICE
+
+Create a clearly structured section titled:
+
+Members by Group of Service (as per CCS Rules)
+
+Display the following distribution:
+
+- Group A — 4 members
+- Group B — 7 members
+- Group C — 14 members
+- Group D — 30 members
+
+Also include the following descriptions exactly as supplied:
+
+Group A · Gazetted officers: Engineers (EE, AE) and the Managing Director of NEHHDC.
+
+Group B · Non-gazetted officers: PGT/TGT teachers, Sub-Inspectors, Junior Engineers and nurses.
+
+Group C · Supervisory and support: Primary teachers, ASIs, Havaldars, clerks and estimators.
+
+Group D · Support staff: Peons, chowkidars, labour and contingency staff.
+
+For visual presentation, consider four distinct but coordinated information cards or a clean horizontal/vertical distribution chart.
+
+The figures must remain accurate:
+4 + 7 + 14 + 30 = 55.
+
+Do not change the classification or invent additional categories.
+
+E. WHAT IT TELLS US
+
+Create a concluding information block titled:
+
+What it tells us
+
+Use the following text:
+
+Eleven members (20 per cent) are in Groups A and B. The next step is to mentor more of our Group C and D members upward through competitive examinations and coaching, so that the village's presence in public service grows in every rank.
+
+F. SOURCE ATTRIBUTION
+
+At the bottom of this page, include the following source note in smaller, understated text:
+
+Source: RWS service-holder records, classified by Group (CCS Rules); casual, contingency and defence posts taken as equivalents.
+
+G. DESIGN AND PRESENTATION REQUIREMENTS
+
+- Follow the existing visual identity and design language of the Rang Welfare Society website.
+- Use the existing forest-green, warm ivory and antique-gold colour palette.
+- Maintain the website's elegant editorial typography and structured information-card design.
+- Make the page feel like an institutional community profile documenting Rang's contribution to public service.
+- Give appropriate visual emphasis to the 55 members and 21 women statistics.
+- Present the four service groups in a clear and easily understandable format.
+- Avoid unnecessary decorative graphics, invented photographs, fabricated names or unsupported information.
+- Do not invent individual employee lists, names, designations, departments or additional statistics.
+- Do not create any fictional profiles or individual photographs.
+- Make the page fully responsive across desktop, tablet and mobile devices.
+
+H. NAVIGATION AND FUNCTIONALITY
+
+- The new Our People in Service entry must open the dedicated page.
+- Ensure the page is accessible directly through the People dropdown.
+- Preserve all existing People section pages and links.
+- Ensure the new page works correctly when opened directly or refreshed.
+- Maintain the existing navigation and footer functionality.
+
+I. FINAL VERIFICATION
+
+Before completing the update:
+
+1. Confirm that Our People in Service appears in the People dropdown.
+2. Confirm that the dedicated page opens correctly.
+3. Verify all four headline statistics.
+4. Verify that the group totals add up to 55.
+5. Verify the group descriptions and concluding text against the supplied Word document.
+6. Check desktop and mobile responsiveness.
+7. Ensure existing People pages remain unaffected.
+8. Run the production build using "npm run build" and resolve any errors.
+
+This is an additional content section within the existing website, not a redesign. Preserve all existing content and functionality.
+
+CHANGE 9 — RENAME "GENESIS OF RANG WELFARE SOCIETY" TO "EVOLUTION OF RANG WELFARE SOCIETY"
+
+Reference: PHOTO 8.
+
+Locate the existing page under Heritage & History → Institutional Origins.
+
+The current page title reads:
+
+"Genesis of Rang Welfare Society"
+
+The Society wants this title corrected to:
+
+"Evolution of Rang Welfare Society"
+
+Make the following specific changes:
+
+1. Replace the main page heading "Genesis of Rang Welfare Society" with "Evolution of Rang Welfare Society".
+2. Update the breadcrumb label from "Genesis of RWS" to "Evolution of Rang Welfare Society".
+3. Update the corresponding navigation button/tab label from "Genesis of RWS" to "Evolution of RWS" so that it remains visually balanced alongside the other navigation buttons.
+4. Update any other references to this page title in the website's navigation, internal links or page metadata, where appropriate, to maintain consistency.
+
+IMPORTANT:
+
+- Retain the existing section label "HERITAGE & HISTORY · INSTITUTIONAL ORIGINS".
+- Retain the existing subtitle:
+
+"How a village that once guarded itself with Mithun and ritual became a society of written bye-laws, youth enforcement, and shared vision."
+
+- Preserve the existing dark forest-green background, typography, button styling, layout, spacing and overall design.
+- Do not modify the other navigation buttons: "25 Years of Services & Timeline" and "Historical Agreements".
+- Ensure all links to this page continue functioning after the title change.
+- Do not alter the actual historical content or rewrite the page.
+
+This is a targeted title and navigation-label correction only. Do not make unrelated changes to the website.
+
+CHANGE 10 — UPDATE THE NINE CLANS AND THEIR SYMBOLS ACROSS THE ENTIRE WEBSITE
+
+Authoritative source: Attached Word document — "Monolith_Silver_Jubilee_Article_v3_Website.pdf".
+
+The attached document contains the approved content titled "The Nine Clans and Their Symbols". This document must now be treated as the authoritative reference for all information about the nine clans, their names, sequence of settlement, founding settlers, symbolic emblems and interpretations across the Rang Welfare Society website.
+
+This is a content correction and consistency update, not a website redesign.
+
+A. UPDATE THE EXISTING NINE CLANS SECTION
+
+Locate the existing "Rang: The 9 Colours" section and the page or content area displaying the nine ancestral clans and their symbols.
+
+Update the existing content to match the attached Word document.
+
+Use the following heading:
+
+The Nine Clans and Their Symbols
+
+Use the following introductory paragraph exactly:
+
+"Each face carries the emblem of one clan, shown here in the order of settlement. Together they form the vocabulary of a good society: foundation, growth, continuity, warmth, balance, vision, connection, grace and unity."
+
+B. USE THE FOLLOWING APPROVED NINE-CLAN ORDER AND CONTENT
+
+The nine clans must appear in the following order, corresponding to the order of settlement in the source document.
+
+1. TAMAR — THE SEAL OF COSMIC ORDER
+
+First settlers: Ato Changrang and Ato Parang
+
+Description:
+
+"The first to settle gave the village its shape. A six-pointed star within a radiating wheel speaks of foundations: mapping the land and setting the root order from which a community grows."
+
+2. TABANG — THE BOTANICAL TRIANGLE
+
+Settler: Ato Ata Tabang
+
+Description:
+
+"A sprouting plant rises within an upward triangle. The second lineage brought expansion, the courage to put down a second root and trust the land to feed more than one family."
+
+3. DODA — THE TREE OF LIFE
+
+Settlers: Ato Deka and Ato Rajja
+
+Description:
+
+"Deep roots and widespread branches express heritage that deepens each season: strength and steady continuity. A tree reaches as high as its roots reach down."
+
+4. LICHI — THE SOLAR MANDALA
+
+Settlers: Abo Daffi and Abo Racho
+
+Description:
+
+"A radiant, many-petalled form opens around a quiet centre. It stands for vitality, protective warmth and the hearth that draws a community together: light that is shared, not hoarded."
+
+5. TAKUNG — THE NONAGONAL MANDALA
+
+Settlers: Ato Tade and Ato Kome
+
+Description:
+
+"A nine-sided frame, matching the nine faces of the monolith, encloses balanced bands and two complementary halves. It speaks of completion and equilibrium: living well with difference."
+
+6. KOCHO — THE ALL-SEEING TRIANGLE
+
+Settlers: Abo Gappi, Abo Lalo and Abo Fecha
+
+Description:
+
+"An open eye within a protective triangle, ringed by rays of vigilance. It stands for historical awareness, far-sighted leadership and guardianship: vision as a form of responsibility."
+
+7. DAWE — THE LATTICED CELESTIAL WHEEL
+
+Settlers: Abo Tame, Abo Jelly, Abo Ropo and Abo Tallo
+
+Description:
+
+"A lattice of crossing lines, with nodes where they meet. The strength lies in the crossings: the woven fabric of society, collaboration and resilience. A community is a network, not a crowd."
+
+8. RIBU — THE LOTUS
+
+Settler: Abo Balang
+
+Description:
+
+"The lotus rises from dark water and opens clean above it. It stands for perseverance, cultural grace and spiritual steadfastness: patient dignity in an age of haste."
+
+9. PIMUNG — THE STAR GRID
+
+Settlers: Abo Nikje and Abo Kame
+
+Description:
+
+"A many-pointed star drawn in one continuous line within bounding rings. The ninth and last of the founding wave closes the circle: one unbroken line touching every point, binding all nine clans together."
+
+C. UPDATE THE CLAN EMBLEMS AND VISUAL REPRESENTATIONS
+
+Use the emblem illustrations provided in the attached Word document as the authoritative visual reference for the nine clans.
+
+The symbols correspond to:
+
+1. Tamar — Six-pointed star within a radiating wheel.
+2. Tabang — Sprouting plant within an upward triangle.
+3. Doda — Tree of Life.
+4. Lichi — Radiant Solar Mandala.
+5. Takung — Nonagonal Mandala.
+6. Kocho — All-Seeing Triangle with an eye.
+7. Dawe — Latticed Celestial Wheel.
+8. Ribu — Lotus.
+9. Pimung — Star Grid.
+
+Requirements:
+
+- Preserve the identity and distinctive features of each existing emblem.
+- Use the supplied symbol illustrations wherever technically possible.
+- Do not invent new clan symbols or assign one clan's symbol to another.
+- Do not substitute generic decorative icons for the approved emblems.
+- Do not distort or unnecessarily alter the original emblem proportions.
+- Ensure the clan name, emblem and symbolic description correspond correctly.
+
+D. APPLY THE CORRECTIONS CONSISTENTLY ACROSS THE WEBSITE
+
+This is particularly important.
+
+Search the existing website project for all references to the nine clans, their symbols, founding settlers, clan sequence and symbolic interpretations.
+
+Wherever the nine-clan information appears, ensure that it agrees with the attached authoritative source.
+
+This includes, wherever applicable:
+
+- Rang: The 9 Colours section.
+- The Nine Clans and Their Symbols page.
+- Homepage summaries or introductory references to the nine clans.
+- Monolith-related content.
+- Silver Jubilee archival or magazine-related references.
+- Navigation descriptions and internal links.
+- Other community heritage sections that reproduce the same clan information.
+
+If conflicting clan names, settlement order, settler names or symbolic descriptions are found in these relevant sections, correct them using the attached document.
+
+Do not introduce all nine detailed descriptions into every page. Retain appropriate short summaries where the design requires them, but ensure they remain factually consistent with the authoritative source.
+
+E. IMPORTANT: PRESERVE THE PREVIOUSLY APPROVED DESIGN CORRECTION
+
+In the earlier website correction, the Society instructed that the metadata labels such as:
+
+- FACE 01 · NAMGO LANGRA
+- FACE 02 · SEREWA
+- FACE 03 and corresponding village/location labels for the other faces
+
+must be removed from the nine clan cards.
+
+Retain that correction.
+
+Do not reintroduce FACE numbering, settlement-location metadata or the previously removed labels.
+
+The cards should feature the approved clan emblem, clan name, symbolic title, settler information and description.
+
+F. DESIGN AND PRESENTATION
+
+Retain the existing Rang Welfare Society website design language:
+
+- Forest-green backgrounds and accents.
+- Warm ivory content areas.
+- Antique-gold detailing.
+- Elegant editorial typography.
+- Consistent spacing and card layouts.
+
+Maintain the existing nine-clan visual arrangement, with a balanced three-column desktop layout and an appropriately responsive mobile layout.
+
+The nine clan entries should feel like one unified heritage collection, with consistent styling, information hierarchy and visual proportions.
+
+G. FINAL VERIFICATION
+
+Before completing the update:
+
+1. Verify all nine clan names.
+2. Verify their exact order of settlement.
+3. Verify every settler name and spelling.
+4. Verify all nine emblem assignments.
+5. Verify each symbolic description against the attached Word document.
+6. Ensure there are no conflicting versions of the clan information in relevant website sections.
+7. Ensure the previously removed FACE numbering and village/location metadata remain removed.
+8. Check desktop, tablet and mobile presentation.
+9. Preserve all existing website navigation and functionality.
+10. Run "npm run build" and resolve any build errors caused by the changes.
+
+Do not recreate the website, rewrite unrelated historical content or modify other sections unnecessarily.
+
+The final result should establish a single consistent, authoritative presentation of the nine clans and their symbols throughout the Rang Welfare Society website.
+
+FINAL DEVELOPMENT AND QUALITY-CHECK INSTRUCTIONS
+
+Before implementation, inspect the existing website source and identify the exact components responsible for these six sections.
+
+Make targeted modifications rather than rebuilding the project.
+
+After implementation, verify the following:
+
+1. The Master Manuscript card is removed from Primary Archival Editions, while the Silver Jubilee Magazine card continues working.
+2. The homepage hero is narrower and centred on desktop, while the navigation remains full width.
+3. The Silver Jubilee dedication text correctly separates the sports dedication to Lt. Mama Kocho from the cultural dedication to La. Tado Tamar.
+4. Lt. Mama Kocho's date correctly reads 1975–2002.
+5. All nine clan cards no longer display FACE numbers or the associated village/location metadata.
+6. The Facebook Timeline is implemented using Meta's official Page Plugin and the correct RWS Page URL, with a fallback link.
+
+Also check:
+
+- Desktop layout.
+- Tablet layout.
+- Mobile layout.
+- All existing navigation links.
+- Existing article and publication links.
+- Existing homepage sections.
+- No broken images.
+- No horizontal overflow.
+- No duplicate React keys or console errors caused by these changes.
+- No build errors.
+
+Run the production build using the existing project build command:
+
+npm run build
+
+Resolve any errors caused by the changes.
+
+Do not remove or modify unrelated existing functionality, including the admin dashboard, authentication, Firebase integration, forms, Vision 2047 content, archival publications or other community sections. Please donot make any other changes to the site.
+
+Finally, provide a brief implementation summary stating which six changes were completed and whether the Facebook live feed successfully loaded in the development preview or requires further configuration.
+
+The final website must remain consistent with the existing Rang Welfare Society digital identity and be ready for synchronisation to the connected GitHub repository.

@@ -40,7 +40,7 @@ export function SocietyPage({ section = 'about' }: { section?: SocietySection })
       title: 'Silver Jubilee Celebration (2001–2026)',
       kicker: 'The Society · 25 Years of Service',
       subtitle:
-        'Honouring twenty-five years of official community record-keeping, installing the nine-faced Granite Monolith, dedicating a Cultural Night to Two Pillars, and adopting Rang Vision 2047.',
+        'Honouring twenty-five years of official community record-keeping, installing the nine-faced Granite Monolith, dedicating Sports and Cultural programmes to Two Pillars, and adopting Rang Vision 2047.',
       crumb: 'Silver Jubilee',
     },
   };
@@ -98,8 +98,8 @@ export function SocietyPage({ section = 'about' }: { section?: SocietySection })
                 </p>
                 <p>
                   Uniquely among villages in Arunachal Pradesh, Rang brings together <strong>nine distinct
-                  Nyishi clans</strong>—Tamar, Tabang, Doda, Takung, Lichi, Kocho, Dawe, Ribu, and Pimong
-                  (Pimung)—under one shared roof, one Society, and a long-standing tradition of selecting
+                  Nyishi clans</strong>—Tamar, Tabang, Doda, Lichi, Takung, Kocho, Dawe, Ribu, and Pimung—under
+                  one shared roof, one Society, and a long-standing tradition of selecting
                   Panchayat leaders by consensus rather than divisive contest.
                 </p>
                 <p>
@@ -114,7 +114,7 @@ export function SocietyPage({ section = 'about' }: { section?: SocietySection })
                     to="/heritage/genesis"
                     className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#143A28] text-[#F9F6EF] text-sm font-medium rounded-sm hover:bg-[#1B4332]"
                   >
-                    <span>Read the Full Genesis of RWS</span>
+                    <span>Read the Full Evolution of RWS</span>
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                   <Link
@@ -137,7 +137,7 @@ export function SocietyPage({ section = 'about' }: { section?: SocietySection })
                     />
                   </div>
                   <p className="mt-3 text-[11px] uppercase tracking-[0.18em] text-[#7A6434] font-semibold">
-                    Official Emblem · Estb. 1991 · Hq: New Seppa
+                    Rang Welfare Society · Estb. 1991 · Hq: Rang
                   </p>
                 </div>
                 <dl className="divide-y divide-[#ECE5D5] text-sm">
@@ -399,11 +399,11 @@ export function SocietyPage({ section = 'about' }: { section?: SocietySection })
               >
                 <Award className="w-6 h-6 text-[#B88A3E] mb-3" />
                 <h3 className="font-serif text-xl font-semibold text-[#143A28] group-hover:text-[#2D6A4F]">
-                  Cultural Night for Two Pillars of Rang
+                  Sports & Cultural Dedication for Two Pillars of Rang
                 </h3>
                 <p className="text-sm text-[#4A504B] mt-2 leading-relaxed">
-                  Dedicated to Lt. Mama Kocho and Lt. Tado Tamar with modern and folk songs and dance
-                  competitions honouring their selfless service.
+                  Dedicating the Sports Events to Lt. Mama Kocho and the Cultural Programme to Lt. Tado
+                  Tamar in honour of their selfless service to Rang Village.
                 </p>
               </Link>
 

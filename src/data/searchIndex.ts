@@ -9,6 +9,7 @@ import {
   UNIFIED_TIMELINE,
   ROLL_OF_HONOUR,
   TWO_PILLARS,
+  PEOPLE_IN_SERVICE,
 } from './heritageData';
 import {
   VOICE_ARTICLES,
@@ -121,11 +122,21 @@ export function buildStaticSearchIndex(): SearchDocument[] {
   docs.push({
     id: 'two-pillars-mama-tado',
     title: `${TWO_PILLARS.title}: Lt. Mama Kocho & Lt. Tado Tamar`,
-    subtitle: 'Cultural Night Tribute · Silver Jubilee Commemoration',
-    excerpt: TWO_PILLARS.intro[1],
+    subtitle: 'Silver Jubilee Sports & Cultural Dedication',
+    excerpt: TWO_PILLARS.intro[0],
     category: 'People & Pioneers',
     route: '/people/two-pillars',
-    keywords: ['Mama Kocho', 'Tado Tamar', 'RVWC', 'RLWA', 'Cultural Night', 'Paka Kocho', 'Fedang Tamar'],
+    keywords: ['Mama Kocho', 'Tado Tamar', 'RVWC', 'RLWA', 'Sports', 'Volleyball', 'Cultural Programme', 'Paka Kocho', 'Fedang Tamar'],
+  });
+
+  docs.push({
+    id: 'people-in-service-55',
+    title: PEOPLE_IN_SERVICE.heading,
+    subtitle: PEOPLE_IN_SERVICE.navSubtitle,
+    excerpt: PEOPLE_IN_SERVICE.intro,
+    category: 'People & Pioneers',
+    route: '/people/in-service',
+    keywords: ['public service', 'government service', 'CCS Rules', 'Group A', 'Group B', 'Group C', 'Group D', '55 members', 'NEHHDC', 'women'],
   });
 
   for (const entry of ROLL_OF_HONOUR) {
@@ -251,7 +262,7 @@ export function buildStaticSearchIndex(): SearchDocument[] {
     keywords: ['Rang Helping Hand', 'Seppa', 'emergency', 'professionals', 'youth'],
   });
 
-  for (const pub of OFFICIAL_PUBLICATIONS) {
+  for (const pub of OFFICIAL_PUBLICATIONS.filter((p) => p.id !== 'pub-master-manuscript')) {
     docs.push({
       id: pub.id,
       title: pub.title,

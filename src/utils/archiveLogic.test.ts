@@ -114,3 +114,23 @@ test('sanitizeDocumentId conforms to Firestore isValidId regex', () => {
   assert.match(id, /^[a-zA-Z0-9_-]+$/);
   assert.ok(id.length <= 128);
 });
+
+test('PEOPLE_IN_SERVICE group counts sum accurately to 55 members across 4 CCS groups', async () => {
+  const { PEOPLE_IN_SERVICE, TWO_PILLARS } = await import('../data/heritageData');
+  const sum = PEOPLE_IN_SERVICE.groups.reduce((acc, g) => acc + g.count, 0);
+  assert.equal(sum, 55);
+  assert.equal(PEOPLE_IN_SERVICE.totalMembers, 55);
+  assert.equal(PEOPLE_IN_SERVICE.groups.length, 4);
+  assert.equal(TWO_PILLARS.mamaKocho.passedAway, '2002');
+});
+
+test('NINE_CLANS follows authoritative settlement order and Pimung naming', async () => {
+  const { NINE_CLANS } = await import('../data/rangEncyclopedia');
+  assert.deepEqual(
+    NINE_CLANS.map((c) => c.name),
+    ['Tamar', 'Tabang', 'Doda', 'Lichi', 'Takung', 'Kocho', 'Dawe', 'Ribu', 'Pimung']
+  );
+  assert.equal(NINE_CLANS[6].foundingAncestors, 'Abo Tame, Abo Jelly, Abo Ropo and Abo Tallo');
+  assert.equal(NINE_CLANS[1].foundingAncestors, 'Ato Ata Tabang');
+});
+

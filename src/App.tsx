@@ -76,12 +76,14 @@ export default function App() {
               <Route path="/heritage" element={<HeritagePage mode="25-years" />} />
               <Route path="/heritage/25-years" element={<HeritagePage mode="25-years" />} />
               <Route path="/heritage/genesis" element={<HeritagePage mode="genesis" />} />
+              <Route path="/heritage/evolution" element={<HeritagePage mode="genesis" />} />
               <Route path="/heritage/agreements" element={<HeritagePage mode="agreements" />} />
 
               {/* People & Pioneers */}
               <Route path="/people" element={<PeoplePioneersPage mode="pioneers" />} />
               <Route path="/people/firsts" element={<PeoplePioneersPage mode="firsts" />} />
               <Route path="/people/two-pillars" element={<PeoplePioneersPage mode="two-pillars" />} />
+              <Route path="/people/in-service" element={<PeoplePioneersPage mode="in-service" />} />
 
               {/* Community & Development */}
               <Route path="/community/shg" element={<CommunityDevPage mode="shg" />} />

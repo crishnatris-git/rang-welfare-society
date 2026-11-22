@@ -10,10 +10,10 @@ import {
   MapPin,
   Shield,
   ArrowUpRight,
-  Facebook,
 } from 'lucide-react';
 import { ASSETS } from '../data/assets';
 import { SOCIETY_CONTACT } from '../data/societyData';
+import { FacebookPagePlugin } from './FacebookPagePlugin';
 
 interface NavSubItem {
   label: string;
@@ -46,7 +46,7 @@ const NAV_GROUPS: NavGroup[] = [
       { label: 'Village & Nine Clans', to: '/rang', desc: 'Origins, lineages & 9 clans' },
       { label: 'Silver Jubilee Monolith', to: '/rang/monolith', desc: 'One Stone, Nine Faces, 25 Bands' },
       { label: 'Landscape Gazetteer', to: '/rang/landscape', desc: 'Kameng sites, streams & Myodi' },
-      { label: 'Heritage & 25 Years', to: '/heritage/25-years', desc: 'Genesis, timeline & agreements' },
+      { label: 'Heritage & 25 Years', to: '/heritage/25-years', desc: 'Evolution, timeline & agreements' },
     ],
   },
   {
@@ -56,6 +56,11 @@ const NAV_GROUPS: NavGroup[] = [
       { label: 'Founders & Panchayat', to: '/people', desc: 'ASMs, GPCs, Gaon Burahs & Youth' },
       { label: 'The First in Rang', to: '/people/firsts', desc: 'Pioneers & Roll of Honour' },
       { label: 'Two Pillars of Rang', to: '/people/two-pillars', desc: 'Lt. Mama Kocho & Lt. Tado Tamar' },
+      {
+        label: 'Our People in Service',
+        to: '/people/in-service',
+        desc: '55 Members Across 15 Government Departments & Organisations',
+      },
       { label: 'SHGs & Helping Hand', to: '/community/shg', desc: 'Women SHGs & Seppa volunteers' },
     ],
   },
@@ -373,7 +378,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
             {/* Identity Column */}
-            <div className="lg:col-span-5 space-y-5">
+            <div className="lg:col-span-5 min-w-0 space-y-5">
               <div className="flex items-center gap-3.5">
                 <div className="w-14 h-14 rounded-full overflow-hidden border border-[#B88A3E]/60 shrink-0 bg-[#0F2C1E] shadow-sm">
                   <img
@@ -416,19 +421,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   <Phone className="w-4 h-4 text-[#D8B268] shrink-0" />
                   <span className="tabular-nums">{SOCIETY_CONTACT.phone}</span>
                 </p>
-                <div className="pt-2">
-                  <a
-                    href={SOCIETY_CONTACT.facebookUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Visit Rang Welfare Society official Facebook page (opens in a new tab)"
-                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-sm border border-[#D8B268]/40 bg-white/5 text-[#F9F6EF] hover:bg-[#B88A3E] hover:text-[#0E2418] hover:border-[#B88A3E] transition-colors font-medium"
-                  >
-                    <Facebook className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-                    <span>Facebook</span>
-                    <ArrowUpRight className="w-3 h-3 shrink-0" aria-hidden="true" />
-                  </a>
-                </div>
+              </div>
+
+              {/* Live Facebook Timeline Feed */}
+              <div className="pt-4 border-t border-white/10 space-y-3">
+                <h3 className="text-xs uppercase tracking-[0.16em] text-[#D8B268] font-semibold">
+                  Latest from Rang Welfare Society on Facebook
+                </h3>
+                <FacebookPagePlugin
+                  pageUrl={SOCIETY_CONTACT.facebookUrl}
+                  pageName="Rang Welfare Society"
+                  height={460}
+                  variant="footer"
+                />
               </div>
             </div>
 
@@ -455,7 +460,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 </li>
                 <li>
                   <Link to="/heritage/genesis" className="hover:text-[#F9F6EF] transition-colors">
-                    Genesis of RWS
+                    Evolution of RWS
                   </Link>
                 </li>
                 <li>
@@ -485,6 +490,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <li>
                   <Link to="/people/two-pillars" className="hover:text-[#F9F6EF] transition-colors">
                     Two Pillars of Rang
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/people/in-service" className="hover:text-[#F9F6EF] transition-colors">
+                    Our People in Service
                   </Link>
                 </li>
                 <li>

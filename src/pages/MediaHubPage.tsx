@@ -385,70 +385,88 @@ export function MediaHubPage({ mode = 'gallery' }: { mode?: MediaMode }) {
             </h2>
           </div>
 
-          <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {OFFICIAL_PUBLICATIONS.map((pub) => (
-              <article
-                key={pub.id}
-                className="bg-[#FDFBF6] border border-[#E4DCC9] rounded-sm overflow-hidden flex flex-col sm:flex-row shadow-xs"
+          {(() => {
+            const displayedPublications = OFFICIAL_PUBLICATIONS.filter(
+              (pub) => pub.id !== 'pub-master-manuscript'
+            );
+            const isSingle = displayedPublications.length === 1;
+            return (
+              <div
+                className={
+                  isSingle
+                    ? 'mt-8 max-w-4xl mx-auto'
+                    : 'mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8'
+                }
               >
-                <div className="sm:w-56 shrink-0 bg-[#143A28] flex items-center justify-center p-5">
-                  <img
-                    src={pub.coverUrl}
-                    alt={`${pub.title} cover`}
-                    referrerPolicy="no-referrer"
-                    className="w-full max-w-[190px] aspect-[210/297] object-contain bg-white rounded-xs border border-[#B88A3E]/55 shadow-md"
-                  />
-                </div>
-                <div className="p-6 flex flex-col flex-1">
-                  <div className="flex items-center justify-between gap-2 text-xs uppercase tracking-[0.14em] text-[#8E6520] font-medium">
-                    <span>{pub.category}</span>
-                    <span className="tabular-nums text-[#5A6058]">{pub.year}</span>
-                  </div>
-                  <h3 className="mt-2 font-serif text-xl text-[#143A28] font-semibold leading-snug">
-                    {pub.title}
-                  </h3>
-                  <p className="mt-1 text-xs font-mono text-[#5A6058]">{pub.pages}</p>
-                  <p className="mt-3 text-sm text-[#4A524C] leading-relaxed flex-1">
-                    {pub.description}
-                  </p>
-                  <div className="mt-5 pt-4 border-t border-[#EFE8D8] flex flex-wrap gap-2.5">
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setActivePdf({
-                          title: pub.title,
-                          documentUrl: pub.documentUrl,
-                          downloadFilename: pub.downloadFilename,
-                        })
-                      }
-                      className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#143A28] text-[#F9F6EF] text-xs font-semibold uppercase tracking-[0.12em] rounded-sm hover:bg-[#1B4332] transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+                {displayedPublications.map((pub) => (
+                  <article
+                    key={pub.id}
+                    className="bg-[#FDFBF6] border border-[#E4DCC9] rounded-sm overflow-hidden flex flex-col sm:flex-row shadow-xs"
+                  >
+                    <div
+                      className={`${
+                        isSingle ? 'sm:w-64' : 'sm:w-56'
+                      } shrink-0 bg-[#143A28] flex items-center justify-center p-6`}
                     >
-                      <Eye className="w-3.5 h-3.5" />
-                      Read Online
-                    </button>
-                    <a
-                      href={pub.documentUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2.5 bg-white text-[#143A28] border border-[#D8CEB8] text-xs font-semibold uppercase tracking-[0.12em] rounded-sm hover:border-[#B88A3E] transition-colors whitespace-nowrap shrink-0"
-                    >
-                      <BookOpen className="w-3.5 h-3.5" />
-                      Open PDF
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
-                    <a
-                      href={pub.documentUrl}
-                      download={pub.downloadFilename || true}
-                      className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#F2ECE0] text-[#143A28] border border-[#D8CEB8] text-xs font-semibold uppercase tracking-[0.12em] rounded-sm hover:border-[#B88A3E] transition-colors whitespace-nowrap shrink-0"
-                    >
-                      <Download className="w-3.5 h-3.5" />
-                      Download
-                    </a>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
+                      <img
+                        src={pub.coverUrl}
+                        alt={`${pub.title} cover`}
+                        referrerPolicy="no-referrer"
+                        className="w-full max-w-[200px] aspect-[210/297] object-contain bg-white rounded-xs border border-[#B88A3E]/55 shadow-md"
+                      />
+                    </div>
+                    <div className="p-6 sm:p-8 flex flex-col flex-1">
+                      <div className="flex items-center justify-between gap-2 text-xs uppercase tracking-[0.14em] text-[#8E6520] font-medium">
+                        <span>{pub.category}</span>
+                        <span className="tabular-nums text-[#5A6058]">{pub.year}</span>
+                      </div>
+                      <h3 className="mt-2 font-serif text-xl sm:text-2xl text-[#143A28] font-semibold leading-snug">
+                        {pub.title}
+                      </h3>
+                      <p className="mt-1.5 text-xs font-mono text-[#5A6058]">{pub.pages}</p>
+                      <p className="mt-3 text-sm sm:text-[15px] text-[#4A524C] leading-relaxed flex-1">
+                        {pub.description}
+                      </p>
+                      <div className="mt-6 pt-4 border-t border-[#EFE8D8] flex flex-wrap gap-2.5">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setActivePdf({
+                              title: pub.title,
+                              documentUrl: pub.documentUrl,
+                              downloadFilename: pub.downloadFilename,
+                            })
+                          }
+                          className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#143A28] text-[#F9F6EF] text-xs font-semibold uppercase tracking-[0.12em] rounded-sm hover:bg-[#1B4332] transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+                        >
+                          <Eye className="w-3.5 h-3.5" />
+                          Read Online
+                        </button>
+                        <a
+                          href={pub.documentUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 px-4 py-2.5 bg-white text-[#143A28] border border-[#D8CEB8] text-xs font-semibold uppercase tracking-[0.12em] rounded-sm hover:border-[#B88A3E] transition-colors whitespace-nowrap shrink-0"
+                        >
+                          <BookOpen className="w-3.5 h-3.5" />
+                          Open PDF
+                          <ExternalLink className="w-3.5 h-3.5" />
+                        </a>
+                        <a
+                          href={pub.documentUrl}
+                          download={pub.downloadFilename || true}
+                          className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#F2ECE0] text-[#143A28] border border-[#D8CEB8] text-xs font-semibold uppercase tracking-[0.12em] rounded-sm hover:border-[#B88A3E] transition-colors whitespace-nowrap shrink-0"
+                        >
+                          <Download className="w-3.5 h-3.5" />
+                          Download
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            );
+          })()}
 
           <OrnamentalDivider className="my-12" />
 

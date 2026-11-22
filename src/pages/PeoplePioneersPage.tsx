@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Award, Heart, Users, Calendar } from 'lucide-react';
+import { Award, Briefcase, Heart, Users, Calendar } from 'lucide-react';
 import { ASSETS } from '../data/assets';
 import {
   ASM_GPC_BOARD,
@@ -12,12 +12,13 @@ import {
   FIRSTS_NARRATIVE,
   ROLL_OF_HONOUR,
   TWO_PILLARS,
+  PEOPLE_IN_SERVICE,
 } from '../data/heritageData';
 import { NINE_CLANS } from '../data/rangEncyclopedia';
 import { PageHeader, OrnamentalDivider, Lightbox, type LightboxItem } from '../components/EditorialUI';
 import { usePageSeo } from '../utils/seo';
 
-type PeopleMode = 'pioneers' | 'firsts' | 'two-pillars';
+type PeopleMode = 'pioneers' | 'firsts' | 'two-pillars' | 'in-service';
 
 const CUSTOMARY_GROUP_PHOTOS: LightboxItem[] = [
   {
@@ -60,9 +61,15 @@ export function PeoplePioneersPage({ mode = 'pioneers' }: { mode?: PeopleMode })
     },
     'two-pillars': {
       title: TWO_PILLARS.title,
-      kicker: 'Silver Jubilee Memorial · Cultural Night Dedication',
+      kicker: 'Silver Jubilee Memorial · Sports & Cultural Dedication',
       subtitle: TWO_PILLARS.subtitle,
       crumb: 'Two Pillars of Rang',
+    },
+    'in-service': {
+      title: PEOPLE_IN_SERVICE.heading,
+      kicker: PEOPLE_IN_SERVICE.sectionLabel,
+      subtitle: PEOPLE_IN_SERVICE.navSubtitle,
+      crumb: 'Our People in Service',
     },
   };
 
@@ -73,6 +80,7 @@ export function PeoplePioneersPage({ mode = 'pioneers' }: { mode?: PeopleMode })
     { key: 'pioneers', label: 'Founders & Panchayat', to: '/people' },
     { key: 'firsts', label: 'The First in Rang', to: '/people/firsts' },
     { key: 'two-pillars', label: 'Two Pillars of Rang', to: '/people/two-pillars' },
+    { key: 'in-service', label: 'Our People in Service', to: '/people/in-service' },
   ];
 
   const filteredHonour = ROLL_OF_HONOUR.filter((row) =>
@@ -477,10 +485,10 @@ export function PeoplePioneersPage({ mode = 'pioneers' }: { mode?: PeopleMode })
             <section className="bg-[#143A28] text-[#F9F6EF] rounded-sm p-7 sm:p-10 border border-[#B88A3E]/40 space-y-4">
               <div className="flex items-center gap-2 text-[#E3C17A] text-xs uppercase tracking-[0.18em] font-semibold">
                 <Heart className="w-4 h-4" />
-                <span>Silver Jubilee Cultural Night Dedication</span>
+                <span>{TWO_PILLARS.dedicationLabel}</span>
               </div>
               <h2 className="font-serif text-2xl sm:text-3xl font-semibold">
-                A Cultural Night in Their Honour
+                {TWO_PILLARS.dedicationHeading}
               </h2>
               {TWO_PILLARS.intro.map((p, idx) => (
                 <p key={idx} className="text-sm sm:text-base text-[#E2DAC7] leading-relaxed">
@@ -579,6 +587,119 @@ export function PeoplePioneersPage({ mode = 'pioneers' }: { mode?: PeopleMode })
               </div>
               <p className="mt-6 pt-5 border-t border-[#ECE5D5] font-serif text-base sm:text-lg text-[#143A28] leading-relaxed">
                 {TWO_PILLARS.closing}
+              </p>
+            </section>
+          </div>
+        )}
+
+        {mode === 'in-service' && (
+          <div className="max-w-5xl mx-auto space-y-12">
+            {/* Opening Editorial Introduction */}
+            <section className="bg-[#FDFBF6] border border-[#E2D9C4] rounded-sm p-7 sm:p-10 space-y-4 shadow-xs">
+              <p className="text-xs uppercase tracking-[0.18em] text-[#7A6434] font-semibold flex items-center gap-2">
+                <Briefcase className="w-4 h-4 text-[#B88A3E]" />
+                <span>{PEOPLE_IN_SERVICE.sectionLabel}</span>
+              </p>
+              <h2 className="font-serif text-2xl sm:text-3xl font-semibold text-[#143A28] leading-snug">
+                {PEOPLE_IN_SERVICE.heading}
+              </h2>
+              <p className="font-serif text-base sm:text-lg text-[#262B27] leading-[1.82]">
+                {PEOPLE_IN_SERVICE.intro}
+              </p>
+            </section>
+
+            {/* 4 Key Statistic Cards */}
+            <section aria-label="Public service key statistics">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+                {PEOPLE_IN_SERVICE.keyStats.map((stat) => (
+                  <div
+                    key={stat.label}
+                    className="bg-[#143A28] text-[#F9F6EF] border border-[#B88A3E]/40 rounded-sm p-6 flex flex-col justify-between shadow-xs"
+                  >
+                    <p className="font-mono text-4xl sm:text-[42px] font-semibold text-[#E3C17A] tabular-nums leading-none">
+                      {stat.value}
+                    </p>
+                    <p className="mt-3 text-xs sm:text-sm text-[#E4DEC9] leading-snug font-medium">
+                      {stat.label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Members by Group of Service (CCS Rules) */}
+            <section className="bg-[#FDFBF6] border border-[#E2D9C4] rounded-sm p-7 sm:p-10 space-y-6 shadow-xs">
+              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 pb-5 border-b border-[#ECE5D5]">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.16em] text-[#7A6434] font-semibold">
+                    Classification by Cadre
+                  </p>
+                  <h2 className="font-serif text-2xl sm:text-3xl font-semibold text-[#143A28] mt-1">
+                    {PEOPLE_IN_SERVICE.groupsHeading}
+                  </h2>
+                </div>
+                <p className="font-mono text-xs uppercase tracking-[0.14em] text-[#5A6058] tabular-nums">
+                  Total: {PEOPLE_IN_SERVICE.totalMembers} Members
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                {PEOPLE_IN_SERVICE.groups.map((item) => {
+                  const pct = Math.round((item.count / PEOPLE_IN_SERVICE.totalMembers) * 100);
+                  return (
+                    <article
+                      key={item.group}
+                      className="bg-[#F9F6EF] border border-[#E2D9C4] rounded-sm p-5 sm:p-6 flex flex-col justify-between space-y-4"
+                    >
+                      <div>
+                        <div className="flex items-baseline justify-between gap-3">
+                          <h3 className="font-serif text-xl font-semibold text-[#143A28]">
+                            {item.group} — {item.count} members
+                          </h3>
+                          <span className="font-mono text-xs font-semibold text-[#7A6434] tabular-nums shrink-0">
+                            {pct}%
+                          </span>
+                        </div>
+                        <p className="mt-2 text-sm text-[#2E3430] leading-relaxed">
+                          <strong className="text-[#143A28]">
+                            {item.group} · {item.category}:
+                          </strong>{' '}
+                          {item.description}
+                        </p>
+                      </div>
+
+                      <div className="space-y-1.5">
+                        <div className="w-full h-2 bg-[#E8E0CE] rounded-xs overflow-hidden">
+                          <div
+                            className="h-full bg-[#143A28] rounded-xs"
+                            style={{ width: `${(item.count / PEOPLE_IN_SERVICE.totalMembers) * 100}%` }}
+                          />
+                        </div>
+                        <p className="text-[11px] font-mono text-[#646B62] tabular-nums">
+                          {item.count} of {PEOPLE_IN_SERVICE.totalMembers} service holders
+                        </p>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            </section>
+
+            {/* What It Tells Us & Source Note */}
+            <section className="space-y-4">
+              <div className="bg-[#F2ECE0] border border-[#D8CEB8] rounded-sm p-7 sm:p-9 space-y-3">
+                <p className="text-xs uppercase tracking-[0.16em] text-[#7A6434] font-semibold">
+                  Institutional Reflection
+                </p>
+                <h2 className="font-serif text-2xl font-semibold text-[#143A28]">
+                  {PEOPLE_IN_SERVICE.insightHeading}
+                </h2>
+                <p className="font-serif text-base sm:text-lg text-[#262B27] leading-[1.82]">
+                  {PEOPLE_IN_SERVICE.insightText}
+                </p>
+              </div>
+              <p className="text-xs text-[#646B62] leading-relaxed px-1">
+                {PEOPLE_IN_SERVICE.sourceNote}
               </p>
             </section>
           </div>

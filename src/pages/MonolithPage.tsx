@@ -75,10 +75,10 @@ export function MonolithPage() {
               Interactive Nine-Face Inspector
             </p>
             <h2 className="font-serif text-2xl sm:text-3xl font-semibold mt-1.5">
-              The Nine Clans and Their Carved Symbols
+              The Nine Clans and Their Symbols
             </h2>
             <p className="text-sm text-[#D6CEBC] mt-2 leading-relaxed">
-              {MONOLITH_ESSAY.symbolsIntro} Select any clan emblem below to inspect its face on the monolith.
+              {MONOLITH_ESSAY.symbolsIntro}
             </p>
           </div>
 
@@ -104,7 +104,7 @@ export function MonolithPage() {
                     className="w-12 h-12 sm:w-14 sm:h-14 object-cover rounded-sm"
                   />
                   <span className="mt-2 text-[11px] font-medium text-[#F9F6EF] whitespace-nowrap">
-                    {clan.name.split(' ')[0]}
+                    {clan.name}
                   </span>
                 </button>
               );
@@ -122,14 +122,11 @@ export function MonolithPage() {
               />
             </div>
             <div className="md:col-span-9 space-y-3">
-              <p className="font-mono text-xs uppercase tracking-[0.16em] text-[#E3C17A]">
-                Face 0{activeClan.order} of 09 · Order of Settlement
-              </p>
               <h3 className="font-serif text-2xl sm:text-3xl font-semibold text-[#F9F6EF]">
                 {activeClan.name} — {activeClan.symbolTitle}
               </h3>
               <p className="text-xs sm:text-sm text-[#D8B268]">
-                Founding Settlers: {activeClan.foundingAncestors} · Origin: {activeClan.originVillage}
+                {activeClan.settlerLabel}: {activeClan.foundingAncestors}
               </p>
               <p className="text-sm sm:text-base text-[#E6E0D0] leading-relaxed">
                 {activeClan.symbolDescription}
@@ -143,7 +140,7 @@ export function MonolithPage() {
                   to={`/rang/clans/${activeClan.slug}`}
                   className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#E3C17A] hover:text-white whitespace-nowrap"
                 >
-                  <span>Full {activeClan.name.split(' ')[0]} Clan Profile</span>
+                  <span>Full {activeClan.name} Clan Profile</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>

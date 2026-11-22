@@ -40,11 +40,11 @@ export function HeritagePage({ mode = '25-years' }: { mode?: HeritageMode }) {
       crumb: '25 Years of Services',
     },
     genesis: {
-      title: 'Genesis of Rang Welfare Society',
+      title: 'Evolution of Rang Welfare Society',
       kicker: 'Heritage & History · Institutional Origins',
       subtitle:
         'How a village that once guarded itself with Mithun and ritual became a society of written bye-laws, youth enforcement, and shared vision.',
-      crumb: 'Genesis of RWS',
+      crumb: 'Evolution of Rang Welfare Society',
     },
     agreements: {
       title: 'Historical Incidents & Inter-Village Agreements',
@@ -70,7 +70,7 @@ export function HeritagePage({ mode = '25-years' }: { mode?: HeritageMode }) {
 
   const tabs: { key: HeritageMode; label: string; to: string }[] = [
     { key: '25-years', label: '25 Years of Services & Timeline', to: '/heritage/25-years' },
-    { key: 'genesis', label: 'Genesis of RWS', to: '/heritage/genesis' },
+    { key: 'genesis', label: 'Evolution of RWS', to: '/heritage/genesis' },
     { key: 'agreements', label: 'Historical Agreements', to: '/heritage/agreements' },
   ];
 
@@ -374,7 +374,7 @@ export function HeritagePage({ mode = '25-years' }: { mode?: HeritageMode }) {
                 className="inline-flex items-center gap-2 text-sm font-medium text-[#143A28] hover:text-[#2D6A4F]"
               >
                 <BookOpen className="w-4 h-4" />
-                <span>Read the Genesis of Rang Welfare Society →</span>
+                <span>Read the Evolution of Rang Welfare Society →</span>
               </Link>
             </div>
           </div>

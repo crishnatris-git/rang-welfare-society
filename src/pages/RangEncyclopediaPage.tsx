@@ -60,12 +60,12 @@ export function RangEncyclopediaPage({ mode = 'overview' }: { mode?: 'overview' 
 
               <div className="mt-5 pt-4 border-t border-[#ECE5D5] text-left space-y-2.5 text-xs">
                 <div>
-                  <span className="text-[#646B62] block">Origin / Migration</span>
-                  <span className="font-medium text-[#143A28]">{clan.originVillage}</span>
+                  <span className="text-[#646B62] block">{clan.settlerLabel}</span>
+                  <span className="font-medium text-[#143A28]">{clan.foundingAncestors}</span>
                 </div>
                 <div>
-                  <span className="text-[#646B62] block">Recorded Founding Ancestors</span>
-                  <span className="font-medium text-[#143A28]">{clan.foundingAncestors}</span>
+                  <span className="text-[#646B62] block">Origin / Migration</span>
+                  <span className="font-medium text-[#143A28]">{clan.originVillage}</span>
                 </div>
                 {clan.foundingLineage && (
                   <div>
@@ -419,12 +419,17 @@ export function RangEncyclopediaPage({ mode = 'overview' }: { mode?: 'overview' 
                 Clans in Order of Settlement
               </p>
               <h2 className="font-serif text-3xl font-semibold text-[#143A28] mt-1">
-                The Nine Clans of Rang Village
+                The Nine Clans and Their Symbols
               </h2>
+              <p className="mt-2.5 text-sm sm:text-base text-[#4A504B] max-w-2xl leading-relaxed">
+                Each face carries the emblem of one clan, shown here in the order of settlement. Together
+                they form the vocabulary of a good society: foundation, growth, continuity, warmth,
+                balance, vision, connection, grace and unity.
+              </p>
             </div>
             <Link
               to="/rang/monolith"
-              className="text-sm font-medium text-[#143A28] hover:text-[#2D6A4F]"
+              className="text-sm font-medium text-[#143A28] hover:text-[#2D6A4F] whitespace-nowrap shrink-0"
             >
               Read Full Monolith Symbolism Essay →
             </Link>
@@ -445,20 +450,18 @@ export function RangEncyclopediaPage({ mode = 'overview' }: { mode?: 'overview' 
                       referrerPolicy="no-referrer"
                       className="w-16 h-16 rounded-sm object-cover border border-[#C8BC9F] shrink-0"
                     />
-                    <div>
-                      <p className="font-mono text-[11px] text-[#7A6434]">
-                        No. 0{clan.order} · {clan.originVillage}
-                      </p>
-                      <h3 className="font-serif text-xl font-semibold text-[#143A28] group-hover:text-[#2D6A4F]">
+                    <div className="min-w-0">
+                      <h3 className="font-serif text-xl font-semibold text-[#143A28] group-hover:text-[#2D6A4F] leading-snug">
                         {clan.name}
                       </h3>
-                      <p className="text-xs font-medium text-[#5A6058]">{clan.symbolTitle}</p>
+                      <p className="text-xs font-medium text-[#7A6434] mt-0.5">{clan.symbolTitle}</p>
+                      <p className="mt-1.5 text-xs text-[#5A6058] leading-snug">
+                        <strong className="text-[#143A28]">{clan.settlerLabel}:</strong>{' '}
+                        {clan.foundingAncestors}
+                      </p>
                     </div>
                   </div>
-                  <p className="mt-4 text-xs text-[#646B62]">
-                    <strong className="text-[#143A28]">Ancestors:</strong> {clan.foundingAncestors}
-                  </p>
-                  <p className="mt-2 text-sm text-[#3E4540] leading-relaxed">
+                  <p className="mt-3.5 text-sm text-[#3E4540] leading-relaxed">
                     {clan.symbolDescription}
                   </p>
                 </div>

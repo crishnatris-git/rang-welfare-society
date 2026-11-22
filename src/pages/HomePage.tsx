@@ -121,8 +121,12 @@ export function HomePage() {
 
   return (
     <div>
-      {/* 1. Full-Bleed HD Aerial Drone Video Hero */}
-      <section className="relative min-h-[78vh] lg:min-h-[84vh] flex items-center bg-[#0F2C1E] text-[#F9F6EF] overflow-hidden">
+      {/* 1. Contained Centered HD Aerial Drone Video Hero */}
+      <div className="bg-[#F9F6EF] px-3 sm:px-5 lg:px-8 pt-3 sm:pt-5 lg:pt-6">
+        <section
+          data-testid="homepage-hero"
+          className="relative max-w-[1360px] mx-auto min-h-[78vh] lg:min-h-[84vh] flex items-center bg-[#0F2C1E] text-[#F9F6EF] overflow-hidden rounded-sm border border-[#D8CEB8]/70 shadow-sm"
+        >
         <div className="absolute inset-0 overflow-hidden bg-[#0D2618]">
           {HERO_VIDEOS.map((reel, idx) => {
             const isActive = idx === heroIndex;
@@ -258,7 +262,8 @@ export function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+        </section>
+      </div>
 
       {/* 2. A Society Built on Unity — Chairman Message Intro */}
       <section className="py-16 sm:py-24 bg-[#F9F6EF] border-b border-[#E5DEC9]">
@@ -325,11 +330,12 @@ export function HomePage() {
                 Rang — The 9 Colours
               </p>
               <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#143A28] mt-2">
-                Nine Clans. Nine Symbols. One Collective Soul.
+                The Nine Clans and Their Symbols
               </h2>
               <p className="mt-3 text-sm sm:text-base text-[#4A504B] max-w-2xl leading-relaxed">
-                Believed to be established around the 16th–17th century beside the Rangso stream, Rang brings
-                together nine distinct clans—each engraved in its order of settlement on the Silver Jubilee Monolith.
+                Each face carries the emblem of one clan, shown here in the order of settlement. Together
+                they form the vocabulary of a good society: foundation, growth, continuity, warmth,
+                balance, vision, connection, grace and unity.
               </p>
             </div>
             <Link
@@ -355,15 +361,16 @@ export function HomePage() {
                   className="w-16 h-16 rounded-sm object-cover shrink-0 border border-[#C8BC9F]"
                 />
                 <div className="min-w-0">
-                  <p className="text-[11px] font-mono uppercase tracking-[0.14em] text-[#7A6434]">
-                    Face 0{clan.order} · {clan.originVillage}
-                  </p>
-                  <h3 className="font-serif text-lg font-semibold text-[#143A28] group-hover:text-[#2D6A4F] mt-0.5">
+                  <h3 className="font-serif text-lg font-semibold text-[#143A28] group-hover:text-[#2D6A4F] leading-snug">
                     {clan.name}
                   </h3>
-                  <p className="text-xs font-medium text-[#5A6058] mt-0.5">{clan.symbolTitle}</p>
-                  <p className="text-xs text-[#4A504B] mt-2 line-clamp-2 leading-relaxed">
-                    {clan.monolithMeaning}
+                  <p className="text-xs font-medium text-[#7A6434] mt-0.5">{clan.symbolTitle}</p>
+                  <p className="text-[11px] text-[#5A6058] mt-1.5 leading-snug">
+                    <span className="font-semibold text-[#143A28]">{clan.settlerLabel}:</span>{' '}
+                    {clan.foundingAncestors}
+                  </p>
+                  <p className="text-xs text-[#4A504B] mt-2 leading-relaxed">
+                    {clan.symbolDescription}
                   </p>
                 </div>
               </Link>
@@ -595,14 +602,14 @@ export function HomePage() {
               </div>
               <div className="p-6 flex-1 flex flex-col">
                 <p className="text-xs uppercase tracking-[0.14em] text-[#7A6434] font-medium">
-                  Silver Jubilee Cultural Night Tribute
+                  Silver Jubilee Sports & Cultural Tribute
                 </p>
                 <h3 className="font-serif text-xl font-semibold text-[#143A28] group-hover:text-[#2D6A4F] mt-1.5">
                   Remembering Two Pillars of Rang
                 </h3>
                 <p className="text-sm text-[#4A504B] mt-2.5 leading-relaxed flex-1">
-                  Honouring Lt. Mama Kocho (1975–2000) and Lt. Tado Tamar (1974–2008), whose youth and
-                  selfless devotion laid the moral foundation of the Society.
+                  Honouring Lt. Mama Kocho (1975–2002) through the Sports Events and Lt. Tado Tamar
+                  (1974–2008) through the Cultural Programme for their selfless service to Rang.
                 </p>
                 <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-[#143A28]">
                   Read Memorial <ArrowRight className="w-3.5 h-3.5" />

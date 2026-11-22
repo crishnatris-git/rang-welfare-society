@@ -537,7 +537,7 @@ export const UNIFIED_TIMELINE: TimelineItem[] = [
     sortYear: 2026,
     title: 'RWS Silver Jubilee Celebration, Monolith & Rang Vision 2047',
     description:
-      'Commemorating 25 years of official service with the nine-faced Silver Jubilee Monolith, Souvenir "Rang — The 9 Colours", Cultural Night for Two Pillars, and adoption of Rang Vision 2047.',
+      'Commemorating 25 years of official service with the nine-faced Silver Jubilee Monolith, Souvenir "Rang — The 9 Colours", Sports & Cultural Dedication for Two Pillars, and adoption of Rang Vision 2047.',
     period: '2023–2026',
     category: 'Community Participation',
     leadership: 'Er. Logo Rang & Sh. Pacha Kocho (Organizing Chairman)',
@@ -735,15 +735,17 @@ export const ROLL_OF_HONOUR = [
 
 export const TWO_PILLARS = {
   title: 'Remembering Two Pillars of Rang',
-  subtitle: 'Lt. Mama Kocho & Lt. Tado Tamar — A Cultural Night in Their Honour',
+  subtitle: 'Lt. Mama Kocho & Lt. Tado Tamar — Honouring Two Sons of Rang Through Sports and Culture',
+  dedicationLabel: 'Silver Jubilee Sports & Cultural Dedication',
+  dedicationHeading: 'Honouring Two Sons of Rang Through Sports and Culture',
   intro: [
-    'The Rang Welfare Society (RWS) has decided to dedicate a cultural night to Lt. Mama Kocho and Lt. Tado Tamar, in recognition of their selfless service to the people of Rang village in the 1990s. The evening, part of the RWS Silver Jubilee celebration, will feature modern and folk songs and a dance competition.',
-    'Born within a year of each other, the two men devoted their youth to Rang: protecting its natural resources, standing by its people and working to bring neighbouring villages together. Both passed away prematurely, leaving behind a legacy of service that the village continues to remember.',
+    'As part of its Silver Jubilee celebration, the Rang Welfare Society (RWS) has chosen to honour two sons of Rang who gave their youth to the village in the 1990s. The Sports Events, including the Volleyball Competition on 23 November 2026 at Rang Village, are dedicated in loving memory of Lt. Mama Kocho. The Cultural Programme, an evening of modern and folk songs and a dance competition, is dedicated to the memory of Lt. Tado Tamar.',
+    'Born within a year of each other, the two men devoted their youth to Rang: protecting its natural resources, standing by its people and working to bring neighbouring villages together. Both passed away prematurely, leaving behind a legacy of selfless service that the village continues to remember with gratitude.',
   ],
   mamaKocho: {
     name: 'Lt. Mama Kocho',
     born: '1975',
-    passedAway: '2000',
+    passedAway: '2002',
     parents: 'Lt. Norbo Kocho and Lt. Tai Kocho',
     spouse: 'Paka Kocho',
     children: 'Sh. Alex Kocho, Ms. Rani Kocho and Sh. John Kocho',
@@ -802,9 +804,64 @@ export const TWO_PILLARS = {
     { year: '1994', milestone: 'Lt. Tado Tamar becomes the first Secretary of the Rang Village Welfare Committee (RVWC).' },
     { year: '1995', milestone: 'As RAC Secretary, he initiates the formation of the Rang–Loffa Welfare Association (RLWA).' },
     { year: '1997', milestone: 'Lt. Mama Kocho and Lt. Tado Tamar unite Rang and Loffa villages for joint protection of natural resources.' },
-    { year: '2000', milestone: 'Lt. Mama Kocho passes away prematurely.' },
+    { year: '2002', milestone: 'Lt. Mama Kocho passes away prematurely.' },
     { year: '2008', milestone: 'Lt. Tado Tamar passes away prematurely, as did Lt. Mama Kocho.' },
   ],
   closing:
-    'Through selfless service, Lt. Mama Kocho and Lt. Tado Tamar showed what it means to serve a community. The RWS cultural night is a tribute to them, and an invitation to the next generation of Rang to carry their spirit forward.',
+    'Through selfless service, Lt. Mama Kocho and Lt. Tado Tamar showed what it means to serve a community. The RWS Silver Jubilee Sports Events and Cultural Programme are dedicated as a tribute to them, and as an invitation to the next generation of Rang to carry their spirit forward.',
 };
+
+export interface PublicServiceGroup {
+  group: string;
+  count: number;
+  category: string;
+  description: string;
+}
+
+export const PEOPLE_IN_SERVICE = {
+  sectionLabel: 'OUR PEOPLE IN SERVICE',
+  heading: 'Rang in Public Service: 55 Members, Four Groups of Service',
+  navSubtitle: '55 Members Across 15 Government Departments & Organisations',
+  intro:
+    'In twenty-five years of organised community service, Rang has grown into a village of public servants. Today, 55 sons and daughters of Rang serve the nation across 15 government departments and organisations, from engineers and teachers to police personnel, nurses, clerks and support staff. Twenty-one of them, 38 per cent, are women.',
+  totalMembers: 55,
+  keyStats: [
+    { value: '55', label: 'Members in government service' },
+    { value: '15', label: 'Departments & organisations' },
+    { value: '21', label: 'Women (38%)' },
+    { value: '4', label: 'Group A (gazetted) officers' },
+  ],
+  groupsHeading: 'Members by Group of Service (as per CCS Rules)',
+  groups: [
+    {
+      group: 'Group A',
+      count: 4,
+      category: 'Gazetted officers',
+      description: 'Engineers (EE, AE) and the Managing Director of NEHHDC.',
+    },
+    {
+      group: 'Group B',
+      count: 7,
+      category: 'Non-gazetted officers',
+      description: 'PGT/TGT teachers, Sub-Inspectors, Junior Engineers and nurses.',
+    },
+    {
+      group: 'Group C',
+      count: 14,
+      category: 'Supervisory and support',
+      description: 'Primary teachers, ASIs, Havaldars, clerks and estimators.',
+    },
+    {
+      group: 'Group D',
+      count: 30,
+      category: 'Support staff',
+      description: 'Peons, chowkidars, labour and contingency staff.',
+    },
+  ] as PublicServiceGroup[],
+  insightHeading: 'What it tells us',
+  insightText:
+    'Eleven members (20 per cent) are in Groups A and B. The next step is to mentor more of our Group C and D members upward through competitive examinations and coaching, so that the village’s presence in public service grows in every rank.',
+  sourceNote:
+    'Source: RWS service-holder records, classified by Group (CCS Rules); casual, contingency and defence posts taken as equivalents.',
+};
+
