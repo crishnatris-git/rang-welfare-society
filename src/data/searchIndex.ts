@@ -20,6 +20,7 @@ import {
   SHG_PROFILES,
   VISION_2047,
   OFFICIAL_PUBLICATIONS,
+  STATIC_NEWS_ARTICLES,
 } from './communityAndVisionData';
 import { ASM_GPC_BOARD, OFFICIAL_MESSAGES } from './societyData';
 
@@ -260,6 +261,18 @@ export function buildStaticSearchIndex(): SearchDocument[] {
       route: '/media/publications',
       year: pub.year,
       keywords: [pub.title, pub.category, 'PDF', 'souvenir', 'download'],
+    });
+  }
+
+  for (const news of STATIC_NEWS_ARTICLES) {
+    docs.push({
+      id: news.id,
+      title: news.title,
+      subtitle: `${news.category}${news.location ? ` · ${news.location}` : ''}`,
+      excerpt: news.summary,
+      category: 'News & Publications',
+      route: `/media/newsroom/${news.slug}`,
+      keywords: [news.title, news.category, news.location || '', 'news', 'volleyball', 'WAYO', 'Watte'],
     });
   }
 

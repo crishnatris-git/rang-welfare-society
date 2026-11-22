@@ -17,7 +17,7 @@ import { ASSETS } from '../data/assets';
 import { NINE_CLANS } from '../data/rangEncyclopedia';
 import { RWS_SERVICE_PERIODS, UNIFIED_TIMELINE } from '../data/heritageData';
 import { VOICE_ARTICLES } from '../data/communityVoicesData';
-import { SHG_PROFILES, VISION_2047 } from '../data/communityAndVisionData';
+import { SHG_PROFILES, VISION_2047, STATIC_NEWS_ARTICLES } from '../data/communityAndVisionData';
 import { OFFICIAL_MESSAGES, SOCIETY_CONTACT } from '../data/societyData';
 import { EditorialImage, OrnamentalDivider } from '../components/EditorialUI';
 import { usePageSeo } from '../utils/seo';
@@ -750,63 +750,149 @@ export function HomePage() {
             </div>
           </div>
 
-          {announcements.length === 0 ? (
-            <div className="bg-[#FDFBF6] border border-[#E2D9C4] rounded-sm p-8 sm:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-              <div className="max-w-2xl">
-                <p className="text-sm font-medium text-[#143A28]">
-                  No official notices or announcements have been published yet.
-                </p>
-                <p className="text-sm text-[#5A6058] mt-1.5 leading-relaxed">
-                  To preserve institutional accuracy, this newsroom displays only verified notices,
-                  general conference announcements, and public statements published directly by Rang
-                  Welfare Society administrators.
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-3 shrink-0">
-                <Link
-                  to="/media/publications"
-                  className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#143A28] text-[#F9F6EF] text-xs font-medium rounded-sm hover:bg-[#1B4332] whitespace-nowrap"
-                >
-                  <FileText className="w-3.5 h-3.5" />
-                  <span>Download Souvenir PDF</span>
-                </Link>
-                <Link
-                  to="/admin"
-                  className="inline-flex items-center gap-2 px-4 py-2.5 border border-[#C8BC9F] text-[#143A28] text-xs font-medium rounded-sm hover:bg-[#F2ECE0] whitespace-nowrap"
-                >
-                  <span>Admin Publish Portal</span>
-                </Link>
-              </div>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {announcements.slice(0, 3).map((item) => (
-                <article
-                  key={item.id}
-                  className="bg-[#FDFBF6] border border-[#E2D9C4] rounded-sm p-6 flex flex-col justify-between"
-                >
-                  <div>
-                    <p className="text-xs text-[#7A6434] font-medium flex items-center gap-1.5">
-                      <Calendar className="w-3.5 h-3.5" />
-                      <span>
-                        {item.publishDate} · {item.category}
-                      </span>
+          {(() => {
+            const combinedHomeNews = [
+              ...STATIC_NEWS_ARTICLES.map((a) => ({
+                id: a.id,
+                slug: a.slug,
+                title: a.title,
+                category: a.category,
+                meta: a.publishDate || a.location || '',
+                summary: a.summary,
+                imageUrl: a.imageUrl,
+                imageAlt: a.imageAlt,
+              })),
+              ...announcements.map((a) => ({
+                id: a.id,
+                slug: a.id,
+                title: a.title,
+                category: a.category,
+                meta: a.publishDate,
+                summary: a.summary,
+                imageUrl: undefined as string | undefined,
+                imageAlt: a.title,
+              })),
+            ];
+
+            if (combinedHomeNews.length === 0) {
+              return (
+                <div className="bg-[#FDFBF6] border border-[#E2D9C4] rounded-sm p-8 sm:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                  <div className="max-w-2xl">
+                    <p className="text-sm font-medium text-[#143A28]">
+                      No official notices or announcements have been published yet.
                     </p>
-                    <h3 className="font-serif text-lg font-semibold text-[#143A28] mt-2">
-                      {item.title}
-                    </h3>
-                    <p className="text-sm text-[#4A504B] mt-2 leading-relaxed">{item.summary}</p>
+                    <p className="text-sm text-[#5A6058] mt-1.5 leading-relaxed">
+                      To preserve institutional accuracy, this newsroom displays only verified notices,
+                      general conference announcements, and public statements published directly by Rang
+                      Welfare Society administrators.
+                    </p>
                   </div>
+                  <div className="flex flex-wrap gap-3 shrink-0">
+                    <Link
+                      to="/media/publications"
+                      className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#143A28] text-[#F9F6EF] text-xs font-medium rounded-sm hover:bg-[#1B4332] whitespace-nowrap"
+                    >
+                      <FileText className="w-3.5 h-3.5" />
+                      <span>Download Souvenir PDF</span>
+                    </Link>
+                    <Link
+                      to="/admin"
+                      className="inline-flex items-center gap-2 px-4 py-2.5 border border-[#C8BC9F] text-[#143A28] text-xs font-medium rounded-sm hover:bg-[#F2ECE0] whitespace-nowrap"
+                    >
+                      <span>Admin Publish Portal</span>
+                    </Link>
+                  </div>
+                </div>
+              );
+            }
+
+            if (combinedHomeNews.length === 1) {
+              const latest = combinedHomeNews[0];
+              return (
+                <article className="group bg-[#FDFBF6] border border-[#E2D9C4] hover:border-[#B88A3E] rounded-sm overflow-hidden transition-colors shadow-xs">
                   <Link
-                    to="/media/newsroom"
-                    className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-[#143A28] hover:text-[#2D6A4F]"
+                    to={`/media/newsroom/${latest.slug}`}
+                    className="grid grid-cols-1 lg:grid-cols-12 items-stretch"
                   >
-                    Read Full Notice <ArrowRight className="w-3.5 h-3.5" />
+                    {latest.imageUrl && (
+                      <div className="lg:col-span-6 bg-[#F2ECE0] border-b lg:border-b-0 lg:border-r border-[#E5DEC9] flex items-center justify-center">
+                        <div className="aspect-video w-full overflow-hidden">
+                          <img
+                            src={latest.imageUrl}
+                            alt={latest.imageAlt}
+                            referrerPolicy="no-referrer"
+                            className="w-full h-full object-contain object-center"
+                          />
+                        </div>
+                      </div>
+                    )}
+                    <div className={`${latest.imageUrl ? 'lg:col-span-6' : 'lg:col-span-12'} p-6 sm:p-8 flex flex-col justify-between`}>
+                      <div>
+                        <p className="text-xs uppercase tracking-[0.14em] text-[#7A6434] font-semibold flex items-center gap-1.5">
+                          <Calendar className="w-3.5 h-3.5" />
+                          <span>
+                            {latest.category}
+                            {latest.meta ? ` · ${latest.meta}` : ''}
+                          </span>
+                        </p>
+                        <h3 className="font-serif text-xl sm:text-2xl font-semibold text-[#143A28] group-hover:text-[#2D6A4F] mt-2.5 leading-snug transition-colors">
+                          {latest.title}
+                        </h3>
+                        <p className="text-sm sm:text-base text-[#4A504B] mt-3 leading-relaxed">
+                          {latest.summary}
+                        </p>
+                      </div>
+                      <span className="mt-6 pt-4 border-t border-[#EFE8D8] inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-[#143A28] group-hover:text-[#8E6520] transition-colors">
+                        Read More <ArrowRight className="w-3.5 h-3.5" />
+                      </span>
+                    </div>
                   </Link>
                 </article>
-              ))}
-            </div>
-          )}
+              );
+            }
+
+            return (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {combinedHomeNews.slice(0, 3).map((item) => (
+                  <article
+                    key={item.id}
+                    className="group bg-[#FDFBF6] border border-[#E2D9C4] hover:border-[#B88A3E] rounded-sm overflow-hidden flex flex-col justify-between transition-colors"
+                  >
+                    <Link to={`/media/newsroom/${item.slug}`} className="flex flex-col flex-1">
+                      {item.imageUrl && (
+                        <div className="aspect-video w-full bg-[#F2ECE0] border-b border-[#EFE8D8] overflow-hidden">
+                          <img
+                            src={item.imageUrl}
+                            alt={item.imageAlt}
+                            referrerPolicy="no-referrer"
+                            className="w-full h-full object-contain object-center"
+                          />
+                        </div>
+                      )}
+                      <div className="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                          <p className="text-xs text-[#7A6434] font-medium flex items-center gap-1.5">
+                            <Calendar className="w-3.5 h-3.5" />
+                            <span>
+                              {item.category}
+                              {item.meta ? ` · ${item.meta}` : ''}
+                            </span>
+                          </p>
+                          <h3 className="font-serif text-lg font-semibold text-[#143A28] group-hover:text-[#2D6A4F] mt-2 leading-snug transition-colors">
+                            {item.title}
+                          </h3>
+                          <p className="text-sm text-[#4A504B] mt-2 leading-relaxed">{item.summary}</p>
+                        </div>
+                        <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-[#143A28] group-hover:text-[#8E6520]">
+                          Read More <ArrowRight className="w-3.5 h-3.5" />
+                        </span>
+                      </div>
+                    </Link>
+                  </article>
+                ))}
+              </div>
+            );
+          })()}
 
           {/* Quick Institutional Navigation Grid */}
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8 border-t border-[#E5DEC9]">

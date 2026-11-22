@@ -102,6 +102,7 @@ export default function App() {
               <Route path="/media/gallery" element={<MediaHubPage mode="gallery" />} />
               <Route path="/media/publications" element={<MediaHubPage mode="publications" />} />
               <Route path="/media/newsroom" element={<MediaHubPage mode="newsroom" />} />
+              <Route path="/media/newsroom/:slug" element={<MediaHubPage mode="news-detail" />} />
               <Route path="/media/events" element={<MediaHubPage mode="events" />} />
 
               {/* Search, Connect & Admin */}

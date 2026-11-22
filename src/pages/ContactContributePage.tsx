@@ -10,6 +10,8 @@ import {
   LogIn,
   FileText,
   ShieldCheck,
+  Facebook,
+  ExternalLink,
 } from 'lucide-react';
 import { PageHeader, OrnamentalDivider } from '../components/EditorialUI';
 import { ASSETS } from '../data/assets';
@@ -270,6 +272,29 @@ export function ContactContributePage({ mode = 'contact' }: { mode?: ConnectMode
                   Open Archive Submission Form
                   <Send className="w-3.5 h-3.5" />
                 </Link>
+              </div>
+
+              <div className="bg-[#FDFBF6] border border-[#E4DCC9] rounded-sm p-6 sm:p-7 shadow-xs">
+                <p className="text-xs uppercase tracking-[0.16em] text-[#8E6520] font-medium">
+                  Connect with RWS
+                </p>
+                <h3 className="mt-1.5 font-serif text-xl text-[#143A28] font-semibold">
+                  Official Social Media
+                </h3>
+                <p className="mt-2 text-sm text-[#4A524C] leading-relaxed">
+                  Stay connected with Rang Welfare Society updates, community highlights, and village activities on our official Facebook page.
+                </p>
+                <a
+                  href={SOCIETY_CONTACT.facebookUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Follow Rang Welfare Society on Facebook (opens in a new tab)"
+                  className="mt-5 inline-flex items-center gap-2.5 px-5 py-3 bg-[#143A28] text-[#F9F6EF] text-xs font-semibold uppercase tracking-[0.14em] rounded-sm hover:bg-[#1B4332] transition-colors whitespace-nowrap shrink-0"
+                >
+                  <Facebook className="w-4 h-4 text-[#E3C17A]" aria-hidden="true" />
+                  <span>Follow us on Facebook</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-[#D8B268]" aria-hidden="true" />
+                </a>
               </div>
             </div>
           </div>

@@ -95,4 +95,7 @@ export const ASSETS = {
     work2023Gathering: '/assets/extracted/doc/doc_obj193_654x368.jpg',
     work2023CommunityHall: '/assets/extracted/doc/doc_obj194_1600x900.jpg',
   },
+  news: {
+    volleyballRunnerUp2026: '/assets/aistudio/RWS-Volley-Team_46ea4610.jpeg',
+  },
 } as const;

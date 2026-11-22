@@ -536,3 +536,48 @@ export const OFFICIAL_PUBLICATIONS = [
     downloadFilename: 'Rang-Welfare-Society-Master-Manuscript-2026.pdf',
   },
 ];
+
+export interface OfficialNewsArticle {
+  id: string;
+  slug: string;
+  title: string;
+  category:
+    | 'Official Notice'
+    | 'Announcement'
+    | 'Community News'
+    | 'Institutional Update'
+    | 'Public Statement'
+    | 'Development Initiative';
+  location?: string;
+  publishDate?: string;
+  summary: string;
+  paragraphs: string[];
+  imageUrl: string;
+  imageAlt: string;
+  imageCaption: string;
+  authorName: string;
+}
+
+export const STATIC_NEWS_ARTICLES: OfficialNewsArticle[] = [
+  {
+    id: 'news-rws-volleyball-runner-up-2026',
+    slug: 'rws-volleyball-team-clinches-runner-up-trophy-lt-kata-rangmo-memorial-2026',
+    title:
+      'RWS Volleyball Team Clinches Runner-Up Trophy at Lt. Kata Rangmo Memorial Volleyball Tournament 2026',
+    category: 'Community News',
+    location: 'Watte',
+    summary:
+      'The RWS Volleyball Team secured the Runner-Up position at the Lt. Kata Rangmo Memorial Volleyball Tournament 2026 held at Watte and organised by the Watte Area Youth Organisation (WAYO).',
+    paragraphs: [
+      'Watte: The RWS Volleyball Team has brought pride to the region by securing the Runner-Up position at the prestigious Lt. Kata Rangmo Memorial Volleyball Tournament 2026, held at Watte.',
+      'The team officially received the Runner-Up Trophy in the closing ceremony of the tournament, which was organised by the Watte Area Youth Organisation (WAYO).',
+      'The tournament, held in memory of Lt. Kata Rangmo, witnessed enthusiastic participation from several teams from different areas. Organisers from WAYO, along with local leaders, well-wishers, and a large crowd of volleyball lovers, were present to witness the final match and the prize distribution ceremony.',
+    ],
+    imageUrl: ASSETS.news.volleyballRunnerUp2026,
+    imageAlt:
+      'The RWS Volleyball Team holding the Runner-Up Trophy and prize cheque with tournament officials at the closing ceremony of the Lt. Kata Rangmo Memorial Volleyball Tournament 2026 in Watte',
+    imageCaption:
+      'The RWS Volleyball Team poses with the Runner-Up Trophy at the closing ceremony of the Lt. Kata Rangmo Memorial Volleyball Tournament 2026.',
+    authorName: 'Rang Welfare Society',
+  },
+];

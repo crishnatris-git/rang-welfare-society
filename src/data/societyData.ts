@@ -30,6 +30,7 @@ export const SOCIETY_CONTACT = {
     'Office of the Rang Welfare Society (RWS), Community Hall, Village Rang, PO/PS Seppa, East Kameng District, Arunachal Pradesh – 790102',
   email: 'rangwelfaresociety@gmail.com',
   phone: '9402757828',
+  facebookUrl: 'https://www.facebook.com/100070275107119/',
   jubileeDate: '18–19 November 2026',
   distanceFromSeppa: 'Approximately 4 km from Seppa',
   censusVillageCode: '262015',

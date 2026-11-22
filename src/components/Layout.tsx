@@ -10,6 +10,7 @@ import {
   MapPin,
   Shield,
   ArrowUpRight,
+  Facebook,
 } from 'lucide-react';
 import { ASSETS } from '../data/assets';
 import { SOCIETY_CONTACT } from '../data/societyData';
@@ -415,6 +416,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   <Phone className="w-4 h-4 text-[#D8B268] shrink-0" />
                   <span className="tabular-nums">{SOCIETY_CONTACT.phone}</span>
                 </p>
+                <div className="pt-2">
+                  <a
+                    href={SOCIETY_CONTACT.facebookUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Visit Rang Welfare Society official Facebook page (opens in a new tab)"
+                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-sm border border-[#D8B268]/40 bg-white/5 text-[#F9F6EF] hover:bg-[#B88A3E] hover:text-[#0E2418] hover:border-[#B88A3E] transition-colors font-medium"
+                  >
+                    <Facebook className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                    <span>Facebook</span>
+                    <ArrowUpRight className="w-3 h-3 shrink-0" aria-hidden="true" />
+                  </a>
+                </div>
               </div>
             </div>
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import {
+  ArrowLeft,
   BookOpen,
   Calendar,
   Download,
@@ -15,7 +16,12 @@ import {
 } from 'lucide-react';
 import { PageHeader, OrnamentalDivider, EditorialImage, Lightbox, LightboxItem } from '../components/EditorialUI';
 import { ASSETS } from '../data/assets';
-import { STATIC_GALLERY_PHOTOS, OFFICIAL_PUBLICATIONS } from '../data/communityAndVisionData';
+import {
+  STATIC_GALLERY_PHOTOS,
+  OFFICIAL_PUBLICATIONS,
+  STATIC_NEWS_ARTICLES,
+  type OfficialNewsArticle,
+} from '../data/communityAndVisionData';
 import {
   AnnouncementDoc,
   GalleryItemDoc,
@@ -28,9 +34,25 @@ import {
 } from '../services/cmsService';
 import { usePageSeo } from '../utils/seo';
 
-type MediaMode = 'gallery' | 'publications' | 'newsroom' | 'events';
+type MediaMode = 'gallery' | 'publications' | 'newsroom' | 'news-detail' | 'events';
+
+interface UnifiedNewsItem {
+  id: string;
+  slug: string;
+  title: string;
+  category: OfficialNewsArticle['category'];
+  location?: string;
+  publishDate?: string;
+  summary: string;
+  paragraphs: string[];
+  imageUrl?: string;
+  imageAlt?: string;
+  imageCaption?: string;
+  authorName: string;
+}
 
 export function MediaHubPage({ mode = 'gallery' }: { mode?: MediaMode }) {
+  const { slug } = useParams<{ slug?: string }>();
   const [cmsGallery, setCmsGallery] = useState<GalleryItemDoc[]>([]);
   const [cmsPublications, setCmsPublications] = useState<PublicationDoc[]>([]);
   const [announcements, setAnnouncements] = useState<AnnouncementDoc[]>([]);
@@ -55,12 +77,52 @@ export function MediaHubPage({ mode = 'gallery' }: { mode?: MediaMode }) {
     return () => window.removeEventListener('keydown', onKeyDown);
   }, [activePdf]);
 
+  const combinedNews: UnifiedNewsItem[] = useMemo(() => {
+    const staticItems: UnifiedNewsItem[] = STATIC_NEWS_ARTICLES.map((a) => ({
+      id: a.id,
+      slug: a.slug,
+      title: a.title,
+      category: a.category,
+      location: a.location,
+      publishDate: a.publishDate,
+      summary: a.summary,
+      paragraphs: a.paragraphs,
+      imageUrl: a.imageUrl,
+      imageAlt: a.imageAlt,
+      imageCaption: a.imageCaption,
+      authorName: a.authorName,
+    }));
+    const cmsItems: UnifiedNewsItem[] = announcements.map((a) => ({
+      id: a.id,
+      slug: a.id,
+      title: a.title,
+      category: a.category,
+      publishDate: a.publishDate,
+      summary: a.summary,
+      paragraphs: a.body
+        .split(/\n{2,}/)
+        .map((p) => p.trim())
+        .filter(Boolean),
+      authorName: a.authorName,
+    }));
+    return [...staticItems, ...cmsItems];
+  }, [announcements]);
+
+  const activeNewsArticle = useMemo(() => {
+    if (mode !== 'news-detail' || !slug) return null;
+    return combinedNews.find((item) => item.slug === slug || item.id === slug) || null;
+  }, [mode, slug, combinedNews]);
+
   usePageSeo({
     title:
       mode === 'gallery'
         ? 'Photo Gallery — Rang Welfare Society'
         : mode === 'publications'
         ? 'Official Publications & Souvenirs — Rang Welfare Society'
+        : mode === 'news-detail'
+        ? activeNewsArticle
+          ? `${activeNewsArticle.title} — Rang Welfare Society`
+          : 'Newsroom Article — Rang Welfare Society'
         : mode === 'newsroom'
         ? 'Newsroom & Official Notices — Rang Welfare Society'
         : 'Events & Conferences — Rang Welfare Society',
@@ -69,10 +131,27 @@ export function MediaHubPage({ mode = 'gallery' }: { mode?: MediaMode }) {
         ? 'Curated archival photographs of Rang Village landscapes, Nine Clans heritage, Silver Jubilee Monolith, leadership, Self-Help Groups, and 25 years of RWS service.'
         : mode === 'publications'
         ? 'Read and download official Rang Welfare Society publications, including the Silver Jubilee Commemorative Souvenir — Rang: The 9 Colours.'
+        : mode === 'news-detail' && activeNewsArticle
+        ? activeNewsArticle.summary
         : mode === 'newsroom'
-        ? 'Official notices, announcements, institutional updates, and public statements published by Rang Welfare Society.'
+        ? 'Official notices, community news, announcements, and institutional updates published by Rang Welfare Society.'
         : 'Official conferences, community meetings, cultural programmes, and development activities announced by Rang Welfare Society.',
-    canonicalPath: `/media/${mode}`,
+    canonicalPath:
+      mode === 'news-detail' && slug ? `/media/newsroom/${slug}` : `/media/${mode}`,
+    jsonLd:
+      mode === 'news-detail' && activeNewsArticle
+        ? {
+            '@context': 'https://schema.org',
+            '@type': 'NewsArticle',
+            headline: activeNewsArticle.title,
+            description: activeNewsArticle.summary,
+            image: activeNewsArticle.imageUrl,
+            publisher: {
+              '@type': 'Organization',
+              name: 'Rang Welfare Society',
+            },
+          }
+        : undefined,
   });
 
   useEffect(() => {
@@ -81,7 +160,7 @@ export function MediaHubPage({ mode = 'gallery' }: { mode?: MediaMode }) {
       unsubs.push(subscribePublishedGallery(setCmsGallery));
     } else if (mode === 'publications') {
       unsubs.push(subscribePublishedPublications(setCmsPublications));
-    } else if (mode === 'newsroom') {
+    } else if (mode === 'newsroom' || mode === 'news-detail') {
       unsubs.push(subscribePublishedAnnouncements(setAnnouncements));
     } else if (mode === 'events') {
       unsubs.push(subscribePublishedEvents(setEvents));
@@ -125,9 +204,9 @@ export function MediaHubPage({ mode = 'gallery' }: { mode?: MediaMode }) {
   );
 
   const filteredNews = useMemo(() => {
-    if (newsCategory === 'All') return announcements;
-    return announcements.filter((a) => a.category === newsCategory);
-  }, [announcements, newsCategory]);
+    if (newsCategory === 'All') return combinedNews;
+    return combinedNews.filter((a) => a.category === newsCategory);
+  }, [combinedNews, newsCategory]);
 
   const filteredEvents = useMemo(() => {
     if (eventFilter === 'upcoming') return events.filter((e) => !e.isPast);
@@ -140,7 +219,11 @@ export function MediaHubPage({ mode = 'gallery' }: { mode?: MediaMode }) {
       {[
         { label: 'Photo Gallery', to: '/media/gallery', active: mode === 'gallery' },
         { label: 'Publications & PDFs', to: '/media/publications', active: mode === 'publications' },
-        { label: 'Newsroom & Notices', to: '/media/newsroom', active: mode === 'newsroom' },
+        {
+          label: 'Newsroom & Notices',
+          to: '/media/newsroom',
+          active: mode === 'newsroom' || mode === 'news-detail',
+        },
         { label: 'Events & Conferences', to: '/media/events', active: mode === 'events' },
       ].map((tab) => (
         <Link
@@ -485,12 +568,134 @@ export function MediaHubPage({ mode = 'gallery' }: { mode?: MediaMode }) {
     );
   }
 
+  if (mode === 'news-detail') {
+    if (!activeNewsArticle) {
+      return (
+        <div>
+          <PageHeader
+            kicker="Official Communications"
+            title="Newsroom & Official Notices"
+            subtitle="The requested news article could not be located in the Rang Welfare Society Newsroom."
+            breadcrumbs={[
+              { label: 'Media' },
+              { label: 'Newsroom & Notices', to: '/media/newsroom' },
+              { label: 'Article Not Found' },
+            ]}
+            backgroundImage={ASSETS.landscapes.valleyKamengPanorama}
+          >
+            {subNav}
+          </PageHeader>
+          <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+            <h2 className="font-serif text-2xl text-[#143A28] font-semibold">
+              News Article Not Found
+            </h2>
+            <p className="mt-3 text-sm text-[#4A524C]">
+              Return to the Newsroom to browse the latest community news and official notices from Rang Welfare Society.
+            </p>
+            <Link
+              to="/media/newsroom"
+              className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 bg-[#143A28] text-[#F9F6EF] text-xs font-semibold uppercase tracking-[0.12em] rounded-sm hover:bg-[#1B4332] transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Back to Newsroom
+            </Link>
+          </section>
+        </div>
+      );
+    }
+
+    return (
+      <div>
+        <PageHeader
+          kicker={`Newsroom · ${activeNewsArticle.category}${activeNewsArticle.location ? ` · ${activeNewsArticle.location}` : ''}`}
+          title={activeNewsArticle.title}
+          subtitle={activeNewsArticle.publishDate ? `Published ${activeNewsArticle.publishDate} · ${activeNewsArticle.authorName}` : `Issued by ${activeNewsArticle.authorName}`}
+          breadcrumbs={[
+            { label: 'Media' },
+            { label: 'Newsroom & Notices', to: '/media/newsroom' },
+            { label: activeNewsArticle.title },
+          ]}
+          backgroundImage={ASSETS.landscapes.valleyKamengPanorama}
+        >
+          {subNav}
+        </PageHeader>
+
+        <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+          <div className="mb-6">
+            <Link
+              to="/media/newsroom"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-[#143A28] hover:text-[#8E6520] transition-colors"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              Back to Newsroom &amp; Notices
+            </Link>
+          </div>
+
+          {activeNewsArticle.imageUrl && (
+            <figure className="mb-8 bg-[#FDFBF6] border border-[#DED4BD] rounded-sm overflow-hidden shadow-xs">
+              <div className="bg-[#F2ECE0]">
+                <img
+                  src={activeNewsArticle.imageUrl}
+                  alt={activeNewsArticle.imageAlt || activeNewsArticle.title}
+                  referrerPolicy="no-referrer"
+                  className="w-full h-auto block"
+                />
+              </div>
+              {activeNewsArticle.imageCaption && (
+                <figcaption className="px-5 py-3.5 text-xs sm:text-[13px] text-[#535A52] italic leading-relaxed border-t border-[#ECE5D5] bg-[#FDFBF6]">
+                  {activeNewsArticle.imageCaption}
+                </figcaption>
+              )}
+            </figure>
+          )}
+
+          <div className="bg-[#FDFBF6] border border-[#E2D9C4] rounded-sm p-7 sm:p-11 shadow-xs">
+            <div className="flex flex-wrap items-center justify-between gap-2 pb-5 mb-6 border-b border-[#EFE8D8] text-xs uppercase tracking-[0.14em] text-[#8E6520] font-medium">
+              <span className="inline-flex items-center gap-2">
+                <span>{activeNewsArticle.category}</span>
+                {activeNewsArticle.location && (
+                  <>
+                    <span className="text-[#C8BC9F]">·</span>
+                    <span className="inline-flex items-center gap-1 text-[#5A6058]">
+                      <MapPin className="w-3.5 h-3.5 text-[#8E6520]" />
+                      {activeNewsArticle.location}
+                    </span>
+                  </>
+                )}
+              </span>
+              {activeNewsArticle.publishDate && (
+                <span className="tabular-nums text-[#5A6058]">{activeNewsArticle.publishDate}</span>
+              )}
+            </div>
+
+            <div className="space-y-5 font-serif text-[17px] leading-[1.86] text-[#242925]">
+              {activeNewsArticle.paragraphs.map((paragraph, idx) => (
+                <p key={idx}>{paragraph}</p>
+              ))}
+            </div>
+
+            <div className="mt-8 pt-5 border-t border-[#EFE8D8] flex flex-wrap items-center justify-between gap-4 text-xs text-[#6B726C]">
+              <span>Issued by {activeNewsArticle.authorName}</span>
+              <Link
+                to="/media/newsroom"
+                className="inline-flex items-center gap-1.5 font-semibold uppercase tracking-[0.12em] text-[#143A28] hover:text-[#8E6520] transition-colors"
+              >
+                <ArrowLeft className="w-3.5 h-3.5" />
+                All Newsroom Stories
+              </Link>
+            </div>
+          </div>
+        </article>
+      </div>
+    );
+  }
+
   if (mode === 'newsroom') {
     const categories = [
       'All',
+      'Community News',
       'Official Notice',
       'Announcement',
-      'Community News',
       'Institutional Update',
       'Public Statement',
       'Development Initiative',
@@ -501,7 +706,7 @@ export function MediaHubPage({ mode = 'gallery' }: { mode?: MediaMode }) {
         <PageHeader
           kicker="Official Communications"
           title="Newsroom & Official Notices"
-          subtitle="Verified public statements, official notices, and institutional updates issued directly by the Executive Body of Rang Welfare Society."
+          subtitle="Community news, verified public statements, official notices, and institutional updates issued by Rang Welfare Society."
           breadcrumbs={[{ label: 'Media' }, { label: 'Newsroom & Notices' }]}
           backgroundImage={ASSETS.landscapes.valleyKamengPanorama}
         >
@@ -530,47 +735,83 @@ export function MediaHubPage({ mode = 'gallery' }: { mode?: MediaMode }) {
             <div className="mt-10 bg-white border border-[#D8CEB8] rounded-sm p-10 sm:p-12 text-center">
               <Megaphone className="w-9 h-9 text-[#8E6520] mx-auto mb-4" />
               <h2 className="font-serif text-2xl text-[#143A28] font-semibold">
-                No Official Notices Published Yet
+                No Official Notices in This Category Yet
               </h2>
               <p className="mt-3 text-sm sm:text-base text-[#4A524C] max-w-xl mx-auto leading-relaxed">
-                This newsroom exclusively carries verified notices and announcements published by authorised office-bearers of Rang Welfare Society. No placeholder or unverified items are displayed.
+                This newsroom exclusively carries verified news, notices, and announcements published by authorised office-bearers of Rang Welfare Society.
               </p>
               <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => setNewsCategory('All')}
+                  className="px-4 py-2.5 bg-[#143A28] text-[#F9F6EF] text-xs font-semibold uppercase tracking-[0.12em] rounded-sm hover:bg-[#1B4332] transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+                >
+                  View All News
+                </button>
                 <Link
                   to="/society/messages"
-                  className="px-4 py-2.5 bg-[#143A28] text-[#F9F6EF] text-xs font-semibold uppercase tracking-[0.12em] rounded-sm hover:bg-[#1B4332] transition-colors whitespace-nowrap shrink-0"
-                >
-                  Read Silver Jubilee Messages
-                </Link>
-                <Link
-                  to="/admin"
                   className="px-4 py-2.5 bg-[#F2ECE0] text-[#143A28] border border-[#D8CEB8] text-xs font-semibold uppercase tracking-[0.12em] rounded-sm hover:border-[#B88A3E] transition-colors whitespace-nowrap shrink-0"
                 >
-                  RWS Admin Portal
+                  Read Silver Jubilee Messages
                 </Link>
               </div>
             </div>
           ) : (
-            <div className="mt-8 space-y-6">
+            <div className="mt-8 space-y-8">
               {filteredNews.map((item) => (
                 <article
                   key={item.id}
-                  className="bg-white border border-[#E4DCC9] rounded-sm p-6 sm:p-8 shadow-xs"
+                  className="group bg-white border border-[#E4DCC9] hover:border-[#B88A3E] rounded-sm overflow-hidden shadow-xs transition-colors"
                 >
-                  <div className="flex flex-wrap items-center justify-between gap-2 text-xs uppercase tracking-[0.14em] text-[#8E6520] font-medium">
-                    <span>{item.category}</span>
-                    <span className="tabular-nums text-[#5A6058]">{item.publishDate}</span>
-                  </div>
-                  <h2 className="mt-2 font-serif text-2xl text-[#143A28] font-semibold">
-                    {item.title}
-                  </h2>
-                  <p className="mt-2 text-sm font-medium text-[#334139]">{item.summary}</p>
-                  <div className="mt-4 pt-4 border-t border-[#EFE8D8] text-sm text-[#4A524C] leading-relaxed whitespace-pre-line">
-                    {item.body}
-                  </div>
-                  <p className="mt-4 text-xs text-[#6B726C]">
-                    Issued by {item.authorName} · Rang Welfare Society
-                  </p>
+                  <Link
+                    to={`/media/newsroom/${item.slug}`}
+                    className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-[#143A28]"
+                  >
+                    {item.imageUrl && (
+                      <div className="aspect-video w-full bg-[#F2ECE0] border-b border-[#EFE8D8] overflow-hidden">
+                        <img
+                          src={item.imageUrl}
+                          alt={item.imageAlt || item.title}
+                          referrerPolicy="no-referrer"
+                          className="w-full h-full object-contain object-center transition-transform duration-300 group-hover:scale-[1.01]"
+                        />
+                      </div>
+                    )}
+                    <div className="p-6 sm:p-8">
+                      <div className="flex flex-wrap items-center justify-between gap-2 text-xs uppercase tracking-[0.14em] text-[#8E6520] font-medium">
+                        <span className="inline-flex items-center gap-2">
+                          <span>{item.category}</span>
+                          {item.location && (
+                            <>
+                              <span className="text-[#C8BC9F]">·</span>
+                              <span className="inline-flex items-center gap-1 text-[#5A6058]">
+                                <MapPin className="w-3.5 h-3.5 text-[#8E6520]" />
+                                {item.location}
+                              </span>
+                            </>
+                          )}
+                        </span>
+                        {item.publishDate && (
+                          <span className="tabular-nums text-[#5A6058]">{item.publishDate}</span>
+                        )}
+                      </div>
+                      <h2 className="mt-2.5 font-serif text-2xl sm:text-[26px] text-[#143A28] group-hover:text-[#2D6A4F] font-semibold leading-snug transition-colors">
+                        {item.title}
+                      </h2>
+                      <p className="mt-3 text-sm sm:text-base text-[#4A524C] leading-relaxed">
+                        {item.summary}
+                      </p>
+                      <div className="mt-5 pt-4 border-t border-[#EFE8D8] flex flex-wrap items-center justify-between gap-3">
+                        <span className="text-xs text-[#6B726C]">
+                          Issued by {item.authorName}
+                        </span>
+                        <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-[#143A28] group-hover:text-[#8E6520] transition-colors">
+                          Read More
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
                 </article>
               ))}
             </div>
