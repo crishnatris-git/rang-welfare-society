@@ -130,13 +130,13 @@ export function buildStaticSearchIndex(): SearchDocument[] {
   });
 
   docs.push({
-    id: 'people-in-service-55',
+    id: 'people-in-service-56',
     title: PEOPLE_IN_SERVICE.heading,
     subtitle: PEOPLE_IN_SERVICE.navSubtitle,
     excerpt: PEOPLE_IN_SERVICE.intro,
     category: 'People & Pioneers',
     route: '/people/in-service',
-    keywords: ['public service', 'government service', 'CCS Rules', 'Group A', 'Group B', 'Group C', 'Group D', '55 members', 'NEHHDC', 'women'],
+    keywords: ['public service', 'government service', 'CCS Rules', 'Group A', 'Group B', 'Group C', 'Group D', '56 members', 'IES', 'APPCS', 'women'],
   });
 
   for (const entry of ROLL_OF_HONOUR) {

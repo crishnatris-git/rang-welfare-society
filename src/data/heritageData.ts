@@ -820,47 +820,47 @@ export interface PublicServiceGroup {
 
 export const PEOPLE_IN_SERVICE = {
   sectionLabel: 'OUR PEOPLE IN SERVICE',
-  heading: 'Rang in Public Service: 55 Members, Four Groups of Service',
-  navSubtitle: '55 Members Across 15 Government Departments & Organisations',
+  heading: 'Rang in Public Service: 56 Members, Four Groups of Service',
+  navSubtitle: '56 Members Across 15 Government Departments & Organisations',
   intro:
-    'In twenty-five years of organised community service, Rang has grown into a village of public servants. Today, 55 sons and daughters of Rang serve the nation across 15 government departments and organisations, from engineers and teachers to police personnel, nurses, clerks and support staff. Twenty-one of them, 38 per cent, are women.',
-  totalMembers: 55,
+    'In twenty-five years of organised community service, Rang has grown into a village of public servants. Today, 56 sons and daughters of Rang serve the nation across 15 government departments and organisations, from engineers and teachers to police personnel, nurses, clerks and support staff. Twenty-two of them, 39 per cent, are women.',
+  totalMembers: 56,
   keyStats: [
-    { value: '55', label: 'Members in government service' },
+    { value: '56', label: 'Members in government service' },
     { value: '15', label: 'Departments & organisations' },
-    { value: '21', label: 'Women (38%)' },
-    { value: '4', label: 'Group A (gazetted) officers' },
+    { value: '22', label: 'Women (39%)' },
+    { value: '5', label: 'Group A (gazetted) officers' },
   ],
   groupsHeading: 'Members by Group of Service (as per CCS Rules)',
   groups: [
     {
       group: 'Group A',
-      count: 4,
+      count: 5,
       category: 'Gazetted officers',
-      description: 'Engineers (EE, AE) and the Managing Director of NEHHDC.',
+      description: 'IES, APPCS, and Engineers (EE, AE)',
     },
     {
       group: 'Group B',
       count: 7,
       category: 'Non-gazetted officers',
-      description: 'PGT/TGT teachers, Sub-Inspectors, Junior Engineers and nurses.',
+      description: 'PGT, SI, Jes, SI, etc.',
     },
     {
       group: 'Group C',
       count: 14,
-      category: 'Supervisory and support',
-      description: 'Primary teachers, ASIs, Havaldars, clerks and estimators.',
+      category: 'Supervisory & support',
+      description: 'PGT, ASIs, UDC, etc.',
     },
     {
       group: 'Group D',
       count: 30,
       category: 'Support staff',
-      description: 'Peons, chowkidars, labour and contingency staff.',
+      description: 'Peons, chowkidars, labour and contingency staff',
     },
   ] as PublicServiceGroup[],
   insightHeading: 'What it tells us',
   insightText:
-    'Eleven members (20 per cent) are in Groups A and B. The next step is to mentor more of our Group C and D members upward through competitive examinations and coaching, so that the village’s presence in public service grows in every rank.',
+    '12 members (21%) are in Groups A and B. The next step is to mentor more of our Group C and D members upward through competitive exams and coaching.',
   sourceNote:
     'Source: RWS service-holder records, classified by Group (CCS Rules); casual, contingency and defence posts taken as equivalents.',
 };

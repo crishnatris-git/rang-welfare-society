@@ -12,11 +12,13 @@ export const ASSETS = {
   videos: {
     heroRangVillage: '/assets/aistudio/InShot_20261121_151844974_66dfd48b.mp4',
     heroKamengRiver: '/assets/aistudio/InShot_20261121_151926939_01a89cc8.mp4',
+    promotionalFilm: '/videos/Website-Video-5.mp4',
   },
   landscapes: {
     heroRangHills: '/assets/rang/hero_rang_hills.jpg',
     heroPosterRang: '/assets/rang/hero_poster_rang.jpg',
     heroPosterKameng: '/assets/rang/hero_poster_kameng.jpg',
+    welcomeToRang: '/assets/aistudio/Welcome-to-rang_9ea019ea.jpeg',
     valleyKamengSunrise: '/assets/rang/valley_kameng_sunrise.jpg',
     valleyKamengPanorama: '/assets/rang/valley_kameng_panorama.jpg',
     nyangpoSohStream: '/assets/extracted/doc/doc_obj209_437x970.jpg',

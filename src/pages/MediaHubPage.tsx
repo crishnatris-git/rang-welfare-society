@@ -15,6 +15,7 @@ import {
   X,
 } from 'lucide-react';
 import { PageHeader, OrnamentalDivider, EditorialImage, Lightbox, LightboxItem } from '../components/EditorialUI';
+import { VideoHero } from '../components/VideoHero';
 import { ASSETS } from '../data/assets';
 import {
   STATIC_GALLERY_PHOTOS,
@@ -255,6 +256,8 @@ export function MediaHubPage({ mode = 'gallery' }: { mode?: MediaMode }) {
         </PageHeader>
 
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+          <VideoHero variant="media" />
+
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#D8CEB8] pb-6">
             <div>
               <p className="text-xs uppercase tracking-[0.16em] text-[#8E6520] font-medium">

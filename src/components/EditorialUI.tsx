@@ -110,14 +110,14 @@ export function PageHeader({
   title,
   subtitle,
   breadcrumbs,
-  backgroundImage = ASSETS.landscapes.heroPosterRang,
+  backgroundImage: _backgroundImage,
   children,
 }: PageHeaderProps) {
   return (
     <section className="relative bg-[#143A28] text-[#F9F6EF] overflow-hidden border-b border-[#B88A3E]/30">
       <div className="absolute inset-0 overflow-hidden">
         <img
-          src={backgroundImage}
+          src={ASSETS.landscapes.welcomeToRang}
           alt=""
           aria-hidden="true"
           referrerPolicy="no-referrer"

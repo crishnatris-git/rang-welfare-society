@@ -59,7 +59,7 @@ const NAV_GROUPS: NavGroup[] = [
       {
         label: 'Our People in Service',
         to: '/people/in-service',
-        desc: '55 Members Across 15 Government Departments & Organisations',
+        desc: '56 Members Across 15 Government Departments & Organisations',
       },
       { label: 'SHGs & Helping Hand', to: '/community/shg', desc: 'Women SHGs & Seppa volunteers' },
     ],

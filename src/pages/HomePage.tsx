@@ -20,6 +20,7 @@ import { VOICE_ARTICLES } from '../data/communityVoicesData';
 import { SHG_PROFILES, VISION_2047, STATIC_NEWS_ARTICLES } from '../data/communityAndVisionData';
 import { OFFICIAL_MESSAGES, SOCIETY_CONTACT } from '../data/societyData';
 import { EditorialImage, OrnamentalDivider } from '../components/EditorialUI';
+import { VideoHero } from '../components/VideoHero';
 import { usePageSeo } from '../utils/seo';
 import {
   subscribePublishedAnnouncements,
@@ -320,6 +321,9 @@ export function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* 2B. Official Promotional Film Video Hero */}
+      <VideoHero variant="home" />
 
       {/* 3. Nine Clans, One Rang */}
       <section className="py-16 sm:py-24 bg-[#F2ECE0] border-b border-[#E5DEC9]">

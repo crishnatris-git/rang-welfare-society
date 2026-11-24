@@ -115,12 +115,32 @@ test('sanitizeDocumentId conforms to Firestore isValidId regex', () => {
   assert.ok(id.length <= 128);
 });
 
-test('PEOPLE_IN_SERVICE group counts sum accurately to 55 members across 4 CCS groups', async () => {
+test('PEOPLE_IN_SERVICE group counts and headline figures are consistent for 56 members across 4 CCS groups', async () => {
   const { PEOPLE_IN_SERVICE, TWO_PILLARS } = await import('../data/heritageData');
-  const sum = PEOPLE_IN_SERVICE.groups.reduce((acc, g) => acc + g.count, 0);
-  assert.equal(sum, 55);
-  assert.equal(PEOPLE_IN_SERVICE.totalMembers, 55);
-  assert.equal(PEOPLE_IN_SERVICE.groups.length, 4);
+  const counts = PEOPLE_IN_SERVICE.groups.map((g) => g.count);
+  assert.deepEqual(counts, [5, 7, 14, 30]);
+  const sum = counts.reduce((acc, c) => acc + c, 0);
+  assert.equal(sum, 56);
+  assert.equal(PEOPLE_IN_SERVICE.totalMembers, 56);
+  assert.equal(PEOPLE_IN_SERVICE.navSubtitle, '56 Members Across 15 Government Departments & Organisations');
+  assert.deepEqual(
+    PEOPLE_IN_SERVICE.keyStats.map((s) => `${s.value} ${s.label}`),
+    [
+      '56 Members in government service',
+      '15 Departments & organisations',
+      '22 Women (39%)',
+      '5 Group A (gazetted) officers',
+    ]
+  );
+  assert.equal(PEOPLE_IN_SERVICE.groups[0].description, 'IES, APPCS, and Engineers (EE, AE)');
+  assert.equal(PEOPLE_IN_SERVICE.groups[1].description, 'PGT, SI, Jes, SI, etc.');
+  assert.equal(PEOPLE_IN_SERVICE.groups[2].category, 'Supervisory & support');
+  assert.equal(PEOPLE_IN_SERVICE.groups[2].description, 'PGT, ASIs, UDC, etc.');
+  assert.equal(PEOPLE_IN_SERVICE.groups[3].description, 'Peons, chowkidars, labour and contingency staff');
+  assert.equal(
+    PEOPLE_IN_SERVICE.insightText,
+    '12 members (21%) are in Groups A and B. The next step is to mentor more of our Group C and D members upward through competitive exams and coaching.'
+  );
   assert.equal(TWO_PILLARS.mamaKocho.passedAway, '2002');
 });
 
